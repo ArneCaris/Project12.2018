@@ -1,10 +1,10 @@
 var db = require('../database');
 var Posts = {
-  getAllNonPrivatePost: function(callback) {
+  getAllPublicPosts: function(callback) {
     return db.query('select * from post where isPrivate=0', callback);
   },
-  getPostByPostId: function(id, callback) {
-    return db.query('select * from post where id=?', [id], callback);
+  getAllPrivatePosts: function(callback) {
+    return db.query('select * from post where isPrivate=1', callback);
   },
   addPost: function(post, callback) {
     return db.query(

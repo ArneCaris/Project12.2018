@@ -5,12 +5,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var routes = require('./routes/index');
-
-var post = require('./routes/Posts')
-var users = require('./routes/Users')
-
+var post = require('./routes/Posts');
+var users = require('./routes/Users');
+var vehicles = require('./routes/Vehicles');
+var technologies = require('./routes/Technology');
+var gamings = require('./routes/Gaming');
+var lifestyles = require('./routes/Lifestyle');
 var comments = require('./routes/comments');
-
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -28,8 +29,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/Posts', post);
-app.use('/Users', users)
+app.use('/Users', users);
 app.use('/comments', comments);
+app.use('/Vehicles', vehicles);
+app.use('/Technology', technologies);
+app.use('/Gaming', gamings);
+app.use('/Lifestyle', lifestyles);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

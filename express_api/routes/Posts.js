@@ -1,24 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var Posts = require('../models/Posts');
-router.get('/:id?', function(req, res, next) {
-  if (req.params.id) {
-    Posts.getPostsById(req.params.id, function(err, rows) {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(rows);
-      }
-    });
-  } else {
-    Posts.getAllNonPrivatePost(function(err, rows) {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(rows);
-      }
-    });
-  }
+router.get('/private', function(req, res, next) {
+  Posts.getAllPrivatePosts(function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+router.get('/public', function(req, res, next) {
+  Posts.getAllPublicPosts(function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
 });
 router.post('/', function(req, res, next) {
   Posts.addPost(req.body, function(err, count) {
