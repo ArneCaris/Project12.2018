@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class DeleteBook extends Component {
+class DeleteUser extends Component {
     constructor() {
     super();
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-        book_id: '',
-        book_name: '',
-        author: '',
-        isbn: ''
+        ID: '',
+        username: '',
+        password: '',
     };
     }
 
@@ -22,12 +21,12 @@ class DeleteBook extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const id = this.state.book_id;
-        const { book_id, book_name, author, isbn } = this.state;
+        const id = this.state.ID;
+        const { ID, username, password } = this.state;
         window.location.reload();
 
         axios
-            .delete('http://localhost:3000/books/' + id, { book_id, book_name, author, isbn })
+            .delete('http://localhost:3000/Users/' + id, { ID, username, password })
             .then(res => {
             console.log(res);
             console.log(res.data);
@@ -37,11 +36,11 @@ class DeleteBook extends Component {
     render() {
         return (
             <div className="content">
-                <h2>Delete Book</h2>
+                <h2>Delete User</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                    book_id:
-                    <input type="number" name="book_id" onChange={this.onChange} />
+                    ID:
+                    <input type="number" name="ID" onChange={this.onChange} />
                     </label>
                     <button className="button" type="submit">
                     Delete
@@ -52,4 +51,4 @@ class DeleteBook extends Component {
     }
 }
 
-export default DeleteBook;
+export default DeleteUser;

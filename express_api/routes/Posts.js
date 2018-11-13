@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var borrows = require('../models/borrows');
-router.get('/:borrow_id?', function(req, res, next) {
-  if (req.params.borrow_id) {
-    borrows.getborrowByborrow_id(req.params.borrow_id, function(err, rows) {
+var Posts = require('../models/Posts');
+router.get('/:id?', function(req, res, next) {
+  if (req.params.id) {
+    Posts.getPostsById(req.params.id, function(err, rows) {
       if (err) {
         res.json(err);
       } else {
@@ -11,7 +11,7 @@ router.get('/:borrow_id?', function(req, res, next) {
       }
     });
   } else {
-    borrows.getAllborrows(function(err, rows) {
+    Posts.getAllNonPrivatePost(function(err, rows) {
       if (err) {
         res.json(err);
       } else {
@@ -21,7 +21,7 @@ router.get('/:borrow_id?', function(req, res, next) {
   }
 });
 router.post('/', function(req, res, next) {
-  borrows.addborrow(req.body, function(err, count) {
+  Posts.addPost(req.body, function(err, count) {
     if (err) {
       res.json(err);
     } else {
@@ -29,8 +29,8 @@ router.post('/', function(req, res, next) {
     }
   });
 });
-router.delete('/:book_id', function(req, res, next) {
-  borrows.deleteborrow(req.params.book_id, function(err, count) {
+router.delete('/:id', function(req, res, next) {
+  Posts.deletePost(req.params.id, function(err, count) {
     if (err) {
       res.json(err);
     } else {
@@ -38,8 +38,8 @@ router.delete('/:book_id', function(req, res, next) {
     }
   });
 });
-router.put('/:book_id', function(req, res, next) {
-  borrows.updateborrow(req.params.book_id, req.body, function(err, rows) {
+router.put('/:id', function(req, res, next) {
+  Posts.updatePost(req.params.id, req.body, function(err, rows) {
     if (err) {
       res.json(err);
     } else {

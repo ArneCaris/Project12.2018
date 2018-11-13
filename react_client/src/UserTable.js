@@ -3,18 +3,18 @@ import axios from 'axios';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
-  class BookTable extends Component {
+  class UserTable extends Component {
     constructor() {
       super();
-      this.showBooks = this.showBooks.bind(this);
+      this.showUsers = this.showUsers.bind(this);
       this.state = {
         tableData: []
       };
-      this.showBooks();
+      this.showUsers();
     }
 
-    showBooks() {
-      axios.get(`http://localhost:3000/books`).then(response => {
+    showUsers() {
+      axios.get(`http://localhost:3000/Users`).then(response => {
         this.setState({ tableData: response.data });
       });
     }
@@ -29,25 +29,22 @@ import 'react-table/react-table.css';
             data={tableData}
             columns={[
               {
-                Header: 'All Books',
+                Header: 'All Users',
                 columns: [
                   {
-                    Header: 'book_id',
-                    id: 'book_id',
-                    accessor: d => d.book_id
+                    Header: 'ID',
+                    id: 'ID',
+                    accessor: d => d.ID
                   },
                   {
-                    Header: 'book_name',
-                    accessor: 'book_name'
+                    Header: 'username',
+                    accessor: 'username'
                   },
                   {
-                    Header: 'author',
-                    accessor: 'author'
+                    Header: 'password',
+                    accessor: 'password'
                   },
-                  {
-                    Header: 'isbn',
-                    accessor: 'isbn'
-                  }
+                  
                 ]
               }
             ]}
@@ -59,4 +56,4 @@ import 'react-table/react-table.css';
     }
   }
 
-  export default BookTable;
+  export default UserTable;
