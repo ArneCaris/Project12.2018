@@ -3,7 +3,7 @@ var router = express.Router();
 var Posts = require('../models/Posts');
 router.get('/:id?', function(req, res, next) {
   if (req.params.id) {
-    Posts.getPostsById(req.params.id, function(err, rows) {
+    Posts.getPostById(req.params.id, function(err, rows) {
       if (err) {
         res.json(err);
       } else {
