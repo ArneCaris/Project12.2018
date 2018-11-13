@@ -10,6 +10,8 @@ import BorrowerTable from './BorrowerTable';
 import AddBorrower from './AddBorrower';
 import UpdateBorrower from './UpdateBorrower';
 import DeleteBorrower from './DeleteBorrower';
+import CreatePost from './CreatePost';
+import ViewPost from './ViewPost';
 import { NavLink, Route } from 'react-router-dom';
 
 require("react-bootstrap/lib/NavbarHeader");
@@ -29,6 +31,13 @@ class App extends Component {
             <NavLink to="/Users">
               Users
             </NavLink>
+            <NavLink to="/CreatePost">
+              Create Post
+            </NavLink>
+            <br/>
+            <NavLink to="/ViewPost">
+              View Posts
+            </NavLink>
             <br/>
             
         </div>
@@ -41,7 +50,10 @@ class App extends Component {
           </NavLink>
         </div>
 
+
         <Route path="/" exact component={Home} />
+        <Route path="/createpost" exact component={CreatePost} />
+        <Route path="/viewpost" exact component={ViewPost} />
         <Route path="/Users" exact component={UserTable} /> 
         <Route path="/Users/add" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />
