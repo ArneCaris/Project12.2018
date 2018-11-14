@@ -18,8 +18,8 @@ var Posts = {
   },
   updatePost: function(id, post, callback) {
     return db.query(
-      'update post set title=?,content=?,isprivate=? where id=?',
-      [post.title, post.content, post.isprivate, id],
+      'update post set title=?,content=?,isPrivate=? where id=?',
+      [post.title, post.content, post.isPrivate, id],
       callback
     );
   }
