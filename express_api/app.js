@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/Posts', post);
 app.use('/Users', users);
-app.use('/comments', comments);
+app.use('/Comments', comments);
 app.use('/Vehicles', vehicles);
 app.use('/Technology', technologies);
 app.use('/Gaming', gamings);
