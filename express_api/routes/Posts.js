@@ -19,6 +19,28 @@ router.get('/public', function(req, res, next) {
     }
   });
 });
+router.get('/:ID', function(req, res, next){
+  if(req.params.ID){
+  Posts.getPostsById(req.params.ID, function(err, rows){
+    if (err){
+      res.json(err);
+    }else{
+      res.json(rows);
+    }
+  });
+}
+});
+router.get('/:UserID', function(req, res, next){
+  if(req.params.UserID){
+  Posts.getPostByUserId(req.params.UserID, function(err, rows){
+    if(err){
+      res.json(err);
+    }else{
+      res.json(rows);
+    }
+  });
+ }
+});
 router.post('/', function(req, res, next) {
   Posts.addPost(req.body, function(err, count) {
     if (err) {
