@@ -6,6 +6,12 @@ var Posts = {
   getAllPrivatePosts: function(callback) {
     return db.query('select * from post where isPrivate=1', callback);
   },
+  getPostsById: function(ID, callback){
+    return db.query('select * from post where ID=?',[ID], callback);
+  },
+  getPostByUserId(UserID, callback){
+    return db.query('select * from post where UserID=?', [UserID], callback);
+  },
   addPost: function(post, callback) {
     return db.query(
       'insert into post values(?,?,?,?,?,?)',
@@ -16,10 +22,10 @@ var Posts = {
   deletePost: function(id, callback) {
     return db.query('delete from post where id=?', [id], callback);
   },
-  updatePost: function(id, post, callback) {
+  updatePost: function(ID, post, callback) {
     return db.query(
-      'update post set title=?,content=?,isprivate=? where id=?',
-      [post.title, post.content, post.isprivate, id],
+      'update post set UserID=?,Title=?,Content=?,WhenPosted=?,isPrivate=? where ID=?',
+      [post.UserID, post.Title, post.Content,post.WhenPosted, post.isPrivate, ID],
       callback
     );
   }
