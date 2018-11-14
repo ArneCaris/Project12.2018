@@ -22,10 +22,10 @@ var Posts = {
   deletePost: function(id, callback) {
     return db.query('delete from post where id=?', [id], callback);
   },
-  updatePost: function(id, post, callback) {
+  updatePost: function(ID, post, callback) {
     return db.query(
-      'update post set title=?,content=?,whenposted=?,isprivate=? where id=?',
-      [post.title, post.content,post.whenposted, post.isprivate, id],
+      'update post set UserID=?,Title=?,Content=?,WhenPosted=?,isPrivate=? where ID=?',
+      [post.UserID, post.Title, post.Content,post.WhenPosted, post.isPrivate, ID],
       callback
     );
   }
