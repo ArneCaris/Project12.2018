@@ -24,7 +24,7 @@ router.post('/', function(req, res, next) {
     }
   });
 });
-router.delete('/:id', function(req, res, next) {
+router.delete('/delete/:id', function(req, res, next) {
   comments.deleteComment(req.params.id, function(err, count) {
     if (err) {
       res.json(err);
@@ -33,8 +33,8 @@ router.delete('/:id', function(req, res, next) {
     }
   });
 });
-router.put('/:id', function(req, res, next) {
-  comments.updateComment(req.params.id, req.body, function(
+router.put('/edit/:ID', function(req, res, next) {
+  comments.updateComment(req.params.ID, req.body, function(
     err,
     rows
   ) {

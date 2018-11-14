@@ -11,11 +11,11 @@ var comments = {
     return db.query(
       'insert into comments values(?,?,?,?,?)',
       [
-        comments.id,
+        comments.ID,
         comments.PostID,
         comments.UserID,
         comments.Message,
-        comments.timestamp
+        comments.LastEdit
       ],
       callback
     );
@@ -27,15 +27,10 @@ var comments = {
       callback
     );
   },
-  updateComment: function(id, comments, callback) {
+  updateComment: function(ID, comments, callback) {
     return db.query(
-      'update comments set PostID=?,UserID=?, Message=?, where id=?',
-      [
-        comments.PostID,
-        comments.UserID,
-        comments.Message,
-        id
-      ],
+      'update comments set Message=? where ID=?',
+      [ comments.Message, ID ],
       callback
     );
   }
