@@ -9,7 +9,7 @@ var Posts = {
   addPost: function(post, callback) {
     return db.query(
       'insert into post values(?,?,?,?,?,?)',
-      [post.ID, post.UserID, post.Title, post.Content, post.WhenPosted, post.isPrivate],
+      [post.ID, post.UserID, post.Title, post.Content, post.isPrivate, post.LastEdit],
       callback
     );
   },

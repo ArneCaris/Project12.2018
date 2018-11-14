@@ -15,7 +15,7 @@ var comments = {
         comments.PostID,
         comments.UserID,
         comments.Message,
-        comments.TIMESTAMP
+        comments.timestamp
       ],
       callback
     );

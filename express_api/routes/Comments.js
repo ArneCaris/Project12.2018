@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var comments = require('../models/comments');
-router.get('/:PostId?', function(req, res, next) {
+router.get('/:PostID?', function(req, res, next) {
   if (req.params.PostID) {
-    borrowers.getCommentsByPostId(req.params.PostID, function(
+    comments.getCommentsByPostId(req.params.PostID, function(
       err,
       rows
     ) {

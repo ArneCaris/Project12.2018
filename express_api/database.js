@@ -3,6 +3,6 @@ var connection = mysql.createPool({
   host: 'localhost',
   user: 'netuser',
   password: 'netpass',
-  database: 'mydb'
+  database: 'dilog'
 });
 module.exports = connection;
