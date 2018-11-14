@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b62d1dd5-e638-4a4a-a420-26ba2109e437",
+		"_postman_id": "8ee0e0da-1a19-410a-b57e-263f4fdd5ded",
 		"name": "Project12.2018 API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -55,6 +55,36 @@
 			"response": []
 		},
 		{
+			"name": "GetPostById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostByUserId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "CreatePost",
 			"request": {
 				"method": "POST",
@@ -70,23 +100,13 @@
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "WhenPosted",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "isPrivate",
-							"value": "1",
-							"type": "text"
-						},
-						{
 							"key": "ID",
 							"value": "",
 							"type": "text"
 						},
 						{
 							"key": "UserID",
-							"value": "2",
+							"value": "1",
 							"type": "text"
 						},
 						{
@@ -96,7 +116,17 @@
 						},
 						{
 							"key": "Content",
-							"value": "technology test",
+							"value": "DB TEST",
+							"type": "text"
+						},
+						{
+							"key": "isPrivate",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "LastEdit",
+							"value": "",
 							"type": "text"
 						}
 					]
@@ -113,6 +143,61 @@
 					]
 				},
 				"description": "Creates a new post"
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePost",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"UserID\":\"1\",\n\t\"Title\":\"this is edited\",\n\t\"Content\":\"edited content XD:SDASDASD\",\n\t\"WhenPosted\":\"0\",\n\t\"isPrivate\":\"1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePost",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"9"
+					]
+				}
 			},
 			"response": []
 		},
@@ -135,6 +220,38 @@
 					"path": [
 						"comments",
 						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutCommetByID",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Message\":\"Rename The Book\"\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:3000/comments/edit/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comments",
+						"edit",
+						"3"
 					]
 				}
 			},
@@ -172,11 +289,11 @@
 						},
 						{
 							"key": "Message",
-							"value": "Does this work?",
+							"value": "Mind your own bussiness",
 							"type": "text"
 						},
 						{
-							"key": "TIMESTAMP",
+							"key": "LastEdit",
 							"value": "",
 							"type": "text"
 						}
@@ -198,6 +315,31 @@
 			"response": []
 		},
 		{
+			"name": "DeleteComment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/comments/delete/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comments",
+						"delete",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GetUserById",
 			"request": {
 				"method": "GET",
@@ -207,7 +349,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/Users/2",
+					"raw": "http://localhost:3000/Users/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -215,7 +357,7 @@
 					"port": "3000",
 					"path": [
 						"Users",
-						"2"
+						"1"
 					]
 				}
 			},
