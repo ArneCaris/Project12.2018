@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var Shareds = require('../models/Shared');
-router.get('/shared/:Viewer', function(req, res, next){
+var Shared = require('../models/Shared');
+router.get('/with/:Viewer', function(req, res, next){
     if(req.params.Viewer){
-    Shareds.getSharedPostByViewer(req.params.Viewer, function(err, rows){
+    Shared.getSharedPostByViewer(req.params.Viewer,
+      function(err, rows){
       if(err){
         res.json(err);
       }else{
@@ -12,9 +13,9 @@ router.get('/shared/:Viewer', function(req, res, next){
     });
    }
   });
-router.get('/shared/:Owner', function(req, res, next){
+router.get('/mine/:Owner', function(req, res, next){
   if(req.params.Owner){
-  Shareds.getSharedPostByOwner(req.params.Owner, function(err, rows){
+  Shared.getSharedPostByOwner(req.params.Owner, function(err, rows){
     if(err){
       res.json(err);
     }else{
@@ -23,8 +24,8 @@ router.get('/shared/:Owner', function(req, res, next){
   });
  }
 });
-router.post('/shared/', function(req, res, next) {
-  Shareds.addSharedPost(req.body, function(err, count) {
+router.post('/', function(req, res, next) {
+  Shared.addSharedPost(req.body, function(err, count) {
     if (err) {
       res.json(err);
     } else {
@@ -32,8 +33,8 @@ router.post('/shared/', function(req, res, next) {
     }
   });
 });
-router.delete('/shared/:id', function(req, res, next) {
-  Shareds.deleteSharedPost(req.params.id, function(err, count) {
+router.delete('/:id', function(req, res, next) {
+  Shared.deleteSharedPost(req.params.id, function(err, count) {
     if (err) {
       res.json(err);
     } else {
