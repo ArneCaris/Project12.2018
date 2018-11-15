@@ -1,7 +1,7 @@
 var db = require('../database');
 var users = {
-  getUserById: function(ID, callback) {
-    return db.query('select * from user where id=?', [ID], callback);
+  getUserByUsername: function(username, callback) {
+    return db.query('select * from user where username=?', [username], callback);
   },
   addUser: function(user, callback) {
     return db.query(

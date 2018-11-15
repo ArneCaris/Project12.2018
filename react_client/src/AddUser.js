@@ -39,10 +39,6 @@ class AddUser extends Component {
                 <h2>Add User</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                    ID:
-                    <input type="number" name="ID" onChange={this.onChange} />
-                    </label>
-                    <label>
                     Username:
                     <input type="text" name="username" onChange={this.onChange} />
                     </label>

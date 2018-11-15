@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
 
-class ViewPost extends Component {
+class PublicPosts extends Component {
 constructor() {
     super();
     this.getPosts = this.getPosts.bind(this);
     this.state = {
       posts: []
+
     };
   }
   getPosts() {
-    axios.get(`http://localhost:3000/posts`).then(res => {
+    axios.get(`http://localhost:3000/posts/public`).then(res => {
       const posts = res.data;
       this.setState({ posts });
     });
@@ -21,23 +23,26 @@ constructor() {
           <button className="button" onClick={this.getPosts}>
             Show posts
           </button>
-          <table className="table table-bordered">
+          <table className="">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Title</th>
                 <th>Content</th>
+                <th>Category</th>
                 <th>When posted</th>
-                <th>Is Private?</th>
+                <th>Last Edited</th>
               </tr>
             </thead>
             <tbody>
               {this.state.posts.map(Post => (
-                <tr key={Post.id}>
-                  <td>{Post.title}</td>
-                  <td>{Post.content}</td>
-                  <td>{Post.whenposted}</td>
-                  <td>{Post.isprivate}</td>
+                <tr key={Post.ID}>
+                  <td>{Post.ID}</td>
+                  <td>{Post.Title}</td>
+                  <td>{Post.Content}</td>
+                  <td>{Post.Category}</td>
+                  <td>{Post.WhenPosted}</td>
+                  <td>{Post.LastEdited}</td>
                 </tr>
               ))}
             </tbody>
@@ -47,4 +52,4 @@ constructor() {
     }
 }
 
-export default ViewPost;
+export default PublicPosts;

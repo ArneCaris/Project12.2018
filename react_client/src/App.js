@@ -3,16 +3,17 @@ import './App.css';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Home from './Home';
-import UserTable from './UserTable';
+import Users from './Users';
 import AddUser from './AddUser';
 import DeleteUser from './DeleteUser';
 import CreatePost from './CreatePost';
 import Posts from './Posts';
 import { NavLink, Route } from 'react-router-dom';
+import DeletePost from './DeletePost';
 
 
 require("react-bootstrap/lib/NavbarHeader");
-require("react-bootstrap/lib/NavbarBrand")
+require("react-bootstrap/lib/NavbarBrand");
 
 
 
@@ -25,7 +26,7 @@ class App extends Component {
             <NavLink to="/">
               Home
             </NavLink>
-            <NavLink to="/Users">
+            <NavLink to="/Users/">
               Users
             </NavLink>
             <NavLink to="/CreatePost">
@@ -35,14 +36,14 @@ class App extends Component {
             <NavLink to="/Post">
               View Posts
             </NavLink>
-            <br/>
             
         </div>
         <hr/>
         <div className="Users-crud">
           <NavLink to="/Users/add">
-              Add User    |
+            Add User
           </NavLink>
+          <br/>
           <NavLink to="/Users/delete">
               Delete User
           </NavLink>
@@ -53,7 +54,8 @@ class App extends Component {
         <Route path="/" exact component={Home} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Post" exact component={Posts} />
-        <Route path="/Users" exact component={UserTable} /> 
+        <Route path="/deletepost" exact component={DeletePost} />
+        <Route path="/Users/" exact component={Users} /> 
         <Route path="/Users/add" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />
       </div>
