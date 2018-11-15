@@ -3,7 +3,7 @@ import './App.css';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Home from './Home';
-import UserTable from './UserTable';
+import Users from './Users';
 import AddUser from './AddUser';
 import DeleteUser from './DeleteUser';
 import BorrowerTable from './BorrowerTable';
@@ -28,7 +28,7 @@ class App extends Component {
             <NavLink to="/">
               Home
             </NavLink>
-            <NavLink to="/Users">
+            <NavLink to="/Users/">
               Users
             </NavLink>
             <NavLink to="/CreatePost">
@@ -54,7 +54,7 @@ class App extends Component {
         <Route path="/" exact component={Home} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/viewpost" exact component={ViewPost} />
-        <Route path="/Users" exact component={UserTable} /> 
+        <Route path="/Users/" exact component={Users} /> 
         <Route path="/Users/add" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />
       </div>
