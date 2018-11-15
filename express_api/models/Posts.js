@@ -14,8 +14,8 @@ var Posts = {
   },
   addPost: function(post, callback) {
     return db.query(
-      'insert into post values(?,?,?,?,?,?)',
-      [post.ID, post.UserID, post.Title, post.Content, post.isPrivate, post.LastEdit],
+      'insert into post values(?,?,?,?,?,?,?)',
+      [post.ID, post.UserID, post.Title, post.Content, post.Categody, post.isPrivate, post.LastEdit],
       callback
     );
   },
