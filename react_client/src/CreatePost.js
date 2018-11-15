@@ -8,12 +8,14 @@ class CreatePost extends Component {
             this.onChange = this.onChange.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
             this.state = {
-                id: '',
-                userid: '',
-                title: '',
-                content: '',
-                whenposted: '',
-                isprivate: ''
+                ID: '',
+                UserID: '',
+                Title: '',
+                Content: '',
+                Category: '',
+                WhenPosted: '',
+                LastEdit: '',
+                isPrivate: ''
             }; 
         }
         onChange = e => {
@@ -24,11 +26,10 @@ class CreatePost extends Component {
         handleSubmit = event => {
             event.preventDefault();
     
-            const { ID, UserID, Title, Content, WhenPosted, isPrivate  } = this.state;
-            window.location.reload();
-    
+            const { ID, UserID, Title, Content, WhenPosted, Category, isPrivate, LastEdit  } = this.state;
+
             axios
-                .post('http://localhost:3000/posts', { ID, UserID, Title, Content, WhenPosted, isPrivate  })
+                .post('http://localhost:3000/posts', { ID, UserID, Title, Content, Category, WhenPosted, isPrivate, LastEdit })
                 .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -40,31 +41,37 @@ class CreatePost extends Component {
                 <h2>Create Post</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                    ID:
-                    <input type="number" name="ID" onChange={this.onChange} />
+                        UserID:
+                        <input type="number" name="UserID" onChange={this.onChange} />
                     </label>
+                    <br/>
                     <label>
-                    UserID:
-                    <input type="number" name="UserID" onChange={this.onChange} />
+                        Title:
+                        <input type="text" name="Title" onChange={this.onChange} />
                     </label>
+                    <br/>
                     <label>
-                    Title:
-                    <input type="text" name="Title" onChange={this.onChange} />
+                        Content:
+                        <input type="text" name="Content" onChange={this.onChange} />
                     </label>
+                    <br/>
                     <label>
-                    Content:
-                    <input type="text" name="Content" onChange={this.onChange} />
+                        Category:
+                        <input type="text" name="Category" onChange={this.onChange} />
                     </label>
+                    <br/>
                     <label>
-                    WhenPosted:
-                    <input type="text" name="WhenPosted" onChange={this.onChange} />
+                        isPrivate:
+                        <input type="text" name="isPrivate" onChange={this.onChange} />
                     </label>
+                    <br/>
                     <label>
-                    isPrivate:
-                    <input type="text" name="isPrivate" onChange={this.onChange} />
+                        LastEdited:
+                        <input type="text" name="LastEdit" onChange={this.onChange} />
                     </label>
-                    <button className="button" type="submit">
-                    Add
+                    <br/>
+                        <button className="button" type="submit">
+                        Create
                     </button>
                 </form>
             </div>
