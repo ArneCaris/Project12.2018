@@ -20,6 +20,8 @@
 .navbar {
   text-align: left;
   text-decoration: none;
+  border-bottom: 1px solid black;
+
 }
 .App-nav {
   text-decoration: none;
@@ -27,6 +29,14 @@
 .Users-crud {
   text-align: center;
   text-decoration: none;
+}
+th{
+  border: 1px solid black;
+  padding: 5px;
+
+}
+td{
+  border: 1px solid black;
 }
 
 .App-link {
