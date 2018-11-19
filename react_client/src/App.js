@@ -10,7 +10,9 @@ import CreatePost from './CreatePost';
 import Posts from './Posts';
 import { NavLink, Route } from 'react-router-dom';
 import DeletePost from './DeletePost';
-
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import test from './test';
 
 require("react-bootstrap/lib/NavbarHeader");
 require("react-bootstrap/lib/NavbarBrand");
@@ -32,25 +34,21 @@ class App extends Component {
             <NavLink to="/CreatePost">
               Create Post
             </NavLink>
-            <br/>
             <NavLink to="/Post">
               View Posts
             </NavLink>
-            
-        </div>
-        <hr/>
-        <div className="Users-crud">
-          <NavLink to="/Users/add">
+            <NavLink to="/Users/add">
             Add User
           </NavLink>
-          <br/>
           <NavLink to="/Users/delete">
               Delete User
           </NavLink>
+          <NavLink to="/test">
+              test
+          </NavLink>
         </div>
-
         <hr/>
-
+        <Route path="/test" exact component={test} />
         <Route path="/" exact component={Home} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Post" exact component={Posts} />
