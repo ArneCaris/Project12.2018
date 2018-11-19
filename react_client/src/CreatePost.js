@@ -42,17 +42,17 @@ class CreatePost extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         UserID:
-                        <input type="number" name="UserID" onChange={this.onChange} />
+                        <input type="number" name="UserID" onChange={this.onChange} required/>
                     </label>
                     <br/>
                     <label>
                         Title:
-                        <input type="text" name="Title" onChange={this.onChange} />
+                        <input type="text" name="Title" onChange={this.onChange} required/>
                     </label>
                     <br/>
                     <label>
                         Content:
-                        <input type="text" name="Content" onChange={this.onChange} />
+                        <input type="text" name="Content" onChange={this.onChange} required/>
                     </label>
                     <br/>
                     <label>
@@ -61,17 +61,15 @@ class CreatePost extends Component {
                     </label>
                     <br/>
                     <label>
-                        isPrivate:
-                        <input type="text" name="isPrivate" onChange={this.onChange} />
-                    </label>
-                    <br/>
-                    <label>
                         LastEdited:
                         <input type="text" name="LastEdit" onChange={this.onChange} />
                     </label>
                     <br/>
-                        <button className="button" type="submit">
-                        Create
+                    <button className="button-create" type="">
+                        Create Post
+                    </button>
+                    <button className="button-submit" type="submit">
+                        Publish Post
                     </button>
                 </form>
             </div>
