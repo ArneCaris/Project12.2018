@@ -14,7 +14,7 @@ import 'react-table/react-table.css';
     }
 
     showBooks() {
-      axios.get(`http://localhost:3000/books`).then(response => {
+      axios.get(`http://localhost:300s0/book`).then(response => {
         this.setState({ tableData: response.data });
       });
     }

@@ -17,11 +17,19 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.navbar {
-  text-align: left;
+.dropdown {
+  position: absolute;
+  margin-left: 150px;
+  background-color: green;
+}
+#logo {
   text-decoration: none;
-  border-bottom: 1px solid black;
-
+  color: black;
+}
+.navbar {
+  text-decoration: none;
+  border: 1px solid black;
+  margin: 10px 10px 10px 10px;
 }
 .App-nav {
   text-decoration: none;
