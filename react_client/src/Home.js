@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import ReactTable from 'react-table';
+//import axios from 'axios';
+//import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
   class Home extends Component {
-    constructor() {
+ /*   constructor() {
       super();
       this.showBooks = this.showBooks.bind(this);
       this.state = {
@@ -17,10 +17,10 @@ import 'react-table/react-table.css';
       axios.get(`http://localhost:3000/books`).then(response => {
         this.setState({ tableData: response.data });
       });
-    }
+    } */
 
     render() {
-      const { tableData } = this.state;
+    //  const { tableData } = this.state;
 
       return (
         <div className="content">
@@ -28,7 +28,7 @@ import 'react-table/react-table.css';
           <h5>Using Express and importing a MySQL Database</h5>
         </div>
       );
-    }
+    } 
   }
 
   export default Home;

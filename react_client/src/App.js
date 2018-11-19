@@ -10,6 +10,8 @@ import CreatePost from './CreatePost';
 import Posts from './Posts';
 import { NavLink, Route } from 'react-router-dom';
 import DeletePost from './DeletePost';
+import ShareEntry from './ShareEntry';
+
 
 
 require("react-bootstrap/lib/NavbarHeader");
@@ -36,6 +38,10 @@ class App extends Component {
             <NavLink to="/Post">
               View Posts
             </NavLink>
+            <br/>
+            <NavLink to="/ShareEntry">
+              Share with
+            </NavLink>
             
         </div>
         <hr/>
@@ -58,6 +64,7 @@ class App extends Component {
         <Route path="/Users/" exact component={Users} /> 
         <Route path="/Users/add" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />
+        <Route path="/ShareEntry" exact component={ShareEntry} />
       </div>
       
     );

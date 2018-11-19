@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-  import axios from 'axios';
+import axios from 'axios';
 
   class Users extends Component {
     constructor() {
@@ -10,7 +10,7 @@ import React, { Component } from 'react';
       };
     }
 
-    getUsers() {
+  getUsers() {
       const username = document.getElementById("username").value;
       axios.get(`http://localhost:3000/Users/` + username).then(res => {
         const Users = res.data;
@@ -23,7 +23,7 @@ import React, { Component } from 'react';
         <div>
             <label>
               Username:
-              <input id="username" type="string" name="username"/>
+              <input id="username" type="string" name="username" onKeyUp={this.getUsers}/>
             </label>
             <button className="button" onClick={this.getUsers}>
               Show User
@@ -53,3 +53,13 @@ import React, { Component } from 'react';
   }
 
   export default Users;
+  
+  export function getUsers() {
+    const username = document.getElementById("username").value;
+    axios.get(`http://localhost:3000/Users/` + username).then(res => {
+      const Users = res.data;
+      if (Users === true){
+       document.getElementById("user_test").value = "Hell yeah my dude";
+      };
+    });
+  };
