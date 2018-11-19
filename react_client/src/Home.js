@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
+<<<<<<< HEAD
   class Home extends Component {
     constructor() {
       super();
@@ -18,14 +19,16 @@ import 'react-table/react-table.css';
         this.setState({ tableData: response.data });
       });
     }
+=======
+>>>>>>> 5c5a717fc68960840b3aea5d0b7f70434de7d7b2
 
+  class Home extends Component {
     render() {
-      const { tableData } = this.state;
+      
 
       return (
-        <div className="content">
-          <h2>React.js application</h2>
-          <h5>Using Express and importing a MySQL Database</h5>
+        <div className="for-posts">
+            HOME
         </div>
       );
     }

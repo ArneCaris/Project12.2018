@@ -31,25 +31,62 @@
   border: 1px solid black;
   margin: 10px 10px 10px 10px;
 }
+
 .App-nav {
   text-decoration: none;
 }
+
 .Users-crud {
   text-align: center;
   text-decoration: none;
 }
+
 th{
   border: 1px solid black;
   padding: 5px;
-
 }
+
 td{
   border: 1px solid black;
+}
+
+.button-submit{
+  visibility: hidden;
 }
 
 .App-link {
   color: #61dafb;
 }
+
+.more-btn{
+  
+}
+
+.for-posts{
+  padding: 5px;
+}
+
+.post-div{
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 80%;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /* number of lines to show */
+}
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px;     /* fallback */
+  max-height: 32px;      /* fallback */
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
 
 @keyframes App-logo-spin {
   from {

@@ -12,8 +12,10 @@ import Posts from './Posts';
 import Login from "./Login";
 
 import { NavLink, Route } from 'react-router-dom';
-
-
+import DeletePost from './DeletePost';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import test from './test';
 
 require("react-bootstrap/lib/NavbarHeader");
 require("react-bootstrap/lib/NavbarBrand");
@@ -53,24 +55,39 @@ class App extends Component {
                     <a className="dropdown-item" href="#nogo">Technology</a>
                     <a className="dropdown-item" href="#nogo">Vehicles</a>
                 </div>
-            </div>
             
             
+            <p className="Users-crud">
+            
+              <h1>Menu</h1>
+              <NavLink to="/">
+                Home
+              </NavLink>
+              <NavLink to="/Users/">
+                Users
+              </NavLink>
+              <NavLink to="/CreatePost">
+                Create Post
+              </NavLink>
+              <NavLink to="/Post">
+                View Posts
+              </NavLink>
+              <NavLink to="/Users/add">
+              Add User
+            </NavLink>
+            <NavLink to="/Users/delete">
+                Delete User
+            </NavLink>
+            <NavLink to="/test">
+                test
+            </NavLink>
+            </p>
 
         </div>
         
-        <div className="Users-crud">
-          <NavLink to="/Users/add">
-            Add User
-          </NavLink>
-          <br/>
-          <NavLink to="/Users/delete">
-              Delete User
-          </NavLink>
-        </div>
-
+        
         <hr/>
-
+        <Route path="/test" exact component={test} />
         <Route path="/" exact component={Home} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Post" exact component={Posts} />
@@ -79,6 +96,7 @@ class App extends Component {
         <Route path="/Users/add" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />
         <Route path="/login" exact component={Login} />
+      </div>
       </div>
       
     );
