@@ -56,9 +56,17 @@ class App extends Component {
                     <a className="dropdown-item" href="#nogo">Technology</a>
                     <a className="dropdown-item" href="#nogo">Vehicles</a>
                 </div>
-
         </div>
-              <NavLink className="navigation" to="/Users/">
+        
+        
+        <hr/>
+
+      </div>
+      <div>
+      <NavLink to="/">
+                Home
+              </NavLink>
+              <NavLink to="/Users/">
                 Users
               </NavLink>
               <NavLink className="navigation" to="/CreatePost">
@@ -68,6 +76,21 @@ class App extends Component {
                 View Posts
               </NavLink>
               <NavLink className="navigation" to="/test">
+              <NavLink to="/Users/add">
+              Add User
+            </NavLink>
+            <NavLink to="/Users/delete">
+                Delete User
+            </NavLink>
+            <NavLink to="/test">
+                test
+            </NavLink>
+            <Route path="/test" exact component={test} />
+              </NavLink>
+              <NavLink to="/Users/delete">
+                  Delete User
+              </NavLink>
+              <NavLink to="/test">
                   test
               </NavLink>
               <br/>
@@ -86,17 +109,19 @@ class App extends Component {
             </div>
       </div>
         <Route path="/test" exact component={test} />
+        <Route path="/" exact component={Home} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Post" exact component={Posts} />
         <Route path="/deletepost" exact component={DeletePost} />
         <Route path="/Users/" exact component={Users} /> 
         <Route path="/Users/add" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />
+        <Route path="/login" exact component={Login} />
         <Route path="/ShareEntry" exact component={ShareEntry} />
         <Route path="/login" exact component={Login} />
+
       </div>
 
-      
       
     );
   }

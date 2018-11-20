@@ -18,8 +18,14 @@
   color: white;
 }
 .dropdown {
+<<<<<<< HEAD
   margin-left: 1%;
   background-color: green;
+=======
+  position: absolute;
+  margin-left: 150px;
+  
+>>>>>>> b5efc266abf2e189d85de40cfe6776156ffe81eb
 }
 #logo {
   text-decoration: none;
@@ -49,12 +55,37 @@ td{
   border: 1px solid black;
 }
 
-.button-submit{
-  visibility: hidden;
-}
-
 .App-link {
   color: #61dafb;
+}
+
+.btn-publish{
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: green;
+  color: white;
+  
+}
+.btn-discard{
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: red;
+  color: white;
+}
+.btn-submit{
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: blue;
+  color: white;
+}
+.btns-div{
+  padding: 10px;
+  margin: 1%;
+  
+}
+
+.for-posts{
+  padding: 5px;
 }
 
 .post-div{
