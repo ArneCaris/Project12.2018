@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Home from './Home';
 import Users from './Users';
 import AddUser from './AddUser';
 import DeleteUser from './DeleteUser';
@@ -12,7 +11,6 @@ import Posts from './Posts';
 import Login from "./Login";
 
 import { NavLink, Route } from 'react-router-dom';
-import DeletePost from './DeletePost';
 import ShareEntry from './ShareEntry';
 
 
@@ -58,38 +56,26 @@ class App extends Component {
                     <a className="dropdown-item" href="#nogo">Technology</a>
                     <a className="dropdown-item" href="#nogo">Vehicles</a>
                 </div>
-            
-            
-            <p className="Users-crud">
-            
-              <h1>Menu</h1>
-              <NavLink to="/">
-                Home
-              </NavLink>
-              <NavLink to="/Users/">
+
+        </div>
+              <NavLink className="navigation" to="/Users/">
                 Users
               </NavLink>
-              <NavLink to="/CreatePost">
+              <NavLink className="navigation" to="/CreatePost">
                 Create Post
               </NavLink>
-              <NavLink to="/Post">
+              <NavLink className="navigation" to="/Post">
                 View Posts
               </NavLink>
-              <NavLink to="/Users/add">
-              Add User
-              </NavLink>
-              <NavLink to="/Users/delete">
-                  Delete User
-              </NavLink>
-              <NavLink to="/test">
+              <NavLink className="navigation" to="/test">
                   test
               </NavLink>
               <br/>
-              <NavLink to="/ShareEntry">
+              <NavLink className="navigation" to="/ShareEntry">
                 Share with
               </NavLink>
-          <hr/>
-              <div className="Users-crud">
+ 
+            <div className="userLogin">
                 <NavLink to="/Users/add">
                   Add User
                 </NavLink>
@@ -97,15 +83,9 @@ class App extends Component {
                 <NavLink to="/Users/delete">
                     Delete User
                 </NavLink>
-              </div>
-            </p>
-
-        </div>
-        
-        
-        <hr/>
+            </div>
+      </div>
         <Route path="/test" exact component={test} />
-        <Route path="/" exact component={Home} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Post" exact component={Posts} />
         <Route path="/deletepost" exact component={DeletePost} />
@@ -115,7 +95,8 @@ class App extends Component {
         <Route path="/ShareEntry" exact component={ShareEntry} />
         <Route path="/login" exact component={Login} />
       </div>
-      </div>
+
+      
       
     );
   }

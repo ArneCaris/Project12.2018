@@ -18,8 +18,7 @@
   color: white;
 }
 .dropdown {
-  position: absolute;
-  margin-left: 150px;
+  margin-left: 1%;
   background-color: green;
 }
 #logo {
@@ -58,14 +57,6 @@ td{
   color: #61dafb;
 }
 
-.more-btn{
-  
-}
-
-.for-posts{
-  padding: 5px;
-}
-
 .post-div{
   border: 1px solid grey;
   border-radius: 5px;
@@ -95,4 +86,15 @@ td{
   to {
     transform: rotate(360deg);
   }
+}
+
+.navigation{
+margin-left: 1%;
+}
+
+.userLogin{
+  float: right;
+  border-left: 1px solid black;
+  padding-left: 5%;
+  margin-left: 5%;
 }

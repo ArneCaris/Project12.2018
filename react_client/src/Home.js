@@ -10,12 +10,10 @@ import 'react-table/react-table.css';
       
 
       return (
-        <div className="for-posts">
-            HOME
-        </div>
+        <div>hello</div>
       );
     } 
   }
 
-  export default Home;
+  export default Home; 
 
