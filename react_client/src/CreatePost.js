@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ReactDOM from 'react-dom';
 
 class CreatePost extends Component {
     
@@ -13,11 +14,21 @@ class CreatePost extends Component {
                 Title: '',
                 Content: '',
                 Category: '',
-                WhenPosted: '',
+                isPrivate: '',
                 LastEdit: '',
-                isPrivate: ''
+                showButtons: false
             }; 
+            this.seeButton = this.seeButton.bind(this);
+            this.hideButton = this.hideButton.bind(this);
         }
+        seeButton(){
+            this.setState({'showButton':true})
+        }
+        hideButton(){
+            this.setState({'showButton':false})
+        }
+
+
         onChange = e => {
             const state = this.state;
             state[e.target.name] = e.target.value;
@@ -26,10 +37,10 @@ class CreatePost extends Component {
         handleSubmit = event => {
             event.preventDefault();
     
-            const { ID, UserID, Title, Content, WhenPosted, Category, isPrivate, LastEdit  } = this.state;
+            const { ID, UserID, Title, Content, Category, isPrivate, LastEdit  } = this.state;
 
             axios
-                .post('http://localhost:3000/posts', { ID, UserID, Title, Content, Category, WhenPosted, isPrivate, LastEdit })
+                .post('http://localhost:3000/posts', { ID, UserID, Title, Content, Category, isPrivate, LastEdit })
                 .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -42,17 +53,17 @@ class CreatePost extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         UserID:
-                        <input type="number" name="UserID" onChange={this.onChange} required/>
+                        <input type="number" name="UserID" onChange={this.onChange}/>
                     </label>
                     <br/>
                     <label>
                         Title:
-                        <input type="text" name="Title" onChange={this.onChange} required/>
+                        <input type="text" name="Title" onChange={this.onChange}/>
                     </label>
                     <br/>
                     <label>
                         Content:
-                        <input type="text" name="Content" onChange={this.onChange} required/>
+                        <input type="text" name="Content" onChange={this.onChange}/>
                     </label>
                     <br/>
                     <label>
@@ -65,16 +76,27 @@ class CreatePost extends Component {
                         <input type="text" name="LastEdit" onChange={this.onChange} />
                     </label>
                     <br/>
-                    <button className="button-create" type="">
-                        Create Post
+
+                    {this.state.showButton ?
+                    <div className="btns-div">
+                    <p>Do you wish to submit this post?</p>
+                    <button className="btn-publish" type="submit">
+                        Publish
                     </button>
-                    <button className="button-submit" type="submit">
-                        Publish Post
+                    <button className="btn-discard" onClick={this.hideButton}>
+                        Discard
                     </button>
+                    </div>
+                    :
+                    <div className="btns-div">
+                    <button className="btn-submit" onClick={this.seeButton}>
+                        Proceed
+                    </button>
+                    </div>
+                    }
                 </form>
             </div>
         );
     }
 }
-
 export default CreatePost;

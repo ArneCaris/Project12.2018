@@ -12,7 +12,6 @@ import Posts from './Posts';
 import Login from "./Login";
 
 import { NavLink, Route } from 'react-router-dom';
-import DeletePost from './DeletePost';
 import ShareEntry from './ShareEntry';
 
 
@@ -58,12 +57,14 @@ class App extends Component {
                     <a className="dropdown-item" href="#nogo">Technology</a>
                     <a className="dropdown-item" href="#nogo">Vehicles</a>
                 </div>
-            
-            
-            <p className="Users-crud">
-            
-              <h1>Menu</h1>
-              <NavLink to="/">
+        </div>
+        
+        
+        <hr/>
+
+      </div>
+      <div>
+      <NavLink to="/">
                 Home
               </NavLink>
               <NavLink to="/Users/">
@@ -84,32 +85,8 @@ class App extends Component {
             <NavLink to="/test">
                 test
             </NavLink>
-<<<<<<< HEAD
-            <br/>
-            <NavLink to="/ShareEntry">
-              Share with
-            </NavLink>
-            
-        </div>
-        <hr/>
-        <div className="Users-crud">
-          <NavLink to="/Users/add">
-            Add User
-          </NavLink>
-          <br/>
-          <NavLink to="/Users/delete">
-              Delete User
-          </NavLink>
-        </div>
-=======
-            </p>
->>>>>>> 13681224906fc310e084ac563d33c5085ffd221f
-
-        </div>
-        
-        
-        <hr/>
-        <Route path="/test" exact component={test} />
+            </div>
+            <Route path="/test" exact component={test} />
         <Route path="/" exact component={Home} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Post" exact component={Posts} />
@@ -117,12 +94,7 @@ class App extends Component {
         <Route path="/Users/" exact component={Users} /> 
         <Route path="/Users/add" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />
-<<<<<<< HEAD
-        <Route path="/ShareEntry" exact component={ShareEntry} />
-=======
         <Route path="/login" exact component={Login} />
-      </div>
->>>>>>> 13681224906fc310e084ac563d33c5085ffd221f
       </div>
       
     );
