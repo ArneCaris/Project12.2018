@@ -53,13 +53,3 @@ import axios from 'axios';
   }
 
   export default Users;
-  
-  export function getUsers() {
-    const username = document.getElementById("username").value;
-    axios.get(`http://localhost:3000/Users/` + username).then(res => {
-      const Users = res.data;
-      if (Users === true){
-       document.getElementById("user_test").value = "Hell yeah my dude";
-      };
-    });
-  };

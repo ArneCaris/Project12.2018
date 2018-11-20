@@ -13,8 +13,7 @@ import ShareEntry from './ShareEntry';
 
 
 import { NavLink, Route } from 'react-router-dom';
-
-
+import ShareEntry from './ShareEntry';
 
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -89,7 +88,16 @@ class App extends Component {
               <Searching search={this.searchData.bind(this)} />
               {(this.state.list) ? <SearchResult data={this.state.list} /> : null }
 
-              <NavLink className="navigation" to="/Users/">
+              <NavLink className="navigation" to="/Users/" />
+        </div>
+        
+        
+        <hr/>
+
+      
+      <div>
+      
+              <NavLink to="/Users/">
                 Users
               </NavLink>
               <NavLink className="navigation" to="/CreatePost">
@@ -99,6 +107,21 @@ class App extends Component {
                 View Posts
               </NavLink>
               <NavLink className="navigation" to="/test">
+              <NavLink to="/Users/add">
+              Add User
+            </NavLink>
+            <NavLink to="/Users/delete">
+                Delete User
+            </NavLink>
+            <NavLink to="/test">
+                test
+            </NavLink>
+            <Route path="/test" exact component={test} />
+              </NavLink>
+              <NavLink to="/Users/delete">
+                  Delete User
+              </NavLink>
+              <NavLink to="/test">
                   test
               </NavLink>
               <br/>
@@ -115,7 +138,7 @@ class App extends Component {
                   Delete User
                 </NavLink>
             </div>
-      </div>
+
         <Route path="/test" exact component={test} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Post" exact component={Posts} />
@@ -123,8 +146,11 @@ class App extends Component {
         <Route path="/Users/" exact component={Users} /> 
         <Route path="/Users/add" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />
+        <Route path="/login" exact component={Login} />
         <Route path="/ShareEntry" exact component={ShareEntry} />
         <Route path="/login" exact component={Login} />
+
+      </div>
       </div>
     )
   }
