@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Home from './Home';
 import Users from './Users';
 import AddUser from './AddUser';
 import DeleteUser from './DeleteUser';
@@ -10,10 +9,12 @@ import CreatePost from './CreatePost';
 import DeletePost from './DeletePost';
 import Posts from './Posts';
 import Login from "./Login";
+import ShareEntry from './ShareEntry';
+
 
 import { NavLink, Route } from 'react-router-dom';
-import DeletePost from './DeletePost';
-import ShareEntry from './ShareEntry';
+
+
 
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -25,15 +26,39 @@ require("react-bootstrap/lib/NavbarBrand");
 
 
 class App extends Component {
-  state = {
-    isOpen: false
-  };
+  constructor (props) {
+    super (props);
+    this.state = {
+      isOpen: false,
+      data: [],
+      list: undefined
+    }
+  }
 
   toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
 
+  componentDidMount() {
+    
+      
+  }
 
-  render() {
+  searchData(e) {
+    var queryData = [];
+    if (e.target.value != '') {
+      this.state.data.forEach(function(person){
+        if (person.toLowerCase().indexOf(e.target.value)!=-1) {
+          if (queryData.length < 10) {
+            queryData.push(person);
+          }
+        }
+      });
+    }
+    this.setState({list: queryData});
+  }
+  render () {
+
     const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;
+
     return (
       <div className="App">
         <div className="navbar">
@@ -58,54 +83,40 @@ class App extends Component {
                     <a className="dropdown-item" href="#nogo">Technology</a>
                     <a className="dropdown-item" href="#nogo">Vehicles</a>
                 </div>
-            
-            
-            <p className="Users-crud">
-            
-              <h1>Menu</h1>
-              <NavLink to="/">
-                Home
-              </NavLink>
-              <NavLink to="/Users/">
+
+        </div>
+              
+              <Searching search={this.searchData.bind(this)} />
+              {(this.state.list) ? <SearchResult data={this.state.list} /> : null }
+
+              <NavLink className="navigation" to="/Users/">
                 Users
               </NavLink>
-              <NavLink to="/CreatePost">
+              <NavLink className="navigation" to="/CreatePost">
                 Create Post
               </NavLink>
-              <NavLink to="/Post">
+              <NavLink className="navigation" to="/Post">
                 View Posts
               </NavLink>
-              <NavLink to="/Users/add">
-              Add User
-              </NavLink>
-              <NavLink to="/Users/delete">
-                  Delete User
-              </NavLink>
-              <NavLink to="/test">
+              <NavLink className="navigation" to="/test">
                   test
               </NavLink>
               <br/>
-              <NavLink to="/ShareEntry">
+              <NavLink className="navigation" to="/ShareEntry">
                 Share with
               </NavLink>
-          <hr/>
-              <div className="Users-crud">
+ 
+            <div className="userLogin">
                 <NavLink to="/Users/add">
                   Add User
                 </NavLink>
                 <br/>
                 <NavLink to="/Users/delete">
-                    Delete User
+                  Delete User
                 </NavLink>
-              </div>
-            </p>
-
-        </div>
-        
-        
-        <hr/>
+            </div>
+      </div>
         <Route path="/test" exact component={test} />
-        <Route path="/" exact component={Home} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Post" exact component={Posts} />
         <Route path="/deletepost" exact component={DeletePost} />
@@ -115,9 +126,39 @@ class App extends Component {
         <Route path="/ShareEntry" exact component={ShareEntry} />
         <Route path="/login" exact component={Login} />
       </div>
+    )
+  }
+}
+
+class Searching extends React.Component {
+  render () {
+    return(
+      <div>
+        <input onChange={this.props.search} placeholder="Search Pokemon" />
       </div>
-      
-    );
+    )
+  }
+}
+class SearchResult extends React.Component {
+  render () {
+    return(
+      <div>
+        <ul>
+          {this.props.data.map(function(value) {
+            return <Item key={value} val={value} />
+          })}
+        </ul>
+      </div>
+    )
+  }
+}
+class Item extends React.Component {
+  render() {
+    return(
+      <li>
+        {this.props.val}
+      </li>
+    )
   }
 }
 

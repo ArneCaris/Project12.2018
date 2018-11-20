@@ -18,8 +18,7 @@
   color: white;
 }
 .dropdown {
-  position: absolute;
-  margin-left: 150px;
+  margin-left: 1%;
   background-color: green;
 }
 #logo {
@@ -50,15 +49,32 @@ td{
   border: 1px solid black;
 }
 
-.button-submit{
-  visibility: hidden;
-}
-
 .App-link {
   color: #61dafb;
 }
 
-.more-btn{
+.btn-publish{
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: green;
+  color: white;
+  
+}
+.btn-discard{
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: red;
+  color: white;
+}
+.btn-submit{
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: blue;
+  color: white;
+}
+.btns-div{
+  padding: 10px;
+  margin: 1%;
   
 }
 
@@ -95,4 +111,15 @@ td{
   to {
     transform: rotate(360deg);
   }
+}
+
+.navigation{
+margin-left: 1%;
+}
+
+.userLogin{
+  float: right;
+  border-left: 1px solid black;
+  padding-left: 5%;
+  margin-left: 5%;
 }

@@ -11,7 +11,7 @@ import 'react-table/react-table.css';
 
       return (
         <div className="for-posts">
-            HOME
+            
         </div>
       );
     } 
