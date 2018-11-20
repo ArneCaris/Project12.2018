@@ -6,7 +6,10 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/free-solid-svg-icons": "^5.5.0",
     "@fortawesome/react-fontawesome": "^0.1.3",
+<<<<<<< HEAD
     "auth0-js": "^9.8.2",
+=======
+>>>>>>> d0482e3d7ae3762063d095f739f2ab1f052b233c
     "axios": "^0.18.0",
     "bootstrap": "^4.1.3",
     "jquery": "^3.3.1",
