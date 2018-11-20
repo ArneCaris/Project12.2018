@@ -77,33 +77,28 @@ class App extends Component {
               </NavLink>
               <NavLink to="/Users/add">
               Add User
-            </NavLink>
-            <NavLink to="/Users/delete">
-                Delete User
-            </NavLink>
-            <NavLink to="/test">
-                test
-            </NavLink>
-<<<<<<< HEAD
-            <br/>
-            <NavLink to="/ShareEntry">
-              Share with
-            </NavLink>
-            
-        </div>
-        <hr/>
-        <div className="Users-crud">
-          <NavLink to="/Users/add">
-            Add User
-          </NavLink>
-          <br/>
-          <NavLink to="/Users/delete">
-              Delete User
-          </NavLink>
-        </div>
-=======
+              </NavLink>
+              <NavLink to="/Users/delete">
+                  Delete User
+              </NavLink>
+              <NavLink to="/test">
+                  test
+              </NavLink>
+              <br/>
+              <NavLink to="/ShareEntry">
+                Share with
+              </NavLink>
+          <hr/>
+              <div className="Users-crud">
+                <NavLink to="/Users/add">
+                  Add User
+                </NavLink>
+                <br/>
+                <NavLink to="/Users/delete">
+                    Delete User
+                </NavLink>
+              </div>
             </p>
->>>>>>> 13681224906fc310e084ac563d33c5085ffd221f
 
         </div>
         
@@ -117,12 +112,9 @@ class App extends Component {
         <Route path="/Users/" exact component={Users} /> 
         <Route path="/Users/add" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />
-<<<<<<< HEAD
         <Route path="/ShareEntry" exact component={ShareEntry} />
-=======
         <Route path="/login" exact component={Login} />
       </div>
->>>>>>> 13681224906fc310e084ac563d33c5085ffd221f
       </div>
       
     );
