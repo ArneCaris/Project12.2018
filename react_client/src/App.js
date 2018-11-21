@@ -9,6 +9,8 @@ import CreatePost from './CreatePost';
 import DeletePost from './DeletePost';
 import Posts from './Posts';
 import Login from "./Login";
+import ShareEntry from './ShareEntry';
+
 
 import { NavLink, Route } from 'react-router-dom';
 import ShareEntry from './ShareEntry';
@@ -23,15 +25,39 @@ require("react-bootstrap/lib/NavbarBrand");
 
 
 class App extends Component {
-  state = {
-    isOpen: false
-  };
+  constructor (props) {
+    super (props);
+    this.state = {
+      isOpen: false,
+      data: [],
+      list: undefined
+    }
+  }
 
   toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
 
+  componentDidMount() {
+    
+      
+  }
 
-  render() {
+  searchData(e) {
+    var queryData = [];
+    if (e.target.value != '') {
+      this.state.data.forEach(function(person){
+        if (person.toLowerCase().indexOf(e.target.value)!=-1) {
+          if (queryData.length < 10) {
+            queryData.push(person);
+          }
+        }
+      });
+    }
+    this.setState({list: queryData});
+  }
+  render () {
+
     const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;
+
     return (
       <div className="App">
         <div className="navbar">
@@ -56,16 +82,21 @@ class App extends Component {
                     <a className="dropdown-item" href="#nogo">Technology</a>
                     <a className="dropdown-item" href="#nogo">Vehicles</a>
                 </div>
+
+        </div>
+              
+              <Searching search={this.searchData.bind(this)} />
+              {(this.state.list) ? <SearchResult data={this.state.list} /> : null }
+
+              <NavLink className="navigation" to="/Users/" />
         </div>
         
         
         <hr/>
 
-      </div>
+      
       <div>
-      <NavLink to="/">
-                Home
-              </NavLink>
+      
               <NavLink to="/Users/">
                 Users
               </NavLink>
@@ -104,12 +135,11 @@ class App extends Component {
                 </NavLink>
                 <br/>
                 <NavLink to="/Users/delete">
-                    Delete User
+                  Delete User
                 </NavLink>
             </div>
-      </div>
+
         <Route path="/test" exact component={test} />
-        <Route path="/" exact component={Home} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Post" exact component={Posts} />
         <Route path="/deletepost" exact component={DeletePost} />
@@ -121,9 +151,40 @@ class App extends Component {
         <Route path="/login" exact component={Login} />
 
       </div>
+      </div>
+    )
+  }
+}
 
-      
-    );
+class Searching extends React.Component {
+  render () {
+    return(
+      <div>
+        <input onChange={this.props.search} placeholder="Search Pokemon" />
+      </div>
+    )
+  }
+}
+class SearchResult extends React.Component {
+  render () {
+    return(
+      <div>
+        <ul>
+          {this.props.data.map(function(value) {
+            return <Item key={value} val={value} />
+          })}
+        </ul>
+      </div>
+    )
+  }
+}
+class Item extends React.Component {
+  render() {
+    return(
+      <li>
+        {this.props.val}
+      </li>
+    )
   }
 }
 
