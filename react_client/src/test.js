@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
+import {Modal} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 class test extends Component {
 
@@ -10,10 +15,10 @@ class test extends Component {
         this.getPosts = this.getPosts.bind(this);
 
         this.state = {
-          posts: []
+          posts: [],
+          ID: '',
         };
       }
-
 
       getPosts() {
         axios.get(`http://localhost:3000/posts/public`).then(res => {
@@ -22,38 +27,37 @@ class test extends Component {
         });
       }
 
+      handleClick = event => {
+        event.preventDefault();
+        const id = this.state.ID;
+        const { ID } = this.state;
+
+        axios.delete('http://localhost:3000/posts/' + id, {ID})
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+          });
+      };
+
+    
+
     render() {
-        const menuClass = `dropdown-menu${this.state.isOpen ? "show" : " "}`;
         return (
-          <div>
-            <button className="button" onClick={this.getPosts}>
-              reload for posts
-            </button> 
+            <div>
+              <button className="button" onClick={this.getPosts}>
+                reload for posts
+              </button> 
             <div className="for-posts">
               {this.state.posts.map(Post =>(
-            <div className="post-div">
+            <div className="post-div" id={Post.ID}>
+            <p className="for-id">#{Post.ID} Last edited: {Post.LastEdit}</p>
               <h4>{Post.Title}</h4>
               <p>{Post.Content}</p>
-              <div className="dropdown-post" onClick={this.toggleOpen}>
-                <button
-                    className="btn btn-secondary dropdown-toggle" 
-                    type="button" 
-                    id="dropdownMenuButton" 
-                    data-toggle="dropdown-post" 
-                    aria-haspopup="true">
-                   ...
-                </button>
-                <div className={menuClass} aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" href="#nogo">Update</a>
-                    <a className="dropdown-item" href="#nogo">Share</a>
-                    <button className="dropdown-item" type="submit">Delete</button>
-                </div>
-            </div>
-
-            </div>
-            ))}
-            </div>
-            </div>
+            <button className="delete-btn" onClick={this.deletePost}>bye</button>
+        </div>
+        ))}
+        </div> 
+        </div>
         );
     }
 }

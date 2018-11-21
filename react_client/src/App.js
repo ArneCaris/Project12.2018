@@ -10,10 +10,10 @@ import DeletePost from './DeletePost';
 import Posts from './Posts';
 import Login from "./Login";
 import ShareEntry from './ShareEntry';
-
+import EditPost from './EditPost';
 
 import { NavLink, Route } from 'react-router-dom';
-import ShareEntry from './ShareEntry';
+
 
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -107,12 +107,9 @@ class App extends Component {
                 View Posts
               </NavLink>
               <NavLink className="navigation" to="/test">
-              <NavLink to="/Users/add">
-              Add User
-            </NavLink>
-            <NavLink to="/Users/delete">
-                Delete User
-            </NavLink>
+              <NavLink className="navigation" to="/EditPost">
+                edit post
+              </NavLink>
             <NavLink to="/test">
                 test
             </NavLink>
@@ -143,6 +140,7 @@ class App extends Component {
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Post" exact component={Posts} />
         <Route path="/deletepost" exact component={DeletePost} />
+        <Route path="/editpost" exact component={EditPost} />
         <Route path="/Users/" exact component={Users} /> 
         <Route path="/Users/add" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />

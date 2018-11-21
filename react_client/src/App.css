@@ -79,8 +79,18 @@ td{
   
 }
 
+.delete-btn{
+  float: right;
+}
+
 .for-posts{
   padding: 5px;
+}
+
+.for-id{
+  font-size: 12px;
+  font-style: italic;
+  color: grey;
 }
 
 .post-div{
@@ -103,6 +113,7 @@ td{
   -webkit-line-clamp: 2; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
+
 
 
 @keyframes App-logo-spin {
