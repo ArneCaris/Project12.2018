@@ -1,6 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var Users = require('../models/Users');
+
+router.get('/', function(req, res, next) {
+  Users.getAllUsers(function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
 router.get('/:username?', function(req, res, next) {
   if (req.params.username) {
     Users.getUserByUsername(req.params.username, function(err, rows) {
