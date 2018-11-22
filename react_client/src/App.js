@@ -13,13 +13,15 @@ import ShareEntry from './ShareEntry';
 import EditPost from './EditPost';
 import axios from 'axios';
 
+import test from './test';
 import { NavLink, Route } from 'react-router-dom';
+import PostModal from './Components/PostModal';
 
 
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import test from './test';
+
 
 
 require("react-bootstrap/lib/NavbarHeader");
@@ -120,14 +122,8 @@ class App extends Component {
               <NavLink className="navigation" to="/Post">
                 View Posts
               </NavLink>
-              <NavLink className="navigation" to="/test">
               <NavLink className="navigation" to="/EditPost">
                 edit post
-              </NavLink>
-            <NavLink to="/test">
-                test
-            </NavLink>
-            <Route path="/test" exact component={test} />
               </NavLink>
               <NavLink to="/Users/delete">
                   Delete User

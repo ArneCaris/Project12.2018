@@ -11,15 +11,16 @@
     "jquery": "^3.3.1",
     "popper.js": "^1.14.5",
     "prop-types": "^15.6.2",
-    "react": "^16.6.0",
+    "react": "^16.6.3",
     "react-awesome-modal": "^2.0.5",
     "react-bootstrap": "^0.32.4",
     "react-bootstrap-dropdown-menu": "^1.1.15",
-    "react-dom": "^16.6.0",
+    "react-dom": "^16.6.3",
     "react-modal": "^3.6.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "react-table": "^6.8.6"
+    "react-table": "^6.8.6",
+    "reactstrap": "^6.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

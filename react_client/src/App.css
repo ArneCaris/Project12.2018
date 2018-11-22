@@ -17,6 +17,11 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.category-badge{
+  font-size: 15px;
+}
+
 .dropdown {
   margin-left: 1%;
   background-color: green;
