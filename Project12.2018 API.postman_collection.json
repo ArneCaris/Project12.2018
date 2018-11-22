@@ -52,47 +52,6 @@
 			"response": []
 		},
 		{
-			"name": "AddGaming",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "ID",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "PostID",
-							"value": "6",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:3000/Technology",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Technology"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "CreatePost",
 			"request": {
 				"method": "POST",
@@ -119,21 +78,26 @@
 						},
 						{
 							"key": "Title",
-							"value": "technology test",
+							"value": "Share test",
 							"type": "text"
 						},
 						{
 							"key": "Content",
-							"value": "DB TEST",
+							"value": "Does sharing work?",
 							"type": "text"
 						},
 						{
 							"key": "isPrivate",
-							"value": "1",
+							"value": "0",
 							"type": "text"
 						},
 						{
 							"key": "LastEdit",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "Category",
 							"value": "",
 							"type": "text"
 						}
@@ -212,129 +176,6 @@
 			"response": []
 		},
 		{
-			"name": "AddLifestyle",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "ID",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "PostID",
-							"value": "",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:3000/Lifestyle",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Lifestyle"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "AddTechnology",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "ID",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "PostID",
-							"value": "7",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:3000/Technology",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Technology"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "AddVehicle",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "ID",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "PostID",
-							"value": "6",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:3000/Vehicles",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Vehicles"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "PostShered",
 			"request": {
 				"method": "POST",
@@ -356,17 +197,17 @@
 						},
 						{
 							"key": "PostID",
-							"value": "1",
+							"value": "12",
 							"type": "text"
 						},
 						{
 							"key": "Owner",
-							"value": "1",
+							"value": "arne",
 							"type": "text"
 						},
 						{
 							"key": "Viewer",
-							"value": "2",
+							"value": "olek",
 							"type": "text"
 						}
 					]
@@ -387,52 +228,6 @@
 			"response": []
 		},
 		{
-			"name": "GetAllGaming",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:3000/Technology",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Technology"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetAllLifestyle",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:3000/Lifestyle",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Lifestyle"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "GetPostByUserId",
 			"request": {
 				"method": "GET",
@@ -442,22 +237,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetAllPrivatePosts",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:3000/Posts/private",
+					"raw": "http://localhost:3000/Posts/user/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -465,10 +245,10 @@
 					"port": "3000",
 					"path": [
 						"Posts",
-						"private"
+						"user",
+						"1"
 					]
-				},
-				"description": "Get all the posts that are set to isPrivate=1"
+				}
 			},
 			"response": []
 		},
@@ -482,13 +262,22 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3000/Posts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Posts",
+						"1"
+					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GetUserById",
+			"name": "GetUserByUsername",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -497,7 +286,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/Users/2",
+					"raw": "http://localhost:3000/Users/olek",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -505,30 +294,7 @@
 					"port": "3000",
 					"path": [
 						"Users",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetAllTechnologies",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:3000/Technology",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Technology"
+						"olek"
 					]
 				}
 			},
@@ -559,29 +325,6 @@
 			"response": []
 		},
 		{
-			"name": "GetAllVehicles",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:3000/Vehicles",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Vehicles"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "GetAllPublicPosts",
 			"request": {
 				"method": "GET",
@@ -591,14 +334,14 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/Posts/public",
+					"raw": "http://localhost:3000/posts/public",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"Posts",
+						"posts",
 						"public"
 					]
 				}
@@ -606,7 +349,7 @@
 			"response": []
 		},
 		{
-			"name": "GetSheredByOwner",
+			"name": "GetAllPrivatePosts",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -615,7 +358,32 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/Shared/mine/1",
+					"raw": "http://localhost:3000/Posts/private",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Posts",
+						"private"
+					]
+				},
+				"description": "Get all the posts that are set to isPrivate=1"
+			},
+			"response": []
+		},
+		{
+			"name": "GetSharedByOwner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/Shared/mine/olek",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -624,14 +392,14 @@
 					"path": [
 						"Shared",
 						"mine",
-						"1"
+						"olek"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GetSheredByViewer",
+			"name": "GetSharedByViewer",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -640,7 +408,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/Shared/with/2",
+					"raw": "http://localhost:3000/Shared/with/olek",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -649,7 +417,7 @@
 					"path": [
 						"Shared",
 						"with",
-						"2"
+						"olek"
 					]
 				}
 			},
@@ -701,10 +469,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"UserID\":\"1\",\n\t\"Title\":\"this is edited\",\n\t\"Content\":\"edited content XD:SDASDASD\",\n\t\"WhenPosted\":\"0\",\n\t\"isPrivate\":\"1\"\n}"
+					"raw": "{\n\t\"UserID\":\"1\",\n\t\"Title\":\"this is edited\",\n\t\"Content\":\"edited content XD:SDASDASD\",\n\t\"Category\":\"updated\",\n\t\"isPrivate\":\"0\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/posts/3",
+					"raw": "http://localhost:3000/posts/13",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -712,55 +480,7 @@
 					"port": "3000",
 					"path": [
 						"posts",
-						"3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DeleteGaming",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:3000/Technology/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Technology",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DeleteTechnology",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:3000/Technology/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Technology",
-						"1"
+						"13"
 					]
 				}
 			},
@@ -776,7 +496,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/comments/delete/2",
+					"raw": "http://localhost:3000/comments/delete/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -785,55 +505,7 @@
 					"path": [
 						"comments",
 						"delete",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DeleteLifestyle",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:3000/Lifestyle/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Lifestyle",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DeleteVehicle",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:3000/Vehicles/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"Vehicles",
-						"2"
+						"3"
 					]
 				}
 			},
@@ -849,7 +521,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/posts/9",
+					"raw": "http://localhost:3000/posts/13",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -857,7 +529,7 @@
 					"port": "3000",
 					"path": [
 						"posts",
-						"9"
+						"13"
 					]
 				}
 			},
@@ -897,7 +569,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/Shared/1",
+					"raw": "http://localhost:3000/Shared/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -905,7 +577,7 @@
 					"port": "3000",
 					"path": [
 						"Shared",
-						"1"
+						"7"
 					]
 				}
 			},
