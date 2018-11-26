@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
-import PostModal from './Components/PostModal';
+import OptionModal from './Components/OptionModal';
 import { Badge } from 'reactstrap';
+import { Route, Link } from 'react-router-dom';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {
+  FormattedMessage,
+  FormattedHTMLMessage,
+  FormattedDate,
+  FormattedTime,
+} from 'react-intl';
+
 
 class test extends Component {
 
-    toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
     constructor() {
         super();
         this.getPosts = this.getPosts.bind(this);
@@ -39,27 +47,25 @@ class test extends Component {
           });
       };
 
-    
+
 
     render() {
-        return (
+        return(
           <div>
             <button className="button" onClick={this.getPosts}>GET EM'</button>
             <div className="for-posts">
                 {this.state.posts.map(Post =>(
-                  <div className="post-div" key={Post.ID}>
+                  <div className="post-div" data-id={Post.ID}>
                   <p className="for-id">#{Post.ID} Last edited: {Post.LastEdit}</p>
                   <h4>{Post.Title} <Badge color="info" className="category-badge">{Post.Category}</Badge></h4>
                   <p>{Post.Content}</p>
-                  <PostModal
-                    key={Post.ID}
-                    />
                   </div>
                 ))}
             </div>
           </div>
         );
     }
+
 }
 
 export default test;
