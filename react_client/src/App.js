@@ -8,7 +8,7 @@ import DeleteUser from './DeleteUser';
 import CreatePost from './CreatePost';
 import DeletePost from './DeletePost';
 import Posts from './Posts';
-import Login from "./Login";
+import Login from './Login';
 import ShareEntry from './ShareEntry';
 import EditPost from './EditPost';
 import postbycategory from './PostsByCategory';
@@ -18,8 +18,8 @@ import Vehicles from './PostsByCategory';
 import axios from 'axios';
 
 import test from './test';
+import ViewPost from './ViewPost';
 import { NavLink, Route } from 'react-router-dom';
-import PostModal from './Components/PostModal';
 
 
 
@@ -123,8 +123,10 @@ class App extends Component {
         <hr/>
 
       
-        <div>
-      
+      <div>
+              <NavLink className="navigation" to="/Posts/View">
+                herefortesting
+              </NavLink>
               <NavLink to="/Users/">
                 Users
               </NavLink>
@@ -147,6 +149,7 @@ class App extends Component {
               <NavLink className="navigation" to="/ShareEntry">
                 Share with
               </NavLink>
+              <br/>
  
             <div className="userLogin">
                 <NavLink to="/Users/add">
@@ -157,6 +160,20 @@ class App extends Component {
                   Delete User
                 </NavLink>
             </div>
+
+
+        <Route path="/test" exact component={test} />
+        <Route path="/createpost" exact component={CreatePost} />
+        <Route path="/Posts" exact component={Posts} />
+        <Route path="/Posts/View" exact component={ViewPost} />
+        <Route path="/deletepost" exact component={DeletePost} />
+        <Route path="/editpost" exact component={EditPost} />
+        <Route path="/Users/" exact component={Users} /> 
+        <Route path="/Users/add" exact component={AddUser} />
+        <Route path="/Users/delete" exact component={DeleteUser} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/ShareEntry" exact component={ShareEntry} />
+        <Route path="/login" exact component={Login} />
 
           <Route path="/test" exact component={test} />
           <Route path="/createpost" exact component={CreatePost} />
@@ -169,6 +186,7 @@ class App extends Component {
           <Route path="/login" exact component={Login} />
           <Route path="/ShareEntry" exact component={ShareEntry} />
           <Route path="Posts/category/lifestyle" exact component={postbycategory} />
+
 
         </div>
       </div>

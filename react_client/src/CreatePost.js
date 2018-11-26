@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer ,toast } from 'react-toastify';
 
 class CreatePost extends Component {
     
@@ -28,12 +30,12 @@ class CreatePost extends Component {
             this.setState({'showButton':false})
         }
 
-
         onChange = e => {
             const state = this.state;
             state[e.target.name] = e.target.value;
             this.setState(state);
         };
+
         handleSubmit = event => {
             event.preventDefault();
     
@@ -46,29 +48,34 @@ class CreatePost extends Component {
                 console.log(res.data);
                 });
             };
+
+            closeAfter3 = () => {
+                toast("Post created Successfully!", { autoClose: 3000 });
+            }
         render() {
         return (
             <div>
+                <ToastContainer autoClose={3000}/>
                 <h2>Create Post</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         UserID:
-                        <input type="number" name="UserID" onChange={this.onChange}/>
+                        <input type="number" name="UserID" onChange={this.onChange} required/>
                     </label>
                     <br/>
                     <label>
                         Title:
-                        <input type="text" name="Title" onChange={this.onChange}/>
+                        <input type="text" name="Title" onChange={this.onChange} required/>
                     </label>
                     <br/>
                     <label>
                         Content:
-                        <input type="text" name="Content" onChange={this.onChange}/>
+                        <input type="text" name="Content" onChange={this.onChange} required/>
                     </label>
                     <br/>
                     <label>
                         Category:
-                        <input type="text" name="Category" onChange={this.onChange} />
+                        <input type="text" name="Category" onChange={this.onChange} required/>
                     </label>
                     <br/>
                     <label>
@@ -80,7 +87,7 @@ class CreatePost extends Component {
                     {this.state.showButton ?
                     <div className="btns-div">
                     <p>Do you wish to submit this post?</p>
-                    <button className="btn-publish" type="submit">
+                    <button className="btn-publish" type="submit" onClick={this.closeAfter3}>
                         Publish
                     </button>
                     <button className="btn-discard" onClick={this.hideButton}>
