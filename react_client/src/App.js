@@ -11,6 +11,8 @@ import Posts from './Posts';
 import Login from './Login';
 import ShareEntry from './ShareEntry';
 import EditPost from './EditPost';
+import axios from 'axios';
+
 import test from './test';
 import ViewPost from './ViewPost';
 import { NavLink, Route } from 'react-router-dom';
@@ -21,6 +23,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
+
 require("react-bootstrap/lib/NavbarHeader");
 require("react-bootstrap/lib/NavbarBrand");
 
@@ -28,33 +31,45 @@ require("react-bootstrap/lib/NavbarBrand");
 class App extends Component {
   constructor (props) {
     super (props);
+    this.getValues = this.getValues.bind(this);
     this.state = {
       isOpen: false,
-      data: [],
+      searchUsers: [],
       list: undefined
     }
   }
 
   toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
-
-  componentDidMount() {
-    
-      
-  }
+  
 
   searchData(e) {
     var queryData = [];
+    this.getValues()
     if (e.target.value != '') {
-      this.state.data.forEach(function(person){
+      this.state.searchUsers.forEach(function(person){
         if (person.toLowerCase().indexOf(e.target.value)!=-1) {
           if (queryData.length < 10) {
             queryData.push(person);
           }
-        }
+        };
       });
     }
-    this.setState({list: queryData});
+    this.setState({list: queryData});   
   }
+
+  
+
+  getValues() {
+    axios.get('http://localhost:3000/Users').then(res => {
+      var searchUsers = res.data;
+      this.setState({ searchUsers })
+      searchUsers = this.state.searchUsers.map(user => (user.username));
+      console.log(searchUsers)
+      
+    })
+    
+  }  
+
   render () {
 
     const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;
@@ -62,19 +77,19 @@ class App extends Component {
     return (
       <div className="App">
         <div className="navbar">
-            
+
             <NavLink to="/" id="logo">
               <h2>DiLog</h2>
             </NavLink>
 
-            <div className="dropdown" onClick={this.toggleOpen}>
+            <div className="dropdown" onClick={this.toggleOpen}  >
                 <button 
                     className="btn btn-secondary dropdown-toggle" 
                     type="button" 
                     id="dropdownMenuButton" 
                     data-toggle="dropdown" 
                     aria-haspopup="true"
-                    >
+                                      >
                     Categories
                 </button>
                 <div className={menuClass} aria-labelledby="dropdownMenuButton">
@@ -84,22 +99,27 @@ class App extends Component {
                     <a className="dropdown-item" href="#nogo">Vehicles</a>
                 </div>
 
-        </div>
-              
-              <Searching search={this.searchData.bind(this)} />
-              {(this.state.list) ? <SearchResult data={this.state.list} /> : null }
-
-              <NavLink className="navigation" to="/Users/" />
+            </div>
+            
+            <SearchBar search={this.searchData.bind(this)} />
+            {(this.state.list) ? <SearchResult searchUsers={this.state.list} /> : null }
+            
+            <NavLink className="navigation" to="/Users/" />
         </div>
         
         
         <hr/>
 
       
+<<<<<<< HEAD
       <div>
               <NavLink className="navigation" to="/Posts/View">
                 herefortesting
               </NavLink>
+=======
+        <div>
+      
+>>>>>>> 3fe5a520de62706db1e1cbc58cbf384689a082f5
               <NavLink to="/Users/">
                 Users
               </NavLink>
@@ -134,6 +154,7 @@ class App extends Component {
                 </NavLink>
             </div>
 
+<<<<<<< HEAD
         <Route path="/test" exact component={test} />
         <Route path="/createpost" exact component={CreatePost} />
         <Route path="/Posts" exact component={Posts} />
@@ -146,18 +167,30 @@ class App extends Component {
         <Route path="/login" exact component={Login} />
         <Route path="/ShareEntry" exact component={ShareEntry} />
         <Route path="/login" exact component={Login} />
+=======
+          <Route path="/test" exact component={test} />
+          <Route path="/createpost" exact component={CreatePost} />
+          <Route path="/Post" exact component={Posts} />
+          <Route path="/deletepost" exact component={DeletePost} />
+          <Route path="/editpost" exact component={EditPost} />
+          <Route path="/Users/" exact component={Users} /> 
+          <Route path="/Users/add" exact component={AddUser} />
+          <Route path="/Users/delete" exact component={DeleteUser} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/ShareEntry" exact component={ShareEntry} />
+>>>>>>> 3fe5a520de62706db1e1cbc58cbf384689a082f5
 
-      </div>
+        </div>
       </div>
     )
   }
 }
 
-class Searching extends React.Component {
+class SearchBar extends React.Component {
   render () {
     return(
-      <div>
-        <input onChange={this.props.search} placeholder="Search Pokemon" />
+      <div >
+        <input onChange={this.props.search} onKeyUp={this.props.getValues} placeholder="Search users" />
       </div>
     )
   }
@@ -167,7 +200,7 @@ class SearchResult extends React.Component {
     return(
       <div>
         <ul>
-          {this.props.data.map(function(value) {
+          {this.props.searchUsers.map(function(value) {
             return <Item key={value} val={value} />
           })}
         </ul>
