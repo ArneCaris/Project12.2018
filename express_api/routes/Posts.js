@@ -30,7 +30,7 @@ router.get('/:ID', function(req, res, next){
   });
 }
 });
-router.get('/:UserID', function(req, res, next){
+router.get('/user/:UserID', function(req, res, next){
   if(req.params.UserID){
   Posts.getPostByUserId(req.params.UserID, function(err, rows){
     if(err){
@@ -40,6 +40,17 @@ router.get('/:UserID', function(req, res, next){
     }
   });
  }
+});
+router.get('/category/:Category', function(req, res, next){
+  if(req.params.Category){
+  Posts.getPostsByCategory(req.params.Category, function(err, rows){
+    if (err){
+      res.json(err);
+    }else{
+      res.json(rows);
+    }
+  });
+}
 });
 router.post('/', function(req, res, next) {
   Posts.addPost(req.body, function(err, count) {

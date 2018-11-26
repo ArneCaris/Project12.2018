@@ -11,6 +11,10 @@ import Posts from './Posts';
 import Login from "./Login";
 import ShareEntry from './ShareEntry';
 import EditPost from './EditPost';
+import postbycategory from './PostsByCategory';
+import Gaming from './PostsByCategory';
+import Technology from './PostsByCategory';
+import Vehicles from './PostsByCategory';
 import axios from 'axios';
 
 import test from './test';
@@ -32,6 +36,7 @@ class App extends Component {
   constructor (props) {
     super (props);
     this.getValues = this.getValues.bind(this);
+    this.searchData = this.searchData.bind(this);
     this.state = {
       isOpen: false,
       searchUsers: [],
@@ -44,17 +49,22 @@ class App extends Component {
 
   searchData(e) {
     var queryData = [];
-    this.getValues()
+    this.getValues();
     if (e.target.value != '') {
       this.state.searchUsers.forEach(function(person){
-        if (person.toLowerCase().indexOf(e.target.value)!=-1) {
-          if (queryData.length < 10) {
+        if (person.toString().toLowerCase().indexOf(e.target.value)!=-1) {
+          if (queryData.length < 100) {
             queryData.push(person);
+            
           }
+          
         };
+         
       });
+      console.log(queryData) 
     }
-    this.setState({list: queryData});   
+    this.setState({list: queryData});
+    
   }
 
   
@@ -64,11 +74,13 @@ class App extends Component {
       var searchUsers = res.data;
       this.setState({ searchUsers })
       searchUsers = this.state.searchUsers.map(user => (user.username));
-      console.log(searchUsers)
+      console.log(searchUsers) 
       
     })
     
-  }  
+  }
+     
+  
 
   render () {
 
@@ -93,10 +105,10 @@ class App extends Component {
                     Categories
                 </button>
                 <div className={menuClass} aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" href="#nogo">Lifestyle</a>
-                    <a className="dropdown-item" href="#nogo">Gaming</a>
-                    <a className="dropdown-item" href="#nogo">Technology</a>
-                    <a className="dropdown-item" href="#nogo">Vehicles</a>
+                    <NavLink to="/Posts/category/lifestyle" className="dropdown-item">Lifestyle</NavLink>
+                    <a className="dropdown-item" href="http://localhost:3001/posts/category/gaming">Gaming</a>
+                    <a className="dropdown-item" href="http://localhost:3001/posts/category/technology">Technology</a>
+                    <a className="dropdown-item" href="http://localhost:3001/posts/category/vehicles">Vehicles</a>
                 </div>
 
             </div>
@@ -156,6 +168,7 @@ class App extends Component {
           <Route path="/Users/delete" exact component={DeleteUser} />
           <Route path="/login" exact component={Login} />
           <Route path="/ShareEntry" exact component={ShareEntry} />
+          <Route path="Posts/category/lifestyle" exact component={postbycategory} />
 
         </div>
       </div>
@@ -167,7 +180,7 @@ class SearchBar extends React.Component {
   render () {
     return(
       <div >
-        <input onChange={this.props.search} onKeyUp={this.props.getValues} placeholder="Search users" />
+        <input onChange={this.props.search} placeholder="Search users" />
       </div>
     )
   }

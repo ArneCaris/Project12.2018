@@ -12,6 +12,9 @@ var Posts = {
   getPostByUserId(UserID, callback){
     return db.query('select * from post where UserID=?', [UserID], callback);
   },
+  getPostsByCategory: function(Category, callback) {
+    return db.query('select * from post where Category=? AND isPrivate=0', [Category], callback);
+  },
   addPost: function(post, callback) {
     return db.query(
       'insert into post values(?,?,?,?,?,?,?)',
