@@ -54,6 +54,19 @@ td{
   border: 1px solid black;
 }
 
+li{
+  list-style-type: none;
+}
+
+.form-input{
+  width: 50%;
+  margin: 0 auto; 
+}
+
+#category-tag{
+  float: right;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -97,7 +110,7 @@ td{
   color: grey;
 }
 
-.post-div{
+.postdiv{
   border: 1px solid grey;
   border-radius: 5px;
   width: 80%;

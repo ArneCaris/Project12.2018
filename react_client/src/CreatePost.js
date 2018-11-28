@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer ,toast } from 'react-toastify';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 class CreatePost extends Component {
     
@@ -40,7 +41,7 @@ class CreatePost extends Component {
             event.preventDefault();
     
             const { ID, UserID, Title, Content, Category, isPrivate, LastEdit  } = this.state;
-
+            
             axios
                 .post('http://localhost:3000/posts', { ID, UserID, Title, Content, Category, isPrivate, LastEdit })
                 .then(res => {
@@ -48,41 +49,41 @@ class CreatePost extends Component {
                 console.log(res.data);
                 });
             };
-
+    
             closeAfter3 = () => {
-                toast("Post created Successfully!", { autoClose: 3000 });
+                  toast("Post created Successfully!", { autoClose: 3000 });
             }
         render() {
         return (
-            <div>
-                <ToastContainer autoClose={3000}/>
-                <h2>Create Post</h2>
+
                 <form onSubmit={this.handleSubmit}>
-                    <label>
-                        UserID:
-                        <input type="number" name="UserID" onChange={this.onChange} required/>
-                    </label>
-                    <br/>
-                    <label>
-                        Title:
-                        <input type="text" name="Title" onChange={this.onChange} required/>
-                    </label>
-                    <br/>
-                    <label>
-                        Content:
-                        <input type="text" name="Content" onChange={this.onChange} required/>
-                    </label>
-                    <br/>
-                    <label>
-                        Category:
-                        <input type="text" name="Category" onChange={this.onChange} required/>
-                    </label>
-                    <br/>
-                    <label>
-                        LastEdited:
-                        <input type="text" name="LastEdit" onChange={this.onChange} />
-                    </label>
-                    <br/>
+
+                <ToastContainer autoClose={3000}/>
+
+                <FormGroup>
+                    <label>UserID:</label>
+                    <Input type="number" className="form-input" name="UserID" onChange={this.onChange} required/>
+                </FormGroup>
+                <FormGroup>
+                    <label>Title</label>
+                    <Input type="text" className="form-input" name="Title" onChange={this.onChange} required/>
+                </FormGroup>
+                <FormGroup>
+                    <label>Content</label>
+                    <Input type="textarea" className="form-input" name="Content" onChange={this.onChange} required/>
+                </FormGroup>
+                <FormGroup>
+                    <label>Category</label>
+                    <Input type="text" className="form-input"  name="Category" onChange={this.onChange} required/>
+                </FormGroup>
+                <FormGroup>
+                    <label>LastEdited</label>
+                    <Input type="text" className="form-input" name="LastEdit" onChange={this.onChange} />
+                </FormGroup>
+                <FormGroup>
+                    <label>isPrivate?</label>
+                    <Input type="number" className="form-input" name="isPrivate" onChange={this.onChange} />
+                </FormGroup>
 
                     {this.state.showButton ?
                     <div className="btns-div">
@@ -102,7 +103,6 @@ class CreatePost extends Component {
                     </div>
                     }
                 </form>
-            </div>
         );
     }
 }

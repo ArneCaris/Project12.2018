@@ -8,64 +8,62 @@ import { Badge } from 'reactstrap';
 import { Route, Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  FormattedMessage,
-  FormattedHTMLMessage,
-  FormattedDate,
-  FormattedTime,
-} from 'react-intl';
+import Wholepost from './Components/Wholepost';
+import PropTypes from 'prop-types';
 
 
-class test extends Component {
+class Test extends Component {
 
-    constructor() {
-        super();
-        this.getPosts = this.getPosts.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.state = {
-          posts: [],
-          ID: '',
-        };
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+      text: '',
+      ID: '',
+      hidePost: false
+    };
+    this.hidePost = this.hidePost.bind(this);
+    this.showPost = this.showPost.bind(this);
 
-      getPosts() {
-        axios.get(`http://localhost:3000/posts/public`).then(res => {
-          const posts = res.data;
-          this.setState({ posts });
-        });
-      }
+  }
 
-      handleSubmit = event => {
-        event.preventDefault();
-        const id = this.state.ID;
-        const { ID } = this.state;
+  componentDidMount() {
+    axios.get(`http://localhost:3000/posts/public`).then(results => {
+      const posts = results.data;
+      this.setState({ posts });
+    });
+  }
 
-        axios.delete('http://localhost:3000/posts/' + id, {ID})
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-          });
-      };
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  }
 
+  handlePostClick(posts){
+    this.props.history.push('/posts/${Post.ID}')
+  }
 
+  hidePost(){
+    this.setState({hidePost: true});
+  }
+  showPost(){
+    this.setState({showPost: false});
+  }
 
-    render() {
-        return(
-          <div>
-            <button className="button" onClick={this.getPosts}>GET EM'</button>
-            <div className="for-posts">
-                {this.state.posts.map(Post =>(
-                  <div className="post-div" data-id={Post.ID}>
-                  <p className="for-id">#{Post.ID} Last edited: {Post.LastEdit}</p>
-                  <h4>{Post.Title} <Badge color="info" className="category-badge">{Post.Category}</Badge></h4>
-                  <p>{Post.Content}</p>
-                  </div>
-                ))}
-            </div>
-          </div>
-        );
-    }
-
+render() {
+    return(
+      <div>
+        <div className="for-posts">
+            {this.state.posts.map(Post =>(
+              <div className="postdiv" data-id={Post.ID}>
+              <p className="for-id">#{Post.ID} Last edited: {Post.LastEdit}</p>
+              <h4 onClick={() => this.handlePostClick(Post)} key={Post.id}>{Post.Title}<Badge color="info" className="category-badge">{Post.Category}</Badge></h4>
+              <p>{Post.Content}</p>
+              </div>
+            ))}
+        </div>
+      </div>
+    );
+}
 }
 
-export default test;
+export default Test;
