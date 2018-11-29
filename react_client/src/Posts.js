@@ -5,12 +5,20 @@ import React, { Component } from 'react';
     constructor() {
       super();
       this.getPublicPosts = this.getPublicPosts.bind(this);
+      this.getPrivateNotes = this.getPrivateNotes.bind(this);
       this.state = {
         postData: []
       };
     }
     getPublicPosts() {
       axios.get(`http://localhost:3000/Posts/public`).then(res => {
+        const postData = res.data;
+        this.setState({ postData });
+      });
+    }
+    getPrivateNotes() {
+      const ide = document.getElementById("ide").value; 
+      axios.get(`http://localhost:3000/Posts/private/user/` + ide).then(res => {
         const postData = res.data;
         this.setState({ postData });
       });
@@ -22,6 +30,11 @@ import React, { Component } from 'react';
           <button className="button" onClick={this.getPublicPosts}>
             Show Public Posts
           </button>
+          <button className="button" onClick={this.getPrivateNotes}>
+            Show Private Notes
+          </button>
+          <br/>
+          <input id="ide"></input>
           <table className="table table-bordered">
             <thead>
               <tr>

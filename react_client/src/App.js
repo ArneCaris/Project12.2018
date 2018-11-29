@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import './App.css';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -12,13 +13,13 @@ import Login from './Login';
 import ShareEntry from './ShareEntry';
 import EditPost from './EditPost';
 import postbycategory from './PostsByCategory';
+import comments from './Comments'
 import Gaming from './PostsByCategory';
 import Technology from './PostsByCategory';
 import Vehicles from './PostsByCategory';
 import axios from 'axios';
 
 import test from './test';
-import ViewPost from './ViewPost';
 import { NavLink, Route } from 'react-router-dom';
 
 
@@ -37,14 +38,19 @@ class App extends Component {
     super (props);
     this.getValues = this.getValues.bind(this);
     this.searchData = this.searchData.bind(this);
+    this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false,
+      dropdownOpen: false,
       searchUsers: [],
       list: undefined
     }
   }
 
-  toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
   
 
   searchData(e) {
@@ -61,20 +67,19 @@ class App extends Component {
         };
          
       });
-      console.log(queryData) 
+       
     }
     this.setState({list: queryData});
-    
+    console.log(queryData[1])
   }
 
-  
 
   getValues() {
     axios.get('http://localhost:3000/Users').then(res => {
-      var searchUsers = res.data;
+      const searchUsers = res.data;
       this.setState({ searchUsers })
-      searchUsers = this.state.searchUsers.map(user => (user.username));
-      console.log(searchUsers) 
+      const var1 = this.state.searchUsers.map(user => (user.username));
+      console.log(var1) 
       
     })
     
@@ -84,7 +89,7 @@ class App extends Component {
 
   render () {
 
-    const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;
+
 
     return (
       <div className="App">
@@ -94,22 +99,18 @@ class App extends Component {
               <h2>DiLog</h2>
             </NavLink>
 
-            <div className="dropdown" onClick={this.toggleOpen}  >
-                <button 
-                    className="btn btn-secondary dropdown-toggle" 
-                    type="button" 
-                    id="dropdownMenuButton" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true"
-                                      >
-                    Categories
-                </button>
-                <div className={menuClass} aria-labelledby="dropdownMenuButton">
-                    <NavLink to="/Posts/category/lifestyle" className="dropdown-item">Lifestyle</NavLink>
-                    <a className="dropdown-item" href="http://localhost:3001/posts/category/gaming">Gaming</a>
-                    <a className="dropdown-item" href="http://localhost:3001/posts/category/technology">Technology</a>
-                    <a className="dropdown-item" href="http://localhost:3001/posts/category/vehicles">Vehicles</a>
-                </div>
+            <div className="dropdown">
+              <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                <DropdownToggle caret>
+                  Categories
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem><NavLink to="/posts/category/lifestyle" className="dropdown-item">Lifestyle</NavLink></DropdownItem>
+                  <DropdownItem><NavLink to="/posts/category/gaming" className="dropdown-item">Gaming</NavLink></DropdownItem>
+                  <DropdownItem><NavLink to="/posts/category/vehicles" className="dropdown-item">Vehicles</NavLink></DropdownItem>
+                  <DropdownItem><NavLink to="/posts/category/technology" className="dropdown-item">Technology</NavLink></DropdownItem>
+                </DropdownMenu>
+              </ButtonDropdown>
 
             </div>
             
@@ -133,8 +134,11 @@ class App extends Component {
               <NavLink className="navigation" to="/CreatePost">
                 Create Post
               </NavLink>
-              <NavLink className="navigation" to="/Post">
+              <NavLink className="navigation" to="/Post/view">
                 View Posts
+              </NavLink>
+              <NavLink className="navigation" to="/comments">
+                View comments
               </NavLink>
               <NavLink className="navigation" to="/EditPost">
                 edit post
@@ -164,8 +168,8 @@ class App extends Component {
 
         <Route path="/test" exact component={test} />
         <Route path="/createpost" exact component={CreatePost} />
-        <Route path="/Posts" exact component={Posts} />
-        <Route path="/Posts/View" exact component={ViewPost} />
+        <Route path="/Post/view" exact component={Posts} />
+        <Route path="/comments" exact component={comments} />
         <Route path="/deletepost" exact component={DeletePost} />
         <Route path="/editpost" exact component={EditPost} />
         <Route path="/Users/" exact component={Users} /> 
@@ -173,19 +177,10 @@ class App extends Component {
         <Route path="/Users/delete" exact component={DeleteUser} />
         <Route path="/login" exact component={Login} />
         <Route path="/ShareEntry" exact component={ShareEntry} />
-        <Route path="/login" exact component={Login} />
-
-          <Route path="/test" exact component={test} />
-          <Route path="/createpost" exact component={CreatePost} />
-          <Route path="/Post" exact component={Posts} />
-          <Route path="/deletepost" exact component={DeletePost} />
-          <Route path="/editpost" exact component={EditPost} />
-          <Route path="/Users/" exact component={Users} /> 
-          <Route path="/Users/add" exact component={AddUser} />
-          <Route path="/Users/delete" exact component={DeleteUser} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/ShareEntry" exact component={ShareEntry} />
-          <Route path="Posts/category/lifestyle" exact component={postbycategory} />
+        <Route path="/posts/category/lifestyle" exact component={postbycategory} />
+        <Route path="/posts/category/gaming" exact component={postbycategory} />
+        <Route path="/posts/category/vehicles" exact component={postbycategory} />
+        <Route path="/posts/category/technology" exact component={postbycategory} />
 
 
         </div>

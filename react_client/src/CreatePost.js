@@ -79,6 +79,11 @@ class CreatePost extends Component {
                     </label>
                     <br/>
                     <label>
+                        Privacy:
+                        <input type="number" name="isPrivate" onChange={this.onChange} required/>
+                    </label>
+                    <br/>
+                    <label>
                         LastEdited:
                         <input type="text" name="LastEdit" onChange={this.onChange} />
                     </label>

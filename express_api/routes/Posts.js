@@ -10,6 +10,17 @@ router.get('/private', function(req, res, next) {
     }
   });
 });
+router.get('/private/user/:ID', function(req, res, next){
+  if(req.params.ID){
+  Posts.getPrivatePostByUserId(req.params.ID, function(err, rows){
+    if (err){
+      res.json(err);
+    }else{
+      res.json(rows);
+    }
+  });
+}
+});
 router.get('/public', function(req, res, next) {
   Posts.getAllPublicPosts(function(err, rows) {
     if (err) {

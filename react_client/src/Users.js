@@ -25,9 +25,7 @@ import axios from 'axios';
               Username:
               <input id="username" type="string" name="username" onKeyUp={this.getUsers}/>
             </label>
-            <button className="button" onClick={this.getUsers}>
-              Show User
-            </button>
+            
           
           <table className="table table-bordered">
             <thead>

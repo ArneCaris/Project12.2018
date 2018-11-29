@@ -4,29 +4,46 @@ import axios from 'axios';
   class PostsByCategory extends Component {
     constructor() {
       super();
-      this.getUsers = this.getUsers.bind(this);
+      this.getCategory = this.getCategory.bind(this);
       this.state = {
-        Users: []
+        Categories: []
       };
     }
 
-  getUsers() {
-      const category = document.getElementById("category").value;
-      axios.get(`http://localhost:3000/Posts/category/` + category).then(res => {
-        const Users = res.data;
-        this.setState({ Users });
-      });
+  getCategory() {
+    const item1 = "lifestyle"
+    const item2 = "gaming"
+    const item3 = "vehicles"
+    const item4 = "technology"
+    const url = window.location.href
+    if (url.includes(item1)) {
+      axios.get(`http://localhost:3000/Posts/category/` + item1).then(res => {
+        const Categories = res.data;
+        this.setState({ Categories });
+      });}
+    if (url.includes(item2)) {
+      axios.get(`http://localhost:3000/Posts/category/` + item2).then(res => {
+        const Categories = res.data;
+        this.setState({ Categories });
+      });}
+    if (url.includes(item3)) {
+      axios.get(`http://localhost:3000/Posts/category/` + item3).then(res => {
+        const Categories = res.data;
+        this.setState({ Categories });
+      });}
+    if (url.includes(item4)) {
+      axios.get(`http://localhost:3000/Posts/category/` + item4).then(res => {
+        const Categories = res.data;
+        this.setState({ Categories });
+      });}
+    
     }
 
     render() {
       return (
         <div>
-            <label>
-              category:
-              <input id="category" type="string" name="category"/>
-            </label>
-            <button className="button" onClick={this.getUsers}>
-              Show Category
+            <button className="button" onClick={this.getCategory}>
+              Show posts
             </button>
           
           <table className="table table-bordered">
@@ -42,7 +59,7 @@ import axios from 'axios';
               </tr>
             </thead>
             <tbody>
-              {this.state.Users.map(post => (
+              {this.state.Categories.map(post => (
                 <tr key={post.ID}>
                   <td>{post.ID}</td>
                   <td>{post.UserID}</td>
