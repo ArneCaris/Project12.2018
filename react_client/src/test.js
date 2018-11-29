@@ -8,64 +8,58 @@ import { Badge } from 'reactstrap';
 import { Route, Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  FormattedMessage,
-  FormattedHTMLMessage,
-  FormattedDate,
-  FormattedTime,
-} from 'react-intl';
+import Wholepost from './Components/Wholepost';
+import NavigationButton from './Components/NavigationButton';
+
+import RemoveButton from './Components/RemoveButton';
+
+class Test extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+      ID: '',
+    };
+    this.handleRemove = this.handleRemove.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get(`http://localhost:3000/posts/public`).then(results => {
+      const posts = results.data;
+      this.setState({ posts });
+    });
+  }
+
+    handleRemove = ID => {
+    this.setState ({
+      posts: this.state.posts.filter( Post => Post.ID !== ID)
+    });
+  };
 
 
-class test extends Component {
+render() {
 
-    constructor() {
-        super();
-        this.getPosts = this.getPosts.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.state = {
-          posts: [],
-          ID: '',
-        };
-      }
-
-      getPosts() {
-        axios.get(`http://localhost:3000/posts/public`).then(res => {
-          const posts = res.data;
-          this.setState({ posts });
-        });
-      }
-
-      handleSubmit = event => {
-        event.preventDefault();
-        const id = this.state.ID;
-        const { ID } = this.state;
-
-        axios.delete('http://localhost:3000/posts/' + id, {ID})
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-          });
-      };
-
-
-
-    render() {
-        return(
-          <div>
-            <button className="button" onClick={this.getPosts}>GET EM'</button>
-            <div className="for-posts">
-                {this.state.posts.map(Post =>(
-                  <div className="post-div" data-id={Post.ID}>
-                  <p className="for-id">#{Post.ID} Last edited: {Post.LastEdit}</p>
-                  <h4>{Post.Title} <Badge color="info" className="category-badge">{Post.Category}</Badge></h4>
-                  <p>{Post.Content}</p>
-                  </div>
-                ))}
-            </div>
-          </div>
-        );
-    }
-
+    return(
+      <div>
+        <div className="for-posts">
+            {this.state.posts.map(Post =>(
+            <ul>
+              <div className="postdiv" data-id={Post.ID}>
+              <RemoveButton {...Post} removePost={this.handleRemove} />
+              <p className="for-id">#{Post.ID} Last edited: {Post.LastEdit}</p>
+                <h4>{Post.Title}</h4><Badge color="info" className="category-badge">{Post.Category}</Badge>
+              <p className="text">{Post.Content}</p>
+              <section>
+                <NavigationButton/>
+              </section>
+              </div>
+            </ul>
+            ))}
+        </div>
+      </div>
+    );
+}
 }
 
-export default test;
+export default Test;

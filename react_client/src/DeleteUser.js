@@ -23,8 +23,6 @@ class DeleteUser extends Component {
         event.preventDefault();
         const id = this.state.ID;
         const { ID, username, password } = this.state;
-        window.location.reload();
-
         axios
             .delete('http://localhost:3000/Users/' + id, { ID, username, password })
             .then(res => {

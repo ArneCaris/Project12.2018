@@ -19,8 +19,10 @@ import Technology from './PostsByCategory';
 import Vehicles from './PostsByCategory';
 import axios from 'axios';
 
-import test from './test';
-import { NavLink, Route } from 'react-router-dom';
+import Test from './Test';
+import Wholepost from './Components/Wholepost';
+import { NavLink, BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Badge } from 'reactstrap';
 
 
 
@@ -119,13 +121,13 @@ class App extends Component {
             
             <NavLink className="navigation" to="/Users/" />
         </div>
-        
+        <Frontpage/>
         
         <hr/>
 
       
       <div>
-              <NavLink className="navigation" to="/Posts/View">
+              <NavLink className="navigation" to="Wholepost">
                 herefortesting
               </NavLink>
               <NavLink to="/Users/">
@@ -143,10 +145,10 @@ class App extends Component {
               <NavLink className="navigation" to="/EditPost">
                 edit post
               </NavLink>
-              <NavLink to="/Users/delete">
-                  Delete User
+              <NavLink to="/Post/Delete">
+                  Delete Post
               </NavLink>
-              <NavLink to="/test">
+              <NavLink to="/Test">
                   test
               </NavLink>
               <br/>
@@ -166,11 +168,11 @@ class App extends Component {
             </div>
 
 
-        <Route path="/test" exact component={test} />
-        <Route path="/createpost" exact component={CreatePost} />
+       
+      
         <Route path="/Post/view" exact component={Posts} />
         <Route path="/comments" exact component={comments} />
-        <Route path="/deletepost" exact component={DeletePost} />
+        
         <Route path="/editpost" exact component={EditPost} />
         <Route path="/Users/" exact component={Users} /> 
         <Route path="/Users/add" exact component={AddUser} />
@@ -181,6 +183,18 @@ class App extends Component {
         <Route path="/posts/category/gaming" exact component={postbycategory} />
         <Route path="/posts/category/vehicles" exact component={postbycategory} />
         <Route path="/posts/category/technology" exact component={postbycategory} />
+          <Route path="/Test" exact component={Test} />
+          <Route path="/createpost" exact component={CreatePost} />
+          <Route path="/Post" exact component={Posts} />
+          <Route path="/Wholepost" exact component={Wholepost} />
+          <Route path="/Post/Delete" exact component={DeletePost} />
+          
+          
+          
+          
+          
+          
+          
 
 
         </div>
@@ -188,6 +202,26 @@ class App extends Component {
     )
   }
 }
+
+class Frontpage extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      posts: []
+    };
+  }
+  render() {
+    return(
+      <Router>
+        <div>
+
+        </div>
+      </Router>
+    )
+  }
+}
+
+
 
 class SearchBar extends React.Component {
   render () {

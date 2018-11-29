@@ -6,17 +6,9 @@ class OptionModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
-      modal: false
+      modal: false,
     };
     this.toggle = this.toggle.bind(this);
-  }
-
-  getPosts() {
-    axios.get(`http://localhost:3000/posts/public`).then(res => {
-      const posts = res.data;
-      this.setState({ posts });
-    });
   }
 
   toggle() {

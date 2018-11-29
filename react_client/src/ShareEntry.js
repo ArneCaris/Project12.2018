@@ -17,6 +17,7 @@ class ShareEntry extends Component {
             this.getUsers = this.getUsers.bind(this);
             this.state = {
               Users: []
+              , Owner: ''
             }; 
         }
 
@@ -25,12 +26,13 @@ class ShareEntry extends Component {
             axios.get(`http://localhost:3000/Users/` + username).then(res => {
               const Users = res.data;
               this.setState({ Users });
+              console.log(res.data);/*
               var Viewer = this.state.Users.map(user => (user.username));
 
               if( Viewer == username || username == null ){
                 document.getElementById("share").disabled = false;
               } else{ document.getElementById("share").disabled = true; }
-
+*/
             });
             
           } 
