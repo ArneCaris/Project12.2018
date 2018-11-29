@@ -9,8 +9,9 @@ import { Route, Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Wholepost from './Components/Wholepost';
-import PropTypes from 'prop-types';
+import NavigationButton from './Components/NavigationButton';
 
+import RemoveButton from './Components/RemoveButton';
 
 class Test extends Component {
 
@@ -18,13 +19,9 @@ class Test extends Component {
     super(props);
     this.state = {
       posts: [],
-      text: '',
       ID: '',
-      hidePost: false
     };
-    this.hidePost = this.hidePost.bind(this);
-    this.showPost = this.showPost.bind(this);
-
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   componentDidMount() {
@@ -34,31 +31,30 @@ class Test extends Component {
     });
   }
 
-  static propTypes = {
-    history: PropTypes.object.isRequired
-  }
+    handleRemove = ID => {
+    this.setState ({
+      posts: this.state.posts.filter( Post => Post.ID !== ID)
+    });
+  };
 
-  handlePostClick(posts){
-    this.props.history.push('/posts/${Post.ID}')
-  }
-
-  hidePost(){
-    this.setState({hidePost: true});
-  }
-  showPost(){
-    this.setState({showPost: false});
-  }
 
 render() {
+
     return(
       <div>
         <div className="for-posts">
             {this.state.posts.map(Post =>(
+            <ul>
               <div className="postdiv" data-id={Post.ID}>
+              <RemoveButton {...Post} removePost={this.handleRemove} />
               <p className="for-id">#{Post.ID} Last edited: {Post.LastEdit}</p>
-              <h4 onClick={() => this.handlePostClick(Post)} key={Post.id}>{Post.Title}<Badge color="info" className="category-badge">{Post.Category}</Badge></h4>
-              <p>{Post.Content}</p>
+                <h4>{Post.Title}</h4><Badge color="info" className="category-badge">{Post.Category}</Badge>
+              <p className="text">{Post.Content}</p>
+              <section>
+                <NavigationButton/>
+              </section>
               </div>
+            </ul>
             ))}
         </div>
       </div>

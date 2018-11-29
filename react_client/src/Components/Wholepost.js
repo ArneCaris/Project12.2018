@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button } from 'reactstrap';
-
 class Wholepost extends Component {
     render() {
         return (
             <div>
             <Jumbotron>
-                <h1 className="display-3">Hiiohoi halojatapäivää!</h1>
-                <p className="lead">liirum laarum</p>
+                <h2 className="display-5">{this.props.Title}</h2>
+                <h4 className="lead">{this.props.Content}</h4>
                 <hr className="my-2" />
-                <p>text here / tekstiä tässä</p>
+                <p><i>ID:{this.props.ID}</i></p>
                 <p className="lead">
-                <Button color="primary">nappula</Button>
                 </p>
             </Jumbotron>
             </div>

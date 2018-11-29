@@ -165,7 +165,7 @@ class App extends Component {
           <Route path="/Test" exact component={Test} />
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/Post" exact component={Posts} />
-          <Route path="/wholepost" exact component={Wholepost} />
+          <Route path="/Wholepost" exact component={Wholepost} />
           <Route path="/Post/Delete" exact component={DeletePost} />
           <Route path="/editpost" exact component={EditPost} />
           <Route path="/Users/" exact component={Users} /> 

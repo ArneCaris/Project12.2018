@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer ,toast } from 'react-toastify';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
 
 class CreatePost extends Component {
     
@@ -19,7 +20,7 @@ class CreatePost extends Component {
                 Category: '',
                 isPrivate: '',
                 LastEdit: '',
-                showButtons: false
+                showButtons: false,
             }; 
             this.seeButton = this.seeButton.bind(this);
             this.hideButton = this.hideButton.bind(this);
@@ -39,7 +40,6 @@ class CreatePost extends Component {
 
         handleSubmit = event => {
             event.preventDefault();
-    
             const { ID, UserID, Title, Content, Category, isPrivate, LastEdit  } = this.state;
             
             axios
@@ -54,8 +54,9 @@ class CreatePost extends Component {
                   toast("Post created Successfully!", { autoClose: 3000 });
             }
         render() {
-        return (
 
+        return (
+            <div>
                 <form onSubmit={this.handleSubmit}>
 
                 <ToastContainer autoClose={3000}/>
@@ -103,6 +104,7 @@ class CreatePost extends Component {
                     </div>
                     }
                 </form>
+            </div>
         );
     }
 }
