@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import './App.css';
 import './index.css';
@@ -9,7 +9,7 @@ import DeleteUser from './DeleteUser';
 import CreatePost from './CreatePost';
 import DeletePost from './DeletePost';
 import Posts from './Posts';
-import Login from './Login';
+import {Login} from './Login';
 import ShareEntry from './ShareEntry';
 import EditPost from './EditPost';
 import postbycategory from './PostsByCategory';
@@ -21,7 +21,7 @@ import axios from 'axios';
 
 import Test from './Test';
 import Wholepost from './Components/Wholepost';
-import { NavLink, BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { NavLink, LinkContainer, BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Badge } from 'reactstrap';
 
 
@@ -54,6 +54,12 @@ class App extends Component {
     });
   }
   
+  handleLogout () {
+    localStorage.setItem( 'userID', 0 );
+    localStorage.setItem( 'userUsername', 'anon' );
+    localStorage.setItem( 'isAthenticated', false );
+  }
+
 
   searchData(e) {
     var queryData = [];
@@ -166,7 +172,14 @@ class App extends Component {
                   Delete User
                 </NavLink>
             </div>
-
+      {this.state.isAuthenticated
+        ? <NavLink onClick={this.handleLogout}>Logout</NavLink>
+        : <Fragment>
+          <NavLink to="/login" onClick={this.handleLogout}>Logout</NavLink>
+              <NavLink to="/signup">Signup</NavLink>
+              <NavLink to="/login">Login</NavLink>
+          </Fragment>
+      }
 
        
       

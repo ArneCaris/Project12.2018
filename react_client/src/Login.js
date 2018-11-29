@@ -1,62 +1,88 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import axios from 'axios';
 import "./Login.css";
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      username: "",
-      password: ""
-    };
-  }
 
-  validateForm() {
-    return this.state.username.length > 0 && this.state.password.length > 0;
-  }
+export class Login extends Component {
+    constructor() { 
+        super();
+          this.getUsers = this.getUsers.bind(this);
+          this.state = {
+            Users: []
+          }; 
+    
+      }
+      
+      getUsers() {
+          axios.get(`http://localhost:3000/Users/`).then(res => {
+              const Users = res.data;
+              this.setState({ Users }); 
+              
+              var loginU = document.getElementById('username').value;
+              var loginP = document.getElementById('password').value;
+              
+              
+              
+              for ( var x = 0; x < Users.length; x++){
+                  if(Users[x].username === loginU)
+                  {
+                      if(Users[x].password === loginP)
+                      {       
 
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  }
+                        var CurrUser = {
+                            id: Users[x].ID,
+                            username: Users[x].username,
+                            isAuthenticated: true
+                        }
 
-  handleSubmit = async event => {
-    event.preventDefault();
-  }
+                        localStorage.setItem( 'userID', JSON.stringify(CurrUser.id) );
+                        localStorage.setItem( 'userUsername', JSON.stringify(CurrUser.username) );
+                        localStorage.setItem( 'isAthenticated', JSON.stringify(CurrUser.isAuthenticated) );
+                        
+                         this.props.history.push('/Post');
+                            
+                        break;
+                        
+                        } 
+                          
+                      }
+                  }
+                }      
+                );
+            }
+      
+    render() {
 
-  render() {
-    return (
-      <div className="Login">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="username" bsSize="large">
-            <ControlLabel>Username</ControlLabel>
-            <FormControl
-              autoFocus
-              type="username"
-              value={this.state.username}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <Button
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-          >
-            Login
-          </Button>
-        </form>
-      </div>
-    );
-  }
+        return (
+            <div className="Login">
+            <form onClick={() => this.getUsers()}>
+            <FormGroup controlId="username" bsSize="large">
+                <ControlLabel>Username</ControlLabel>
+                <FormControl
+                autoFocus
+                type="username" id="username"
+                />
+            </FormGroup>
+            <FormGroup controlId="password" bsSize="large">
+                <ControlLabel>Password</ControlLabel>
+                <FormControl
+                type="password" id="password"
+                />
+            </FormGroup>
+            <Button
+                block
+                bsSize="large"
+                type="button"
+                >
+                Login
+            </Button>
+            </form>
+            <br/> <br/>
+        </div>
+    
+        ); 
+              
+    }         
 }
