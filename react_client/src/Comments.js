@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-  import axios from 'axios';
-  import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import axios from 'axios';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
   class Comments extends Component {
     constructor() {

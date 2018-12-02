@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from 'axios';
 
-class OptionModal extends React.Component {
+class PostModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,6 @@ class OptionModal extends React.Component {
     const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={this.toggle}>&times;</button>;
     return (
       <div>
-        <button onClick={this.toggle}>Open</button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} external={externalCloseBtn} >
           <ModalHeader></ModalHeader>
           <ModalBody>
@@ -37,4 +36,4 @@ class OptionModal extends React.Component {
   }
 }
 
-export default OptionModal;
+export default PostModal;

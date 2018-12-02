@@ -115,6 +115,10 @@ li{
   color: grey;
 }
 
+.modalpost{
+  padding: 10px;
+}
+
 .postdiv{
   border: 1px solid grey;
   border-radius: 5px;
