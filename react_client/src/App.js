@@ -176,7 +176,7 @@ class App extends Component {
         ? <NavLink onClick={this.handleLogout}>Logout</NavLink>
         : <Fragment>
           <NavLink to="/login" onClick={this.handleLogout}>Logout</NavLink>
-              <NavLink to="/signup">Signup</NavLink>
+              <NavLink to="/Users/add">Signup</NavLink>
               <NavLink to="/login">Login</NavLink>
           </Fragment>
       }
