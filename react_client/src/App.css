@@ -154,6 +154,9 @@ margin-left: 1%;
 .userLogin{
   float: right;
   border-left: 1px solid black;
-  padding-left: 5%;
-  margin-left: 5%;
+  margin-bottom: 5%;
+}
+
+.routeDiv{
+  margin-top: 5%;
 }

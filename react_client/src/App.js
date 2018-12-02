@@ -55,18 +55,17 @@ class App extends Component {
   }
   
   handleLogout () {
-    localStorage.setItem( 'userID', 0 );
-    localStorage.setItem( 'userUsername', 'anon' );
-    localStorage.setItem( 'isAthenticated', false );
+    sessionStorage.clear();
+    window.reload();
   }
 
 
   searchData(e) {
     var queryData = [];
     this.getValues();
-    if (e.target.value != '') {
+    if (e.target.value !== '') {
       this.state.searchUsers.forEach(function(person){
-        if (person.toString().toLowerCase().indexOf(e.target.value)!=-1) {
+        if (person.toString().toLowerCase().indexOf(e.target.value)!== -1) {
           if (queryData.length < 100) {
             queryData.push(person);
             
@@ -132,57 +131,80 @@ class App extends Component {
         <hr/>
 
       
-      <div>
-              <NavLink className="navigation" to="Wholepost">
-                herefortesting
-              </NavLink>
-              <NavLink to="/Users/">
-                Users
-              </NavLink>
-              <NavLink className="navigation" to="/CreatePost">
-                Create Post
-              </NavLink>
-              <NavLink className="navigation" to="/Post/view">
-                View Posts
-              </NavLink>
-              <NavLink className="navigation" to="/comments">
-                View comments
-              </NavLink>
-              <NavLink className="navigation" to="/EditPost">
-                edit post
-              </NavLink>
-              <NavLink to="/Post/Delete">
-                  Delete Post
-              </NavLink>
-              <NavLink to="/Test">
-                  test
-              </NavLink>
-              <br/>
-              <NavLink className="navigation" to="/ShareEntry">
-                Share with
-              </NavLink>
-              <br/>
- 
-            <div className="userLogin">
-                <NavLink to="/Users/add">
-                  Add User
-                </NavLink>
-                <br/>
-                <NavLink to="/Users/delete">
-                  Delete User
-                </NavLink>
-            </div>
-      {this.state.isAuthenticated
-        ? <NavLink onClick={this.handleLogout}>Logout</NavLink>
-        : <Fragment>
-          <NavLink to="/login" onClick={this.handleLogout}>Logout</NavLink>
-              <NavLink to="/signup">Signup</NavLink>
+
+        {sessionStorage.length !== 0
+        ? 
+          <div><NavLink className="navigation" to="/CreatePost">
+            Create Post
+          </NavLink>
+          <NavLink className="navigation" to="/comments">
+            View comments
+          </NavLink>
+          <NavLink className="navigation" to="/EditPost">
+            edit post
+          </NavLink>
+          <NavLink to="/Post/Delete">
+              Delete Post
+          </NavLink>
+
+          <NavLink className="navigation" to="/ShareEntry">
+            Share with
+          </NavLink>
+          <NavLink to="/Users/delete">
+            Delete User
+          </NavLink> </div>
+        : 
+          <div>
+          <NavLink className="navigation" to="Wholepost">
+            herefortesting
+          </NavLink>
+          <NavLink to="/Users/">
+            Users
+          </NavLink>
+          <NavLink className="navigation" to="/Post/view">
+            View Posts
+          </NavLink>
+          </div>
+        }
+          <br/>
+
+
+      <div >
+          <NavLink to="/Users/add">
+            Add User
+          </NavLink>
+          <br/>
+          <NavLink to="/Users/delete">
+            Delete User
+          </NavLink>
+          <br/>
+          <NavLink to="/Test">
+              test
+          </NavLink>
+          <br/>
+          <NavLink className="navigation" to="Wholepost">
+            herefortesting
+          </NavLink>
+          <br/>
+          <NavLink to="/Users/">
+            Users
+          </NavLink>
+          <br/>
+      </div>
+
+        <hr/>
+
+      {sessionStorage.length !== 0
+        ? <NavLink to="/post" onClick={this.handleLogout}>Logout</NavLink>
+        : 
+          <Fragment>
+              <NavLink to="/signup">Signup</NavLink> <br/>
               <NavLink to="/login">Login</NavLink>
           </Fragment>
       }
 
-       
-      
+<hr/>
+        <div className="routeDiv">
         <Route path="/Post/view" exact component={Posts} />
         <Route path="/comments" exact component={comments} />
         
@@ -201,17 +223,9 @@ class App extends Component {
           <Route path="/Post" exact component={Posts} />
           <Route path="/Wholepost" exact component={Wholepost} />
           <Route path="/Post/Delete" exact component={DeletePost} />
-          
-          
-          
-          
-          
-          
-          
-
-
         </div>
-      </div>
+        
+</div>
     )
   }
 }
