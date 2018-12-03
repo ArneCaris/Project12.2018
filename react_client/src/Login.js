@@ -44,7 +44,7 @@ export class Login extends Component {
                         sessionStorage.setItem( 'userUsername', JSON.stringify(CurrUser.username) );
                         sessionStorage.setItem( 'isAthenticated', JSON.stringify(CurrUser.isAuthenticated) );
                         
-                        this.props.history.push('/Post');
+                        this.props.history.push('/');
                         
                         break;
                         

@@ -8,6 +8,7 @@ class AddUser extends Component {
     constructor() {
     super();
     this.getUsers = this.getUsers.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
         ID: '',
@@ -40,11 +41,11 @@ class AddUser extends Component {
                           isAuthenticated: true
                       }
 
-                      localStorage.setItem( 'userID', JSON.stringify(CurrUser.id) );
-                      localStorage.setItem( 'userUsername', JSON.stringify(CurrUser.username) );
-                      localStorage.setItem( 'isAthenticated', JSON.stringify(CurrUser.isAuthenticated) );
+                      sessionStorage.setItem( 'userID', JSON.stringify(CurrUser.id) );
+                      sessionStorage.setItem( 'userUsername', JSON.stringify(CurrUser.username) );
+                      sessionStorage.setItem( 'isAthenticated', JSON.stringify(CurrUser.isAuthenticated) );
                       
-                      this.props.history.push('/Post');
+                      this.props.history.push('/');
                       
                       break;
                       
@@ -57,21 +58,34 @@ class AddUser extends Component {
           }
             
 
+    handleEnter(event) {
+        if (event.key === 'Enter') {
+
+            this.handleSubmit();
+        }
+    }
+
     handleSubmit = event => {
         event.preventDefault();
 
         const { ID } = this.state;
         const username = document.getElementById("username").value
-        const password = document.getElementById("password").value
-        
-        axios
+        const password = document.getElementById("password").value    
+
+        if(document.getElementById("password").value.length > 3 ) {
+            
+            axios
             .post('http://localhost:3000/Users', { ID, username, password })
             .then(res => {
                 console.log(res);
                 console.log(res.data);
                 this.getUsers();
             });
-        
+
+        } else {
+            alert("Password should be more than 4 characters long.");
+        }
+
         };
         
 
@@ -89,7 +103,7 @@ class AddUser extends Component {
             <FormGroup controlId="password" bsSize="large">
                 <ControlLabel>Password</ControlLabel>
                 <FormControl
-                type="password" id="password"
+                type="password" id="password" onKeyPress={this.handleEnter}
                 />
             </FormGroup>
             <Button

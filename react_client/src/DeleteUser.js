@@ -6,6 +6,7 @@ class DeleteUser extends Component {
     super();
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBack = this.handleBack.bind(this);
     this.state = {
         ID: '',
         username: '',
@@ -17,33 +18,35 @@ class DeleteUser extends Component {
         const state = this.state;
         state[e.target.name] = e.target.value;
         this.setState(state);
+        console.log(sessionStorage.getItem("userID"));
     };
 
     handleSubmit = event => {
         event.preventDefault();
-        const id = this.state.ID;
+        const id = sessionStorage.getItem("userID");;
         const { ID, username, password } = this.state;
         axios
             .delete('http://localhost:3000/Users/' + id, { ID, username, password })
             .then(res => {
-            console.log(res);
             console.log(res.data);
-            });
-        };
+        });
+        sessionStorage.clear();
+        this.props.history.push('/');
+    };
+    
+    handleBack() {
+        this.props.history.goBack();
+    }
+
 
     render() {
         return (
             <div className="content">
-                <h2>Delete User</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                    ID:
-                    <input type="number" name="ID" onChange={this.onChange} />
-                    </label>
-                    <button className="button" type="submit">
-                    Delete
-                    </button>
-                </form>
+                <h2>Close Account</h2>
+
+                    <button className="button" onClick={this.handleSubmit}>Delete</button>
+                    <button className="button" onClick={this.handleBack}>Cancel</button>
+
             </div>
         );
     }

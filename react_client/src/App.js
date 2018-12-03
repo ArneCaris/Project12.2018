@@ -137,6 +137,9 @@ class App extends Component {
           <div><NavLink className="navigation" to="/CreatePost">
             Create Post
           </NavLink>
+          <NavLink className="navigation" to="/">
+            View Posts
+          </NavLink>
           <NavLink className="navigation" to="/comments">
             View comments
           </NavLink>
@@ -150,8 +153,8 @@ class App extends Component {
           <NavLink className="navigation" to="/ShareEntry">
             Share with
           </NavLink>
-          <NavLink to="/Users/delete">
-            Delete User
+          <NavLink to="/close_account">
+            Close Account
           </NavLink> </div>
         : 
           <div>
@@ -161,7 +164,7 @@ class App extends Component {
           <NavLink to="/Users/">
             Users
           </NavLink>
-          <NavLink className="navigation" to="/Post/view">
+          <NavLink className="navigation" to="/">
             View Posts
           </NavLink>
           </div>
@@ -210,8 +213,8 @@ class App extends Component {
         
         <Route path="/editpost" exact component={EditPost} />
         <Route path="/Users/" exact component={Users} /> 
-        <Route path="/Users/add" exact component={AddUser} />
-        <Route path="/Users/delete" exact component={DeleteUser} />
+        <Route path="/signup" exact component={AddUser} />
+        <Route path="/close_account" exact component={DeleteUser} />
         <Route path="/login" exact component={Login} />
         <Route path="/ShareEntry" exact component={ShareEntry} />
         <Route path="/posts/category/lifestyle" exact component={postbycategory} />
@@ -220,7 +223,7 @@ class App extends Component {
         <Route path="/posts/category/technology" exact component={postbycategory} />
           <Route path="/Test" exact component={Test} />
           <Route path="/createpost" exact component={CreatePost} />
-          <Route path="/Post" exact component={Posts} />
+          <Route path="/" exact component={Posts} />
           <Route path="/Wholepost" exact component={Wholepost} />
           <Route path="/Post/Delete" exact component={DeletePost} />
         </div>

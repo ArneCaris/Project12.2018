@@ -70,7 +70,7 @@ class Test extends Component {
 
     handleRemove = ID => {
     this.setState ({
-      posts: this.state.posts.filter( Post => Post.ID !== ID)
+      posts: this.state.posts.filter( Post => Post.ID != ID)
     });
   };
 
