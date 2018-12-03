@@ -21,8 +21,7 @@ class AddUser extends Component {
         
         axios.get(`http://localhost:3000/Users/`).then(res => {
             const Users = res.data;
-            this.setState({ Users }); 
-            console.log(Users)
+            this.setState({ Users });
             var loginU = document.getElementById('username').value;
             var loginP = document.getElementById('password').value;
             
@@ -40,9 +39,9 @@ class AddUser extends Component {
                           isAuthenticated: true
                       }
 
-                      localStorage.setItem( 'userID', JSON.stringify(CurrUser.id) );
-                      localStorage.setItem( 'userUsername', JSON.stringify(CurrUser.username) );
-                      localStorage.setItem( 'isAthenticated', JSON.stringify(CurrUser.isAuthenticated) );
+                      sessionStorage.setItem( 'userID', JSON.stringify(CurrUser.id) );
+                      sessionStorage.setItem( 'userUsername', JSON.stringify(CurrUser.username) );
+                      sessionStorage.setItem( 'isAthenticated', JSON.stringify(CurrUser.isAuthenticated) );
                       
                       this.props.history.push('/Post');
                       

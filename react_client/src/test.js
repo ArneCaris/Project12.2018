@@ -23,11 +23,13 @@ class Test extends Component {
       Title: '',
       Content: '',
       LastEdit: '',
+      titletext: '',
+      titlecontent: '',
       modal: false
     };
-    this.handleRemove = this.handleRemove.bind(this);
     this.handleModal = this.handleModal.bind(this);
-    this.forloopfunction = this.forloopfunction.bind(this);
+    this.forlooptitle = this.forlooptitle.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   componentDidMount() {
@@ -53,44 +55,56 @@ class Test extends Component {
     });
   }
 
-  forloopfunction () {
-    for (var x = 0; x < this.state.posts.length; x++) {
-      if (this.state.posts[x].ID == document.getElementById("forloop").className) {
-
-        //  document.getElementById("title").value = this.state.Title[x];
-          console.log(this.state.Title[x]);
-      }
-      else {
-        console.log(this.state.posts[x].ID)
-        console.log(document.getElementById("forloop").className);
-      }
-
-    }
+  forlooptitle (idlist, search) {
+      
+      var anotherarray = {};
+      for (var x = 0; x < this.state.posts.length; x++) {
+          if (idlist.includes(this.state.posts[x].ID)) {
+            anotherarray[this.state.posts[x].ID]= {id: this.state.posts[x].ID, title: this.state.posts[x].Title, content: this.state.posts[x].Content}
+            if (this.state.posts[x].ID == document.getElementById(search).className)  {
+              this.setState({
+                titletext: anotherarray[this.state.posts[x].ID].title,
+                titlecontent: anotherarray[this.state.posts[x].ID].content
+              });
+              break
+              
+            }               
+          }
+          else {
+            break
+          }
+      }  
   }
 
-    handleRemove = ID => {
-    this.setState ({
-      posts: this.state.posts.filter( Post => Post.ID !== ID)
-    });
-  };
+  handleModal(e) {
+    const search = e.target.id
+    var idlist = []
+    for (var x = 0; x < this.state.posts.length; x++) {
 
-  handleModal() {
+      idlist.push(this.state.posts[x].ID);
 
     this.setState({
-        modal: !this.state.modal,
+      modal: !this.state.modal,
+     });  
+    this.forlooptitle(idlist, search);
+    }
+}
 
-    });
-    this.forloopfunction();
+handleClose() {
+  this.setState({
+    modal: !this.state.modal,
+
+});
 }
 
 
 render() {
     let postsList = this.state.posts.map ( Post => {
         return (
-        <div className="for-posts" id={Post.ID}>
+        <div className="for-posts">
         <div className="postdiv">
           <ul>
-            <li onClick={this.handleModal} id="forloop" className={Post.ID}>{Post.Title}</li>
+            <li onClick={this.handleModal} id={Post.ID} className={Post.ID}>{Post.Title}</li>
             <li>{Post.Content}</li>
           </ul>
         </div>
@@ -99,13 +113,14 @@ render() {
       var modaltitle =
         <div id="title">
           
+          {this.state.titletext}
         
         </div>
         ;
       var modalcontent =
         <div>
           
-          {this.state.Content[3]}
+          {this.state.titlecontent}
         
         </div>
         ;
@@ -115,7 +130,8 @@ render() {
         <div>
           {postsList}
         </div>
-        <Modal key={this.props.ID} isOpen={this.state.modal} toggle={this.handleModal} key={this.state.posts.ID} className="modalpost">
+        
+        <Modal key={this.props.ID} isOpen={this.state.modal} key={this.state.posts.ID} className="modalpost">
           
             <ModalHeader>{modaltitle}</ModalHeader>
             <ModalBody>
@@ -123,7 +139,9 @@ render() {
             </ModalBody>
             
               <CommentField/>
-            
+            <ModalFooter>
+              <Button color="secondary" onClick={this.handleClose}>Close</Button>
+            </ModalFooter>
           </Modal>
       </div>
     );

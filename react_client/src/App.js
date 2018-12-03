@@ -205,12 +205,11 @@ class App extends Component {
 
 <hr/>
         <div className="routeDiv">
-        <Route path="/Post/view" exact component={Posts} />
         <Route path="/comments" exact component={comments} />
         
         <Route path="/editpost" exact component={EditPost} />
         <Route path="/Users/" exact component={Users} /> 
-        <Route path="/Users/add" exact component={AddUser} />
+        <Route path="/signup" exact component={AddUser} />
         <Route path="/Users/delete" exact component={DeleteUser} />
         <Route path="/login" exact component={Login} />
         <Route path="/ShareEntry" exact component={ShareEntry} />

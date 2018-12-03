@@ -19,7 +19,7 @@ class CreatePost extends Component {
                 Content: '',
                 Category: '',
                 isPrivate: '',
-                LastEdit: '',
+                LastEdit: Date().now,
                 showButtons: false,
             }; 
             this.seeButton = this.seeButton.bind(this);
