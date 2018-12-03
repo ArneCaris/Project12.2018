@@ -7,7 +7,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'react
 import { Route, Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Wholepost from './Components/Wholepost';
 import NavigationButton from './Components/NavigationButton';
 import CommentField from './Components/CommentField';
 import PostModal from './Components/PostModal';
@@ -90,8 +89,11 @@ render() {
         <div className="for-posts" id={Post.ID}>
         <div className="postdiv">
           <ul>
-            <li onClick={this.handleModal} id="forloop" className={Post.ID}>{Post.Title}</li>
-            <li>{Post.Content}</li>
+            <li>ID: <i>{Post.ID}</i></li>
+            <li onClick={this.handleModal} id="forloop" className={Post.ID}><h3>{Post.Title}</h3></li>
+            <li><p>{Post.Content}</p></li>
+            <Badge>{Post.Category}</Badge>
+            <li>{Post.LastEdit}</li>
           </ul>
         </div>
         </div>)
@@ -115,7 +117,7 @@ render() {
         <div>
           {postsList}
         </div>
-        <Modal key={this.props.ID} isOpen={this.state.modal} toggle={this.handleModal} key={this.state.posts.ID} className="modalpost">
+        <Modal key={this.props.ID} isOpen={this.state.modal} toggle={this.handleModal}className="modalpost">
           
             <ModalHeader>{modaltitle}</ModalHeader>
             <ModalBody>
