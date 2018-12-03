@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-  import axios from 'axios';
+import axios from 'axios';
+import test from './test';
 
   class Posts extends Component {
     constructor() {
@@ -27,41 +28,12 @@ import React, { Component } from 'react';
     render() {
       return (
         <div>
-          <button className="button" onClick={this.getPublicPosts}>
-            Show Public Posts
-          </button>
           <button className="button" onClick={this.getPrivateNotes}>
             Show Private Notes
           </button>
           <br/>
           <input id="ide"></input>
-          <table className="table table-bordered">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>UserID</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Category</th>
-                <th>isPrivate</th>
-                <th>LastEdited</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.postData.map(post => (
-                <tr key={post.ID}>
-                  <td>{post.ID}</td>
-                  <td>{post.UserID}</td>
-                  <td> {post.Title}</td>
-                  <td>{post.Content}</td>
-                  <td>{post.Category}</td>
-                  <td>{post.isPrivate}</td>
-                  <td>
-                  { post.LastEdit.toString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <test/>
         </div>
       );
     }

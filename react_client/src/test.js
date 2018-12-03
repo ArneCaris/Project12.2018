@@ -7,7 +7,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'react
 import { Route, Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Wholepost from './Components/Wholepost';
 import NavigationButton from './Components/NavigationButton';
 import CommentField from './Components/CommentField';
 import PostModal from './Components/PostModal';
@@ -56,12 +55,13 @@ class Test extends Component {
   }
 
   forlooptitle (idlist, search) {
-      
+      console.log(search)
+      console.log(idlist)
       var anotherarray = {};
       for (var x = 0; x < this.state.posts.length; x++) {
           if (idlist.includes(this.state.posts[x].ID)) {
             anotherarray[this.state.posts[x].ID]= {id: this.state.posts[x].ID, title: this.state.posts[x].Title, content: this.state.posts[x].Content}
-            if (this.state.posts[x].ID == document.getElementById(search).className)  {
+            if (this.state.posts[x].ID == document.getElementById(search).id)  {
               this.setState({
                 titletext: anotherarray[this.state.posts[x].ID].title,
                 titlecontent: anotherarray[this.state.posts[x].ID].content
@@ -73,11 +73,13 @@ class Test extends Component {
           else {
             break
           }
+          
       }  
   }
 
-  handleModal(e) {
-    const search = e.target.id
+  handleModal = e => {
+    const search = e.target.id;
+    console.log(search)
     var idlist = []
     for (var x = 0; x < this.state.posts.length; x++) {
 
@@ -99,17 +101,20 @@ handleClose() {
 
 
 render() {
-    let postsList = this.state.posts.map ( Post => {
-        return (
-        <div className="for-posts">
-        <div className="postdiv">
-          <ul>
-            <li onClick={this.handleModal} id={Post.ID} className={Post.ID}>{Post.Title}</li>
-            <li>{Post.Content}</li>
-          </ul>
-        </div>
-        </div>)
-      });
+  let postsList = this.state.posts.map ( Post => {
+    return (
+    <div className="for-posts">
+    <div className="postdiv">
+      <ul onClick={this.handleModal} id={Post.ID} className={Post.ID}>
+        <li>ID: <i>{Post.ID}</i></li>
+        <li><h3>{Post.Title}</h3></li>
+        <li><p>{Post.Content}</p></li>
+        <Badge>{Post.Category}</Badge>
+        <li>{Post.LastEdit}</li>
+      </ul>
+    </div>
+    </div>)
+  });
       var modaltitle =
         <div id="title">
           
@@ -142,7 +147,7 @@ render() {
             <ModalFooter>
               <Button color="secondary" onClick={this.handleClose}>Close</Button>
             </ModalFooter>
-          </Modal>
+        </Modal>
       </div>
     );
 }

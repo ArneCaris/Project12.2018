@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Badge } from 'reactstrap';
 import axios from 'axios';
 
   class PostsByCategory extends Component {
@@ -45,33 +46,19 @@ import axios from 'axios';
             <button className="button" onClick={this.getCategory}>
               Show posts
             </button>
-          
-          <table className="table table-bordered">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>userID</th>
-                <th>title</th>
-                <th>content</th>
-                <th>category</th>
-                <th>privacy</th>
-                <th>latest edit</th>
-              </tr>
-            </thead>
-            <tbody>
+            <div className="for-posts">
               {this.state.Categories.map(post => (
-                <tr key={post.ID}>
-                  <td>{post.ID}</td>
-                  <td>{post.UserID}</td>
-                  <td> {post.Title}</td>
-                  <td> {post.Content}</td>
-                  <td> {post.Category}</td>
-                  <td> {post.isPrivate}</td>
-                  <td> {post.LastEdit}</td>
-                </tr>
+              <div className="postdiv">
+                <ul>
+                  <li>ID: <i>{post.ID}</i></li>
+                  <li onClick={this.props.handleModal} id="forloop" className={post.ID}><h3>{post.Title}</h3></li>
+                  <li><p>{post.Content}</p></li>
+                  <Badge>{post.Category}</Badge>
+                  <li>{post.LastEdit}</li>
+                </ul>
+              </div>
               ))}
-            </tbody>
-          </table>
+            </div>
         </div>
       );
     }

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import axios from 'axios';
 import "./Login.css";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer ,toast } from 'react-toastify';
 
 
 
@@ -44,7 +46,7 @@ export class Login extends Component {
                         sessionStorage.setItem( 'userUsername', JSON.stringify(CurrUser.username) );
                         sessionStorage.setItem( 'isAthenticated', JSON.stringify(CurrUser.isAuthenticated) );
                         
-                        this.props.history.push('/Post');
+                        this.props.history.push('/');
                         
                         break;
                         
@@ -69,7 +71,9 @@ export class Login extends Component {
             this.getUsers();
 
         } else {
-            alert("Password should be more than 4 characters long.");
+            toast.error("Password should be more than 4 characters long.", {
+                position: toast.POSITION.TOP_CENTER
+            });
         }
 
     }
@@ -78,6 +82,7 @@ export class Login extends Component {
         
         return (
             <div className="Login">
+            <ToastContainer/>
             <form>
             <FormGroup controlId="username" bsSize="large">
                 <ControlLabel>Username</ControlLabel>
