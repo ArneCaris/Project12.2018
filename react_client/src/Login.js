@@ -8,8 +8,8 @@ import { ToastContainer ,toast } from 'react-toastify';
 
 
 export class Login extends Component {
-    constructor() { 
-        super();
+    constructor(props) { 
+        super(props);
           this.getUsers = this.getUsers.bind(this);
           this.handleEnter = this.handleEnter.bind(this);
           this.handleEvent = this.handleEvent.bind(this);

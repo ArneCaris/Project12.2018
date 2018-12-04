@@ -11,6 +11,9 @@ import NavigationButton from './Components/NavigationButton';
 import CommentField from './Components/CommentField';
 import PostModal from './Components/PostModal';
 import RemoveButton from './Components/RemoveButton';
+import moment from 'react-moment';
+import 'moment-timezone';
+import Moment from 'react-moment';
 
 class Test extends Component {
 
@@ -95,10 +98,8 @@ class Test extends Component {
 handleClose() {
   this.setState({
     modal: !this.state.modal,
-
 });
 }
-
 
 render() {
   let postsList = this.state.posts.map ( Post => {
@@ -110,7 +111,9 @@ render() {
         <li><h3>{Post.Title}</h3></li>
         <li><p>{Post.Content}</p></li>
         <Badge>{Post.Category}</Badge>
-        <li>{Post.LastEdit}</li>
+        <Moment format={"DD-MM-YYYY"}>
+          <li>{Post.LastEdit}</li>
+        </Moment>
       </ul>
     </div>
     </div>)
