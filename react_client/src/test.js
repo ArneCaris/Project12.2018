@@ -11,6 +11,9 @@ import NavigationButton from './Components/NavigationButton';
 import CommentField from './Components/CommentField';
 import PostModal from './Components/PostModal';
 import RemoveButton from './Components/RemoveButton';
+import moment from 'react-moment';
+import 'moment-timezone';
+import Moment from 'react-moment';
 
 class Test extends Component {
 
@@ -61,6 +64,7 @@ class Test extends Component {
       for (var x = 0; x < this.state.posts.length; x++) {
           if (idlist.includes(this.state.posts[x].ID)) {
             anotherarray[this.state.posts[x].ID]= {id: this.state.posts[x].ID, title: this.state.posts[x].Title, content: this.state.posts[x].Content}
+            
             if (this.state.posts[x].ID == document.getElementById(search).id)  {
               this.setState({
                 titletext: anotherarray[this.state.posts[x].ID].title,
@@ -77,40 +81,40 @@ class Test extends Component {
       }  
   }
 
-  handleModal = e => {
-    const search = e.target.id;
+  handleModal (search) {
     console.log(search)
     var idlist = []
     for (var x = 0; x < this.state.posts.length; x++) {
 
       idlist.push(this.state.posts[x].ID);
 
-    this.setState({
-      modal: !this.state.modal,
-     });  
-    this.forlooptitle(idlist, search);
+      this.setState({
+        modal: !this.state.modal,
+      });  
     }
+
+    this.forlooptitle(idlist, search);
 }
 
 handleClose() {
   this.setState({
     modal: !this.state.modal,
-
 });
 }
-
 
 render() {
   let postsList = this.state.posts.map ( Post => {
     return (
     <div className="for-posts">
     <div className="postdiv">
-      <ul>
+      <ul onClick={() => this.handleModal(Post.ID)} id={Post.ID} >
         <li>ID: <i>{Post.ID}</i></li>
-        <li><h3 onClick={this.handleModal} id={Post.ID} className={Post.ID}>{Post.Title}</h3></li>
-        <li>{Post.Content}</li>
-        <a href={"http://localhost:3001/posts/category/" + Post.Category}><Badge>{Post.Category}</Badge></a>
-        <li>{Post.LastEdit}</li>
+        <li><h3>{Post.Title}</h3></li>
+        <li><p>{Post.Content}</p></li>
+        <Badge>{Post.Category}</Badge>
+        <Moment format={"DD-MM-YYYY"}>
+          <li>{Post.LastEdit}</li>
+        </Moment>
       </ul>
     </div>
     </div>)

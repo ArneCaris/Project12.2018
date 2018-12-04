@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -35,51 +35,10 @@ class App extends Component {
     super (props);
   }
 
-
-  handleLogout () {
-    sessionStorage.clear();
-    window.reload();
-  }
-
   render () {
     return (
       <div className="App">
         <Navigator/>
-        <hr/>
-        {sessionStorage.length !== 0
-        ? 
-          <div><NavLink className="navigation" to="/CreatePost">
-            Create Post
-          </NavLink>
-          <NavLink className="navigation" to="/">
-            View Posts
-          </NavLink>
-          <NavLink className="navigation" to="/comments">
-            View comments
-          </NavLink>
-          <NavLink className="navigation" to="/EditPost">
-            edit post
-          </NavLink>
-          <NavLink to="/Post/Delete">
-              Delete Post
-          </NavLink>
-
-          <NavLink className="navigation" to="/ShareEntry">
-            Share with
-          </NavLink>
-          <NavLink to="/close_account">
-            Close Account
-          </NavLink> </div>
-        : 
-          <div>
-          <NavLink to="/Users/">
-            Users
-          </NavLink>
-          <NavLink className="navigation" to="/">
-            View Posts
-          </NavLink>
-          </div>
-        }
           <br/>
       <div >
           <NavLink to="/Users/add">
@@ -99,15 +58,6 @@ class App extends Component {
           </NavLink>
           <br/>
       </div>
-        <hr/>
-        {sessionStorage.length !== 0
-          ? <NavLink to="/post" onClick={this.handleLogout}>Logout</NavLink>
-          : 
-            <Fragment>
-                <NavLink to="/signup">Signup</NavLink> <br/>
-                <NavLink to="/login">Login</NavLink>
-            </Fragment>
-        }
       <hr/>
         <div className="routeDiv">
           <Route path="/" exact component={Posts} />
