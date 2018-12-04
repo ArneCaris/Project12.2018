@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Button } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
 class Wholepost extends Component {
     render() {
         return (

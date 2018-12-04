@@ -20,7 +20,7 @@ var Posts = {
   },
   addPost: function(post, callback) {
     return db.query(
-      'insert into post values(?,?,?,?,?,?)',
+      'insert into post values(?,?,?,?,?,?, NOW())',
       [post.ID, post.UserID, post.Title, post.Content, post.Category, post.isPrivate],
       callback
     );

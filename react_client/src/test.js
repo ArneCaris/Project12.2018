@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
-import { Route, Link } from 'react-router-dom';
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import NavigationButton from './Components/NavigationButton';
 import CommentField from './Components/CommentField';
-import PostModal from './Components/PostModal';
-import RemoveButton from './Components/RemoveButton';
-import moment from 'react-moment';
 import 'moment-timezone';
 import Moment from 'react-moment';
 
@@ -58,8 +51,6 @@ class Test extends Component {
   }
 
   forlooptitle (idlist, search) {
-      console.log(search)
-      console.log(idlist)
       var anotherarray = {};
       for (var x = 0; x < this.state.posts.length; x++) {
           if (idlist.includes(this.state.posts[x].ID)) {
@@ -82,7 +73,6 @@ class Test extends Component {
   }
 
   handleModal (search) {
-    console.log(search)
     var idlist = []
     for (var x = 0; x < this.state.posts.length; x++) {
 
@@ -105,7 +95,7 @@ handleClose() {
 render() {
   let postsList = this.state.posts.map ( Post => {
     return (
-    <div className="for-posts">
+    <div key={Post.Title} className="for-posts">
     <div className="postdiv">
       <ul onClick={() => this.handleModal(Post.ID)} id={Post.ID} >
         <li>ID: <i>{Post.ID}</i></li>
@@ -141,7 +131,7 @@ render() {
           {postsList}
         </div>
         
-        <Modal key={this.props.ID} isOpen={this.state.modal} key={this.state.posts.ID} className="modalpost">
+        <Modal isOpen={this.state.modal} key={this.state.posts.ID} className="modalpost">
           
             <ModalHeader>{modaltitle}</ModalHeader>
             <ModalBody>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import axios from 'axios';
 
 class PostModal extends React.Component {
   constructor(props) {

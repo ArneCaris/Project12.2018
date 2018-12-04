@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import test from './test';
 
   class Posts extends Component {
     constructor() {
@@ -33,7 +32,6 @@ import test from './test';
           </button>
           <br/>
           <input id="ide"></input>
-          <test/>
         </div>
       );
     }
