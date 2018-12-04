@@ -46,7 +46,7 @@ class CreatePost extends Component {
             console.log(date);
             this.setState({LastEdit: date});
             
-            const { ID, UserID, Title, Content, Category, isPrivate  } = this.state;
+            const { ID, UserID, Title, Content, Category, isPrivate } = this.state;
             axios
                 .post('http://localhost:3000/posts', { ID, UserID, Title, Content, Category, isPrivate })
                 .then(res => {
