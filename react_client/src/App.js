@@ -52,11 +52,7 @@ class App extends Component {
       </div>
       <hr/>
         <div className="routeDiv">
-<<<<<<< HEAD
           
-=======
-          <Route path="/post" exact component={Posts} />
->>>>>>> cc014f52e484d4b4d1bd1214545bd33777472755
           <Route path="/comments" exact component={comments} />
           <Route path="/editpost" exact component={EditPost} />
           <Route path="/Users/" exact component={Users} /> 
