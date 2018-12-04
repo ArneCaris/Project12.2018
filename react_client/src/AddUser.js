@@ -65,7 +65,10 @@ class AddUser extends Component {
     }
 
     handleSubmit () {
+<<<<<<< HEAD
 
+=======
+>>>>>>> cc014f52e484d4b4d1bd1214545bd33777472755
         const { ID } = this.state;
         const username = document.getElementById("username").value
         const password = document.getElementById("password").value    
