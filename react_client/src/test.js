@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CommentField from './Components/CommentField';
 import 'moment-timezone';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 
 class Test extends Component {
 
@@ -55,11 +56,14 @@ class Test extends Component {
       for (var x = 0; x < this.state.posts.length; x++) {
           if (idlist.includes(this.state.posts[x].ID)) {
             anotherarray[this.state.posts[x].ID]= {id: this.state.posts[x].ID, title: this.state.posts[x].Title, content: this.state.posts[x].Content}
-            
+
+
             if (this.state.posts[x].ID == document.getElementById(search).id)  {
+              var requestedTitle = anotherarray[this.state.posts[x].ID].title;
+              var requestedContent = anotherarray[this.state.posts[x].ID].content;
               this.setState({
-                titletext: anotherarray[this.state.posts[x].ID].title,
-                titlecontent: anotherarray[this.state.posts[x].ID].content
+                titletext: requestedTitle,
+                titlecontent: requestedContent
               });
               break
               
@@ -118,7 +122,7 @@ render() {
         </div>
         ;
       var modalcontent =
-        <div>
+        <div id="modal-content">
           
           {this.state.titlecontent}
         

@@ -23,7 +23,7 @@ class DeleteUser extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const id = sessionStorage.getItem("userID");;
+        const id = sessionStorage.getItem("userID");
         const { ID, username, password } = this.state;
         axios
             .delete('http://localhost:3000/Users/' + id, { ID, username, password })

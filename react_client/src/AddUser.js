@@ -64,9 +64,7 @@ class AddUser extends Component {
         }
     }
 
-    handleSubmit = event => {
-        event.preventDefault();
-
+    handleSubmit () {
         const { ID } = this.state;
         const username = document.getElementById("username").value
         const password = document.getElementById("password").value    

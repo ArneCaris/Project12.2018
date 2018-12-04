@@ -68,9 +68,9 @@ class Navigator extends Component {
         return (
             <div>
             <Navbar color="light" light expand="md">
-              <NavbarBrand href="/">
-                  DiLog
-              </NavbarBrand>
+              <NavLink to="/" style={{ textDecoration: 'none', color: 'black', fontStyle: 'italic' }}>
+                  <h3>DiLog</h3>
+              </NavLink>
               <CategoryDropdown/>
               <SearchBar search={this.searchData.bind(this)} />
               {(this.state.list) ? <SearchResult searchUsers={this.state.list} /> : null }
