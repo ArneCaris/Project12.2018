@@ -105,11 +105,11 @@ render() {
     return (
     <div className="for-posts">
     <div className="postdiv">
-      <ul onClick={this.handleModal} id={Post.ID} className={Post.ID}>
+      <ul>
         <li>ID: <i>{Post.ID}</i></li>
-        <li><h3>{Post.Title}</h3></li>
-        <li><p>{Post.Content}</p></li>
-        <Badge>{Post.Category}</Badge>
+        <li><h3 onClick={this.handleModal} id={Post.ID} className={Post.ID}>{Post.Title}</h3></li>
+        <li>{Post.Content}</li>
+        <a href={"http://localhost:3001/posts/category/" + Post.Category}><Badge>{Post.Category}</Badge></a>
         <li>{Post.LastEdit}</li>
       </ul>
     </div>
