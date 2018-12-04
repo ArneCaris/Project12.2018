@@ -61,6 +61,7 @@ class Test extends Component {
       for (var x = 0; x < this.state.posts.length; x++) {
           if (idlist.includes(this.state.posts[x].ID)) {
             anotherarray[this.state.posts[x].ID]= {id: this.state.posts[x].ID, title: this.state.posts[x].Title, content: this.state.posts[x].Content}
+            
             if (this.state.posts[x].ID == document.getElementById(search).id)  {
               this.setState({
                 titletext: anotherarray[this.state.posts[x].ID].title,
@@ -77,19 +78,19 @@ class Test extends Component {
       }  
   }
 
-  handleModal = e => {
-    const search = e.target.id;
+  handleModal (search) {
     console.log(search)
     var idlist = []
     for (var x = 0; x < this.state.posts.length; x++) {
 
       idlist.push(this.state.posts[x].ID);
 
-    this.setState({
-      modal: !this.state.modal,
-     });  
-    this.forlooptitle(idlist, search);
+      this.setState({
+        modal: !this.state.modal,
+      });  
     }
+
+    this.forlooptitle(idlist, search);
 }
 
 handleClose() {
@@ -105,7 +106,7 @@ render() {
     return (
     <div className="for-posts">
     <div className="postdiv">
-      <ul onClick={this.handleModal} id={Post.ID} className={Post.ID}>
+      <ul onClick={() => this.handleModal(Post.ID)} id={Post.ID} >
         <li>ID: <i>{Post.ID}</i></li>
         <li><h3>{Post.Title}</h3></li>
         <li><p>{Post.Content}</p></li>
