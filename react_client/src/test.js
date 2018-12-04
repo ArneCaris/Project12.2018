@@ -111,7 +111,8 @@ render() {
         <li>ID: <i>{Post.ID}</i></li>
         <li><h3>{Post.Title}</h3></li>
         <li><p>{Post.Content}</p></li>
-        <Badge>{Post.Category}</Badge>
+        <Link to={"/posts/category/" + (Post.Category).toLowerCase()}><Badge>{Post.Category}</Badge></Link>
+        <br/>
         <Moment format={"DD-MM-YYYY"}>
           <li>{Post.LastEdit}</li>
         </Moment>
