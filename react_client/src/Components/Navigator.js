@@ -1,18 +1,44 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import CategoryDropdown from './CategoryDropdown';
 import { NavLink, LinkContainer, BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import { Login } from '../Login';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
 
 class Navigator extends Component {
     constructor(props){
         super(props);
         this.getValues = this.getValues.bind(this);
         this.searchData = this.searchData.bind(this);
+        this.toggleDD = this.toggleDD.bind(this);
         this.state = {
           searchUsers: [],
-          list: undefined
+          list: undefined,
+          isDDopen: false
         };
     }
+
+    handleLogout () {
+      sessionStorage.clear();
+      window.reload();
+    }
+
+    toggleDD() {
+      this.setState({
+        isDDopen: !this.state.isDDopen
+      });
+    }
+
     searchData(e) {
         var queryData = [];
         this.getValues();
@@ -41,15 +67,73 @@ class Navigator extends Component {
 
     render() {
         return (
-            <div className="navbar">
-            <NavLink to="/" id="logo">
-              <h2>DiLog</h2>
-            </NavLink>
-            <CategoryDropdown/>
-            <SearchBar search={this.searchData.bind(this)} />
-            {(this.state.list) ? <SearchResult searchUsers={this.state.list} /> : null }
-            
-            <NavLink className="navigation" to="/Users/" />
+            <div>
+            <Navbar color="light" light expand="md">
+              <NavbarBrand href="/">
+                  DiLog
+              </NavbarBrand>
+              <CategoryDropdown/>
+              <SearchBar search={this.searchData.bind(this)} />
+              {(this.state.list) ? <SearchResult searchUsers={this.state.list} /> : null }
+              <NavLink className="navigation" to="/Users/" />
+              {sessionStorage.length !== 0
+              ? 
+              <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Posts
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  <NavLink className="navigation" to="/CreatePost">
+                    Create Post
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink className="navigation" to="/">
+                    View Posts
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink className="navigation" to="/comments">
+                    View comments
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink className="navigation" to="/EditPost">
+                    edit post
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink to="/Post/Delete">
+                    Delete Post
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink className="navigation" to="/ShareEntry">
+                    Share with
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink to="/close_account">
+                    Close Account
+                  </NavLink>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+              :
+              <div>Not logged in</div>
+              }
+              <NavItem>
+              {sessionStorage.length !== 0
+              ? <NavLink to="/test" onClick={this.handleLogout}>Logout</NavLink>
+              : 
+                <Fragment className="logSign">
+                  <NavLink to="/signup">Signup</NavLink>
+                  <NavLink to="/login">Login</NavLink>
+                </Fragment>
+              }
+              </NavItem>
+            </Navbar>
         </div>
         );
     }

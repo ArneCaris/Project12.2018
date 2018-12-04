@@ -30,20 +30,18 @@
 
 .dropdown {
   margin-left: 1%;
-  background-color: green;
 }
 #logo {
   text-decoration: none;
   color: black;
 }
-.navbar {
-  text-decoration: none;
-  border: 1px solid black;
-  margin: 10px 10px 10px 10px;
-}
 
 .App-nav {
   text-decoration: none;
+}
+
+.welcome {
+  float: right;
 }
 
 .Users-crud {
