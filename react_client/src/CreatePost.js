@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer ,toast } from 'react-toastify';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { Redirect } from 'react-router-dom';
+import { FormGroup, Input } from 'reactstrap';
 
 class CreatePost extends Component {
     
@@ -19,7 +17,7 @@ class CreatePost extends Component {
                 Content: '',
                 Category: '',
                 isPrivate: '',
-                LastEdit: Date().now,
+                LastEdit: '',
                 showButtons: false,
             }; 
             this.seeButton = this.seeButton.bind(this);
@@ -40,12 +38,19 @@ class CreatePost extends Component {
 
         handleSubmit = event => {
             event.preventDefault();
-            const { ID, UserID, Title, Content, Category, isPrivate, LastEdit  } = this.state;
+            var x=new Date();
+            var day=x.getDate();
+            if (day<10) day="0"+day;
+            var month = x.getMonth() + 1;
+            var date=x.getFullYear()+"-"+month+"-"+day;
+            console.log(date);
+            this.setState({LastEdit: date});
             
+            const { ID, UserID, Title, Content, Category, isPrivate  } = this.state;
             axios
-                .post('http://localhost:3000/posts', { ID, UserID, Title, Content, Category, isPrivate, LastEdit })
+                .post('http://localhost:3000/posts', { ID, UserID, Title, Content, Category, isPrivate })
                 .then(res => {
-                console.log(res);
+                console.log(this.state.LastEdit);
                 console.log(res.data);
                 });
             };
@@ -76,10 +81,6 @@ class CreatePost extends Component {
                 <FormGroup>
                     <label>Category</label>
                     <Input type="text" className="form-input"  name="Category" onChange={this.onChange} required/>
-                </FormGroup>
-                <FormGroup>
-                    <label>LastEdited</label>
-                    <Input type="text" className="form-input" name="LastEdit" onChange={this.onChange} />
                 </FormGroup>
                 <FormGroup>
                     <label>isPrivate?</label>

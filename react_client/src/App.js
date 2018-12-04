@@ -13,16 +13,10 @@ import ShareEntry from './ShareEntry';
 import EditPost from './EditPost';
 import postbycategory from './PostsByCategory';
 import comments from './Comments'
-import Gaming from './PostsByCategory';
-import Technology from './PostsByCategory';
-import Vehicles from './PostsByCategory';
 import Navigator from './Components/Navigator';
-import axios from 'axios';
 import test from './test';
-import { NavLink, LinkContainer, BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Badge } from 'reactstrap';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink, Route } from 'react-router-dom';
+
 
 
 
@@ -31,9 +25,7 @@ require("react-bootstrap/lib/NavbarBrand");
 
 
 class App extends Component {
-  constructor (props) {
-    super (props);
-  }
+
 
   render () {
     return (

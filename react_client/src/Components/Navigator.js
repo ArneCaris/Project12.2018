@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import CategoryDropdown from './CategoryDropdown';
-import { NavLink, LinkContainer, BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-import { Login } from '../Login';
 import {
   Collapse,
   Navbar,
