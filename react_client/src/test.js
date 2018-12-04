@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CommentField from './Components/CommentField';
 import 'moment-timezone';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom'
 
 class Test extends Component {
 
@@ -61,6 +62,10 @@ class Test extends Component {
                 titletext: anotherarray[this.state.posts[x].ID].title,
                 titlecontent: anotherarray[this.state.posts[x].ID].content
               });
+              if (anotherarray[this.state.posts[x].ID].title.length > 20) {
+                console.log(anotherarray[this.state.posts[x].ID].title.length)
+                
+              }
               break
               
             }               
@@ -94,13 +99,25 @@ handleClose() {
 
 render() {
   let postsList = this.state.posts.map ( Post => {
+    if (Post.Title.length > 40) {
+      var titlestring = Post.Title.substring(0, 40) + "..."
+    }
+    else {
+      titlestring = Post.Title
+    }
+    if (Post.Content.length > 40) {
+      var contentstring = Post.Content.substring(0, 40) + "..."
+    }
+    else {
+      contentstring = Post.Content
+    }
     return (
     <div key={Post.Title} className="for-posts">
     <div className="postdiv">
       <ul onClick={() => this.handleModal(Post.ID)} id={Post.ID} >
         <li>ID: <i>{Post.ID}</i></li>
-        <li><h3>{Post.Title}</h3></li>
-        <li><p>{Post.Content}</p></li>
+        <li><h3>{titlestring}</h3></li>
+        <li><p>{contentstring}</p></li>
         <Link to={"/posts/category/" + (Post.Category).toLowerCase()}><Badge>{Post.Category}</Badge></Link>
         <br/>
         <Moment format={"DD-MM-YYYY"}>
@@ -113,15 +130,9 @@ render() {
       var modaltitle =
         <div id="title">
           
-          {this.state.titletext}
-        
-        </div>
-        ;
-      var modalcontent =
-        <div>
-          
-          {this.state.titlecontent}
-        
+          {this.state.titletext.substring(0, 50)}
+          <br/>
+          {this.state.titletext.substring(50, 100)}
         </div>
         ;
 
@@ -131,11 +142,26 @@ render() {
           {postsList}
         </div>
         
-        <Modal isOpen={this.state.modal} key={this.state.posts.ID} className="modalpost">
+        <Modal isOpen={this.state.modal} key={this.state.posts.ID} className="modal-dialog modal-lg">
           
             <ModalHeader>{modaltitle}</ModalHeader>
             <ModalBody>
-              {modalcontent}
+              {this.state.titlecontent.length > 40
+              ?
+              <div>
+                {this.state.titlecontent.substring(0, this.state.titlecontent.length * 0.25 )}
+                <br/>
+                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.25, this.state.titlecontent.length * 0.50)}
+                <br/>
+                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.50, this.state.titlecontent.length * 0.75)}
+                <br/>
+                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.75, this.state.titlecontent.length)}
+              </div>
+              :
+              <div>
+                {this.state.titlecontent}
+              </div>
+              }
             </ModalBody>
             
               <CommentField/>

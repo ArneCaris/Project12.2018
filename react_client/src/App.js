@@ -41,7 +41,7 @@ class App extends Component {
             Delete User
           </NavLink>
           <br/>
-          <NavLink to="/test">
+          <NavLink to="/">
               test
           </NavLink>
           <br/>
@@ -52,7 +52,7 @@ class App extends Component {
       </div>
       <hr/>
         <div className="routeDiv">
-          <Route path="/" exact component={Posts} />
+          
           <Route path="/comments" exact component={comments} />
           <Route path="/editpost" exact component={EditPost} />
           <Route path="/Users/" exact component={Users} /> 
@@ -64,7 +64,7 @@ class App extends Component {
           <Route path="/posts/category/gaming" exact component={postbycategory} />
           <Route path="/posts/category/vehicles" exact component={postbycategory} />
           <Route path="/posts/category/technology" exact component={postbycategory} />
-          <Route path="/test" exact component={test} />
+          <Route path="/" exact component={test} />
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/Post/Delete" exact component={DeletePost} />
         </div>

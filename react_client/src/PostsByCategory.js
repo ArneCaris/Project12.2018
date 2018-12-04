@@ -136,8 +136,6 @@ import Moment from 'react-moment';
     }
   
     forlooptitle (idlist, search) {
-        console.log(search)
-        console.log(idlist)
         var anotherarray = {};
         for (var x = 0; x < this.state.posts.length; x++) {
             if (idlist.includes(this.state.posts[x].ID)) {
@@ -160,7 +158,6 @@ import Moment from 'react-moment';
     }
   
     handleModal (search) {
-      console.log(search)
       var idlist = []
       for (var x = 0; x < this.state.posts.length; x++) {
   
@@ -183,7 +180,6 @@ import Moment from 'react-moment';
   render() {
     
     let postsList = this.state.posts.map ( Post => {
-     var lcase = Post.Category.toString().toLowerCase();
       return (
       <div className="for-posts">
       <div className="postdiv">

@@ -124,7 +124,7 @@ class Navigator extends Component {
               }
               <NavItem>
               {sessionStorage.length !== 0
-              ? <NavLink to="/test" onClick={this.handleLogout}>Logout</NavLink>
+              ? <NavLink to="/test" onClick={this.handleLogout} id="logout">Logout</NavLink>
               : 
                 <Fragment className="logSign">
                   <NavLink to="/signup">Signup</NavLink>

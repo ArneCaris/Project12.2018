@@ -1,5 +1,4 @@
 var db = require('../database');
-const bcrypt = require('bcrypt');
 
 var users = {
   getAllUsers: function(callback) {
