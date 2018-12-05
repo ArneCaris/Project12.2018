@@ -150,6 +150,10 @@ li{
   }
 }
 
+#inputContent{
+  height: 200px;
+}
+
 .navigation{
 margin-left: 1%;
 }

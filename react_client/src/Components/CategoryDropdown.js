@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 
-
 class CategoryDropdown extends Component {
     constructor(props){
         super(props);
