@@ -9,6 +9,7 @@ import CommentsList from './Components/CommentsList';
 import 'moment-timezone';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert2';
 
 class Test extends Component {
 
@@ -48,6 +49,44 @@ class Test extends Component {
        });
     });
   }
+  deletePost = (ID) => {
+    axios.delete(`http://localhost:3000/posts/${ID}`)
+        .then(data => {
+          if(data.status) {
+            const post = [...this.state.posts];
+            let results = post.filter( post => (
+                post.ID !== ID
+            ));
+            this.setState({
+              posts: results
+            });
+            console.log(this.state.posts);
+          }
+        })
+  };
+
+  confirmDeletion = () => {
+    const { ID } = this.state;
+    swal({
+      title: 'Are you sure?',
+      text: "This will permanently delete the post",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Continue',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
+        this.deletePost(ID);
+        swal(
+            'Deleted!',
+            'Post has been deleted!',
+            'success'
+        )
+      }
+    })
+  };
 
   forlooptitle (idlist, search) {
       var anotherarray = {};
@@ -128,6 +167,9 @@ render() {
           <li>{Post.LastEdit}</li>
         </Moment>
       </ul>
+      <button onClick={this.confirmDeletion}>
+        Delete
+      </button>
     </div>
     </div>)
   });
