@@ -93,6 +93,16 @@ class Navigator extends Component {
                   </NavLink>
                 </DropdownItem>
                 <DropdownItem>
+                  <NavLink className="navigation" to="/posts/private">
+                    View Private Posts
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink className="navigation" to="/shared/mine">
+                    View my shared posts
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
                   <NavLink className="navigation" to="/comments">
                     View comments
                   </NavLink>
