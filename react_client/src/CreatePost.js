@@ -137,12 +137,12 @@ class CreatePost extends Component {
                     <br/>
 
                     <label className="ChackboxContainer">No
-                        <input onChange={this.onChange} type="radio" value="false" name="isPrivate" />
+                        <input onChange={this.onChange} type="radio" value="0" name="isPrivate" />
                         <span className="checkmark"></span>
                     </label>
                     
                     <label className="ChackboxContainer">Yes
-                        <input onChange={this.onChange} type="radio" value="true" name="isPrivate"/>
+                        <input onChange={this.onChange} type="radio" value="1" name="isPrivate"/>
                         <span className="checkmark"></span>
                     </label>
                 </FormGroup>

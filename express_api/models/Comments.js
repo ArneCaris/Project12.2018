@@ -9,15 +9,13 @@ var comments = {
   },
   addComment: function(comments, callback) {
     return db.query(
-      'insert into comments values(?,?,?,?,?)',
+      'insert into comments values(?,?,?,?,NOW())',
       [
         comments.ID,
         comments.PostID,
         comments.UserID,
         comments.Message,
-        comments.LastEdit
-      ],
-      callback
+      ], callback
     );
   },
   deleteComment: function(id, callback) {

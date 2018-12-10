@@ -5,6 +5,7 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
 import "react-toastify/dist/ReactToastify.css";
 import CommentField from './Components/CommentField';
+import CommentsList from './Components/CommentsList';
 import 'moment-timezone';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
@@ -34,19 +35,16 @@ class Test extends Component {
       const ID = [];
       const Title = [];
       const Content = [];
-      const LastEdit = [];
       for (var x = 0; x < posts.length; x++) {
         ID.push(posts[x].ID);
         Title.push(posts[x].Title);
         Content.push(posts[x].Content);
-        LastEdit.push(posts[x].LastEdit)
       }
       this.setState({ 
         posts,
         ID,
         Title,
         Content,
-        LastEdit
        });
     });
   }
@@ -82,6 +80,8 @@ class Test extends Component {
 
   handleModal (search) {
     var idlist = []
+    sessionStorage.setItem( 'PostID', JSON.stringify(search) );
+
     for (var x = 0; x < this.state.posts.length; x++) {
 
       idlist.push(this.state.posts[x].ID);
@@ -90,18 +90,19 @@ class Test extends Component {
         modal: !this.state.modal,
       });  
     }
-
     this.forlooptitle(idlist, search);
 }
 
 handleClose() {
+  sessionStorage.removeItem( 'PostID' );
+
   this.setState({
     modal: !this.state.modal,
 });
 }
 
 render() {
-  let postsList = this.state.posts.map ( Post => {
+  let postsList = this.state.posts.map ( (Post, index ) => {
     if (Post.Title.length > 40) {
       var titlestring = Post.Title.substring(0, 40) + "..."
     }
@@ -109,13 +110,13 @@ render() {
       titlestring = Post.Title
     }
     if (Post.Content.length > 40) {
-      var contentstring = Post.Content.substring(0, 40) + "..."
+      var contentstring = Post.Content.substring(0, 70) + "..."
     }
     else {
       contentstring = Post.Content
     }
     return (
-    <div key={Post.Title} className="for-posts">
+    <div key={index} className="for-posts">
     <div className="postdiv">
       <ul onClick={() => this.handleModal(Post.ID)} id={Post.ID} >
         <li>ID: <i>{Post.ID}</i></li>
@@ -145,29 +146,18 @@ render() {
           {postsList}
         </div>
         
-        <Modal isOpen={this.state.modal} key={this.state.posts.ID} className="modal-dialog modal-lg">
-          
+        <Modal isOpen={this.state.modal} className="modal-dialog modal-lg">
+
+            <Button color="danger" onClick={this.handleClose} close/>
             <ModalHeader>{modaltitle}</ModalHeader>
             <ModalBody>
-              {this.state.titlecontent.length > 40
-              ?
-              <div>
-                {this.state.titlecontent.substring(0, this.state.titlecontent.length * 0.25 )}
-                <br/>
-                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.25, this.state.titlecontent.length * 0.50)}
-                <br/>
-                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.50, this.state.titlecontent.length * 0.75)}
-                <br/>
-                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.75, this.state.titlecontent.length)}
-              </div>
-              :
               <div>
                 {this.state.titlecontent}
               </div>
-              }
             </ModalBody>
             
               <CommentField/>
+              <CommentsList/>
             <ModalFooter>
               <Button color="secondary" onClick={this.handleClose}>Close</Button>
             </ModalFooter>

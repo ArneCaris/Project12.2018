@@ -107,6 +107,9 @@ li{
 .for-posts{
   padding: 5px;
 }
+.for-comments{
+  padding: 5px;
+}
 
 .for-id{
   font-size: 12px;
@@ -152,6 +155,20 @@ li{
 
 #inputContent{
   height: 200px;
+}
+
+.commentDate{
+  float:right;
+  margin-right: 25px;
+}
+
+.commentdiv{
+  border: 1px solid black;
+}
+
+.modalCloseBTN{
+  size: 100px;
+  float: right;
 }
 
 .navigation{
