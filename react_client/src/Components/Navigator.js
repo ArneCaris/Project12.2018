@@ -27,10 +27,7 @@ class Navigator extends Component {
         };
     }
 
-    handleLogout () {
-      sessionStorage.clear();
-      window.reload();
-    }
+
 
     toggleDD() {
       this.setState({
@@ -132,16 +129,6 @@ class Navigator extends Component {
               :
               <div>Not logged in</div>
               }
-              <NavItem>
-              {sessionStorage.length !== 0
-              ? <NavLink to="/test" onClick={this.handleLogout} id="logout">Logout</NavLink>
-              : 
-                <Fragment className="logSign">
-                  <NavLink to="/signup">Signup</NavLink>
-                  <NavLink to="/login">Login</NavLink>
-                </Fragment>
-              }
-              </NavItem>
             </Navbar>
         </div>
         );

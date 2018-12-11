@@ -4,6 +4,7 @@ import axios from 'axios';
 import "./Login.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer ,toast } from 'react-toastify';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -111,7 +112,9 @@ export class Login extends Component {
                 Login
             </Button>
             </form>
-            <br/> <br/>
+                <br/>
+                <NavLink to="/signup">Not Registered?</NavLink>
+            <br/>
         </div>
     
         ); 

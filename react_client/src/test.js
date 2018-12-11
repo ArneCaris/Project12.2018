@@ -10,6 +10,9 @@ import 'moment-timezone';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faShareAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
+import UserMenu from "./Components/UserMenu";
 
 class Test extends Component {
 
@@ -25,9 +28,11 @@ class Test extends Component {
       titlecontent: '',
       modal: false
     };
-    this.handleModal = this.handleModal.bind(this);
-    this.forlooptitle = this.forlooptitle.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.handleModal = this.handleModal.bind(this);
+        this.forlooptitle = this.forlooptitle.bind(this);
+        this.handleClose = this.handleClose.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +54,7 @@ class Test extends Component {
        });
     });
   }
+
   deletePost = (ID) => {
     axios.delete(`http://localhost:3000/posts/${ID}`)
         .then(data => {
@@ -65,8 +71,8 @@ class Test extends Component {
         })
   };
 
-  confirmDeletion = () => {
-    const { ID } = this.state;
+  confirmDeletion = e => {
+      const id = e.target.id;
     swal({
       title: 'Are you sure?',
       text: "This will permanently delete the post",
@@ -78,7 +84,7 @@ class Test extends Component {
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.value) {
-        this.deletePost(ID);
+        this.deletePost(id);
         swal(
             'Deleted!',
             'Post has been deleted!',
@@ -86,6 +92,43 @@ class Test extends Component {
         )
       }
     })
+  };
+
+  handleSubmit = event =>{
+      event.preventDefault();
+      const { ID, UserID, Title, Content, Category, isPrivate } = this.state;
+      axios
+          .put('http://localhost:3000/posts/' + ID , { UserID, Title, Content, Category, isPrivate })
+          .then(res => {
+              console.log(res);
+              console.log(res.data);
+          });
+  }
+
+  onChange = e => {
+      const state = this.state;
+      state[e.target.name] = e.target.value;
+      this.setState(state);
+  };
+
+  updatePost () {
+        swal(
+            <div>
+            <form onSubmit={this.handleSubmit}>
+                <label>Title</label>
+                <input type="text" name="Title" onChange={this.onChange}/>
+                <br/>
+                <label>Content</label>
+                <input type="text" name="Content" onChange={this.onChange}/>
+                <br/>
+                <label>Category</label>
+                <input type="text" name="Category" onChange={this.onChange}/>
+                <br/>
+                <label>Privacy</label>
+                <input type="text" name="isPrivate" onChange={this.onChange}/>
+            </form>
+            </div>
+        )
   };
 
   forlooptitle (idlist, search) {
@@ -118,7 +161,7 @@ class Test extends Component {
   }
 
   handleModal (search) {
-    var idlist = []
+    var idlist = [];
     sessionStorage.setItem( 'PostID', JSON.stringify(search) );
 
     for (var x = 0; x < this.state.posts.length; x++) {
@@ -167,9 +210,18 @@ render() {
           <li>{Post.LastEdit}</li>
         </Moment>
       </ul>
-      <button onClick={this.confirmDeletion}>
-        Delete
-      </button>
+        {sessionStorage.length !== 0
+            ?
+            <div>
+                <button id={Post.ID} className="option-btn" onClick={this.confirmDeletion}><FontAwesomeIcon id={Post.ID} icon={faTrashAlt}/></button>
+                <button id={Post.ID} className="option-btn"><FontAwesomeIcon id={Post.ID} icon={faShareAlt} /></button>
+                <button id={Post.ID} className="option-btn" onClick={this.updatePost}><FontAwesomeIcon id={Post.ID} icon={faEdit} /></button>
+            </div>
+                :
+            <div>
+                <p></p>
+            </div>
+        }
     </div>
     </div>)
   });
@@ -185,7 +237,8 @@ render() {
     return(
       <div>
         <div>
-          {postsList}
+            <UserMenu/>
+            {postsList}
         </div>
         
         <Modal isOpen={this.state.modal} className="modal-dialog modal-lg">

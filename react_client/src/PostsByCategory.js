@@ -14,6 +14,7 @@ import RemoveButton from './Components/RemoveButton';
 import moment from 'react-moment';
 import 'moment-timezone';
 import Moment from 'react-moment';
+import CommentsList from "./Components/CommentsList";
 
   class PostsByCategory extends Component {
     constructor(props) {
@@ -217,13 +218,12 @@ import Moment from 'react-moment';
             {postsList}
           </div>
           
-          <Modal key={this.props.ID} isOpen={this.state.modal} key={this.state.posts.ID} className="modalpost">
-            
+          <Modal isOpen={this.state.modal} className="modal-dialog modal-lg">
               <ModalHeader>{modaltitle}</ModalHeader>
               <ModalBody>
                 {modalcontent}
               </ModalBody>
-              
+                <CommentsList/>
                 <CommentField/>
               <ModalFooter>
                 <Button color="secondary" onClick={this.handleClose}>Close</Button>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FormGroup , Label, Input, Button } from 'reactstrap';
+import swal from 'sweetalert2';
 import axios from 'axios';
 
 class CommentField extends Component {
@@ -18,20 +19,23 @@ class CommentField extends Component {
 
     updateState = e => {
         const currUserId = sessionStorage.getItem("userID");
-        const currPostId = sessionStorage.getItem("PostID")
+        const currPostId = sessionStorage.getItem("PostID");
         const currMessage = e.target.value;
-
         this.setState({ UserID: currUserId, PostID: currPostId, Message: currMessage });
-    }
+    };
 
     handleSubmit = e => {
         e.preventDefault();
-
         const { PostID, ID, UserID, Message  } = this.state;
-        if (Message.length != 0){
+        if (Message.length !== 0){
             axios.post('http://localhost:3000/comments', { ID, PostID, UserID, Message });
+            swal('Success!',
+                'Comment successfully posted!',
+                'success');
         } else {
-            alert("Can't post an empty comment!");
+            swal('Error',
+                'Cant post an empty comment!',
+                'error');
         }
     };
 
@@ -39,7 +43,7 @@ class CommentField extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                <FormGroup>
+                <FormGroup className="comment-field">
                     <Label for="Message">Write a comment:</Label>
                     <Input type="textarea" onKeyUp={this.updateState} name="Message" id="Message" />
                     <Button type="submit">Comment</Button>

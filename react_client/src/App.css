@@ -7,6 +7,12 @@
   height: 40vmin;
 }
 
+.user-menu {
+    float: right;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+}
 
 .dropdown-item {
   text-decoration: none;
@@ -100,8 +106,25 @@ li{
   
 }
 
-.delete-btn{
+.logout-link {
+    padding: 2px;
+    border: 1px solid;
+    border-radius: 4px;
+    border-color: black;
+    color: black;
+}
+.logout-link:hover {
+    color: green;
+    float: right;
+}
+
+.comment-field {
+    padding: 10px;
+}
+
+.option-btn{
   float: right;
+  border-radius: 4px;
 }
 
 .for-posts{
