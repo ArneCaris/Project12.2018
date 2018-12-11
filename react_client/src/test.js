@@ -5,7 +5,7 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
 import "react-toastify/dist/ReactToastify.css";
 import CommentField from './Components/CommentField';
-import CommentsList from './Components/CommentsList';
+// import CommentsList from './Components/CommentsList';
 import 'moment-timezone';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
@@ -65,8 +65,8 @@ class Test extends Component {
         })
   };
 
-  confirmDeletion = () => {
-    const { ID } = this.state;
+  confirmDeletion = e => {
+    const id = e.target.id;
     swal({
       title: 'Are you sure?',
       text: "This will permanently delete the post",
@@ -78,7 +78,7 @@ class Test extends Component {
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.value) {
-        this.deletePost(ID);
+        this.deletePost(id);
         swal(
             'Deleted!',
             'Post has been deleted!',
@@ -167,7 +167,7 @@ render() {
           <li>{Post.LastEdit}</li>
         </Moment>
       </ul>
-      <button onClick={this.confirmDeletion}>
+      <button id={Post.ID} onClick={this.confirmDeletion}>
         Delete
       </button>
     </div>
@@ -199,7 +199,7 @@ render() {
             </ModalBody>
             
               <CommentField/>
-              <CommentsList/>
+              {/* <CommentsList/> */}
             <ModalFooter>
               <Button color="secondary" onClick={this.handleClose}>Close</Button>
             </ModalFooter>

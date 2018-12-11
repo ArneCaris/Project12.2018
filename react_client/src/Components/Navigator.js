@@ -136,7 +136,7 @@ class Navigator extends Component {
               {sessionStorage.length !== 0
               ? <NavLink to="/test" onClick={this.handleLogout} id="logout">Logout</NavLink>
               : 
-                <Fragment className="logSign">
+                <Fragment>
                   <NavLink to="/signup">Signup</NavLink>
                   <NavLink to="/login">Login</NavLink>
                 </Fragment>
