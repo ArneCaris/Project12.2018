@@ -44,7 +44,7 @@ class Navigator extends Component {
               if (queryData.length < 100) {
                 queryData.push(person);              
               }              
-            };            
+            }
           });          
         }
         this.setState({list: queryData});

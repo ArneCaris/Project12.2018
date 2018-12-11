@@ -5,7 +5,7 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
 import "react-toastify/dist/ReactToastify.css";
 import CommentField from './Components/CommentField';
-import CommentsList from './Components/CommentsList';
+// import CommentsList from './Components/CommentsList';
 import 'moment-timezone';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
@@ -252,7 +252,7 @@ render() {
             </ModalBody>
             
               <CommentField/>
-              <CommentsList/>
+              {/* <CommentsList/> */}
             <ModalFooter>
               <Button color="secondary" onClick={this.handleClose}>Close</Button>
             </ModalFooter>

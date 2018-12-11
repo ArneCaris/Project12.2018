@@ -2,12 +2,83 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a4c401-16f5-449f-b01f-fdc27ce6a381" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/00da919f4c57b391ba6f289faff4a246.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/06273547ebaf7d428f2f1be65867a75b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/066e1036445fbb50699ec86cb5896de6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/0fd0137812bfe71c639a5b39bdcf0a25.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/12c764102111f318cdb11f53f009b556.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/1ac66d08100fa63ca18840d20b2ea54f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/1c8f47268933ca29ad15a9d012e6ae43.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/1f11014d9147645ebe4883822f98640d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/1faa5c48f497708ed80c340b0ddfd2a8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/222bbef440ca53b3ea79caff7f74d31b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/238ee3f237730b975671d830acf459b7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/31cd92f90ed9d69d67c8971e66159380.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/35116157a1d378e45c532c8c39eb69f1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/39fce1f1923a03be961c4f4afe092cf4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/3a44a2d3ab2c8d3f4c1753597f3f1b9a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/3dfaa9e1f4c54dba8c8f4343393e6b32.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/3f985bc89b4792acf4f6f7eaae50882d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/404b560b0c2a196fa353de74fcc596e4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/41ba368aa191dc51754e517f519f65fc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/44d805504f320f8ed0b89173465289a2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/45dd23f9e568f17e0aad430a7c4d08ac.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/46599c0a418d86ae68c553b2bf5b8047.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/4714f03c7f8b511702307c11026d78b6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/47e5bde4a293e8cc834d0bddee4120ae.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/4d7736901e3b3ce626c3a1f647bd6f44.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/5134825cff344fd544d70192b758dbd4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/574c730c16aa85f581f4ea101824123c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/586c2dccdfe01889a5dc97c8270fc5e6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/5b2ec4cb43f02995fbae59ddf61f12b4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/5f389298991ab079e561138bd5e5ba8f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/5f6b844d8fc830828516c828fdec0132.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/606ea4c01750f4a523dd47a310598b91.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/6820104dc0a6d3c02cf814c2f0db7552.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/68d9a3b5b63473a1c81a3b451e38ef7c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/6cb2a4ee116975bd9a2a958c0e0160fa.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/6d7d20618aa1a4b20aaac3086dc0285f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/6fec162eea93f166e102ba87dae163ca.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/71a8d76075765dda22b6e8d101d4bb65.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/76556bbd2767e29b4852ed3a153340d2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/8306e848b31acad572540a0b970b024e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/837f8436d9abd0dc1828c0bb0e6a0cda.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/86aafe4665b7caa4d510e7226ecca944.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/8e5a573538667749a0922e431c5f1410.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/91bcff239493114abea86926ad1dd1ee.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/96008947b0bd2b6a9f2f5c3b0472c8fc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/97a2cd5343cfa4f0e43c800d89b164b3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/9bd7b66b4feeb3afcb9b4c2fa1fd1ff8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/a1215eec3e803902dbb0df9469eea372.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/ab785da71ff98f0580a8e6b4386ad93c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/ae6ac0372c17acf7622a947a3dc22c0e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/b3255e3a35b15e4955e82e5be563601f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/b364f078b24b22dec7587cb27ccabac6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/b3df3eeb878bda55a0507cb67b6ebc68.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/b52d3897e414b150afd8c86aa389ab72.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/b7a28501bf391ff58b0ffc14c45c6c4a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/bb2be71c79dd4f8b3002fb24ccdc8fb8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/bb4762866b6ccd638d97ba491b79cf11.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/bdaba356fecb2a529801c0ed2b501ca5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/c2072256d64c615fd81e5846c691ad1d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/c46bf18926eae93322c92bbf72f67dc4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/cf717a8b2ebe7920c8d7da7a6980defc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/d081542d070fa97685901592b82d1a95.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/d34646268795f7fce8eb71fce1b4d6c4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/d4d98791b3d249439d87f64d60552bdf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/dd8be1803b80f8922542c5620e4224fe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/e6b3215d992d0edfb2c4125e12bdd904.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/e76cf0ac9153c7d3d2eb618f964b24db.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/e7ac669a8c7eddba0a1d6f0753ad357e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/ed98b152462534fd3b693658a54e12d0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/ef4310e68ed4979cc4bcd52d8aa32f2e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/f07f06c65a19d58d4bf4ccb36062df61.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/fa92334531fb5d3dc739210e195ea782.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/fe3f7fb8cccbd1e53e7a64f35ec64c83.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/react_client/node_modules/.cache/babel-loader/fec8c4061e5e008883cc43cea4c8db75.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react_client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/react_client/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react_client/src/Components/CommentField.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_client/src/Components/CommentField.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react_client/src/Components/Navigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_client/src/Components/Navigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react_client/src/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_client/src/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react_client/src/PostsByCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_client/src/PostsByCategory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react_client/src/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/react_client/src/test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/express_api/node_modules/" />
@@ -60,10 +131,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_client/src/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="241" column="14" lean-forward="true" selection-start-line="241" selection-start-column="14" selection-end-line="241" selection-end-column="14" />
+            <state relative-caret-position="441">
+              <caret line="114" column="13" lean-forward="true" selection-start-line="114" selection-start-column="13" selection-end-line="114" selection-end-column="13" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#440#465#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -126,7 +198,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_client/src/App.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="452">
@@ -150,8 +222,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_client/src/Components/Navigator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="71" column="46" lean-forward="true" selection-start-line="71" selection-start-column="46" selection-end-line="71" selection-end-column="46" />
+            <state relative-caret-position="267">
+              <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -159,11 +231,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/react_client/src/Components/CommentField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+            <state relative-caret-position="-195">
+              <caret line="44" column="50" lean-forward="true" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -194,14 +266,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/react_client/src/Components/Navigator.js" />
         <option value="$PROJECT_DIR$/react_client/src/Login.js" />
-        <option value="$PROJECT_DIR$/react_client/src/Components/CommentField.js" />
         <option value="$PROJECT_DIR$/react_client/src/EditPost.js" />
-        <option value="$PROJECT_DIR$/react_client/src/test.js" />
         <option value="$PROJECT_DIR$/react_client/src/PostsByCategory.js" />
         <option value="$PROJECT_DIR$/react_client/src/Components/UserMenu.js" />
         <option value="$PROJECT_DIR$/react_client/src/App.css" />
+        <option value="$PROJECT_DIR$/react_client/src/Components/Navigator.js" />
+        <option value="$PROJECT_DIR$/react_client/src/test.js" />
+        <option value="$PROJECT_DIR$/react_client/src/Components/CommentField.js" />
       </list>
     </option>
   </component>
@@ -3506,12 +3578,12 @@
       <option name="presentableId" value="Default" />
       <updated>1544454279759</updated>
       <workItem from="1544454282618" duration="340000" />
-      <workItem from="1544512297779" duration="9264000" />
+      <workItem from="1544512297779" duration="10380000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9604000" />
+    <option name="totallyTimeSpent" value="10720000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -3556,26 +3628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_client/src/Components/Navigator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="71" column="46" lean-forward="true" selection-start-line="71" selection-start-column="46" selection-end-line="71" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_client/src/Components/CommentField.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3629,16 +3681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_client/src/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="241" column="14" lean-forward="true" selection-start-line="241" selection-start-column="14" selection-end-line="241" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_client/src/Components/UserMenu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -3653,6 +3695,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="452">
           <caret line="117" column="16" selection-start-line="117" selection-start-column="16" selection-end-line="117" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_client/src/Components/Navigator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_client/src/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="114" column="13" lean-forward="true" selection-start-line="114" selection-start-column="13" selection-end-line="114" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#440#465#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_client/src/Components/CommentField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-195">
+          <caret line="44" column="50" lean-forward="true" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
