@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import axios from 'axios';
+import swal from 'sweetalert2';
 import "./Login.css";
 
 
@@ -77,10 +78,31 @@ class AddUser extends Component {
                 console.log(res);
                 console.log(res.data);
                 this.getUsers();
+                const toast = swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
+                toast({
+                    type: 'success',
+                    title: 'Sign-up Successful!'
+                })
             });
 
         } else {
-            alert("Password should be more than 4 characters long.");
+            const toast = swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+
+            toast({
+                type: 'error',
+                title: 'Password must be longer than 4 characters.'
+            })
         }
 
         };

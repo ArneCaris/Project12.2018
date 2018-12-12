@@ -43,7 +43,7 @@ class DeleteUser extends Component {
         return (
             <div className="content">
                 <h2>Close Account</h2>
-
+                <h5>This will permanently delete your user!</h5>
                     <button className="button" onClick={this.handleSubmit}>Delete</button>
                     <button className="button" onClick={this.handleBack}>Cancel</button>
 

@@ -18,7 +18,7 @@ class CategoryDropdown extends Component {
     render() {
         return (
             <div className="dropdown">
-              <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+              <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} caret size="sm">
                 <DropdownToggle caret>
                   Categories
                 </DropdownToggle>

@@ -33,26 +33,6 @@ class App extends Component {
     return (
       <div className="App">
         <Navigator/>
-          <br/>
-      <div >
-          <NavLink to="/Users/add">
-            Add User
-          </NavLink>
-          <br/>
-          <NavLink to="/Users/delete">
-            Delete User
-          </NavLink>
-          <br/>
-          <NavLink to="/">
-              test
-          </NavLink>
-          <br/>
-          <NavLink to="/Users/">
-            Users
-          </NavLink>
-          <br/>
-      </div>
-      <hr/>
         <div className="routeDiv">
           
           <Route path="/comments" exact component={comments} />

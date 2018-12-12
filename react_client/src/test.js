@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "react-toastify/dist/ReactToastify.css";
 import CommentField from './Components/CommentField';
 import 'moment-timezone';
@@ -78,7 +78,7 @@ class Test extends Component {
         })
   };
 
-  confirmDeletion (id) {
+  confirmDeletion (ID) {
     swal({
       title: 'Are you sure?',
       text: "This will permanently delete the post",
@@ -90,7 +90,7 @@ class Test extends Component {
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.value) {
-        this.deletePost(id);
+        this.deletePost(ID);
         swal(
             'Deleted!',
             'Post has been deleted!',
@@ -172,25 +172,6 @@ class Test extends Component {
       this.setState(state);
   }
 
-  updatePost () {
-        swal(
-            <div>
-            <form onSubmit={this.handleSubmit}>
-                <label>Title</label>
-                <input type="text" name="Title" onChange={this.onChange}/>
-                <br/>
-                <label>Content</label>
-                <input type="text" name="Content" onChange={this.onChange}/>
-                <br/>
-                <label>Category</label>
-                <input type="text" name="Category" onChange={this.onChange}/>
-                <br/>
-                <label>Privacy</label>
-                <input type="text" name="isPrivate" onChange={this.onChange}/>
-            </form>
-            </div>
-        )
-  };
 
   forlooptitle (idlist, search) {
       var anotherarray = {};
@@ -242,6 +223,7 @@ handleClose() {
 }
 
 render() {
+      const closeBtn = <button className="close" onClick={this.handleClose}>&times;</button>;
   let postsList = this.state.posts.map ( (Post, index ) => {
     if (Post.Title.length > 40) {
       var titlestring = Post.Title.substring(0, 40) + "..."
@@ -259,16 +241,13 @@ render() {
     <div key={index} className="for-posts">
     <div className="postdiv">
       <ul onClick={() => this.handleModal(Post.ID)} id={Post.ID} >
-        <li>ID: <i>{Post.ID}</i></li>
+          <Link to={"/posts/category/" + (Post.Category).toLowerCase()} style={{textDecoration: 'none', color: 'black', fontSize: '12px'}}>Category: <b>{Post.Category}</b></Link>
+          <Moment format={"MMM DD, YYYY - HH:mm"} style={{float: 'right', fontSize: '12px'}}>
+              {Post.LastEdit}
+          </Moment>
+          <li>ID: <i>{Post.ID}</i></li>
         <li><h3>{titlestring}</h3></li>
         <li><p>{contentstring}</p></li>
-        <Link to={"/posts/category/" + (Post.Category).toLowerCase()}><Badge>{Post.Category}</Badge></Link>
-        <br/>
-        <li>
-        <Moment format={"MMM DD, YYYY - HH:mm"}>
-          {Post.LastEdit}
-        </Moment>
-        </li>
       </ul>
         {sessionStorage.length !== 0
             ?
@@ -297,25 +276,44 @@ render() {
     return(
       <div>
         <div>
+            <div style={{margin: '50px'}}>
             <UserMenu/>
+            </div>
             {postsList}
         </div>
         
         <Modal isOpen={this.state.modal} className="modal-dialog modal-lg">
 
-            <Button color="danger" onClick={this.handleClose} close/>
-            <ModalHeader>{modaltitle}</ModalHeader>
+            <ModalHeader toggle={this.handleClose} close={closeBtn}>{modaltitle}</ModalHeader>
             <ModalBody>
               <div>
                 {this.state.titlecontent}
               </div>
             </ModalBody>
-            
-              <CommentField/>
+                <CommentField/>
             <ModalFooter>
               <Button color="secondary" onClick={this.handleClose}>Close</Button>
             </ModalFooter>
         </Modal>
+
+          <Modal isOpen={this.state.modal2} className="modal-dialog modal-lg">
+            <ModalHeader>{modaltitle}</ModalHeader>
+              <ModalBody>
+                  <form onSubmit={this.handleSubmit}>
+                      <label>Title</label>
+                      <input type="text" name="Title" onChange={this.onChange}/>
+                      <br/>
+                      <label>Content</label>
+                      <input type="text" name="Content" onChange={this.onChange}/>
+                      <br/>
+                      <label>Category</label>
+                      <input type="text" name="Category" onChange={this.onChange}/>
+                      <br/>
+                      <label>Privacy</label>
+                      <input type="text" name="isPrivate" onChange={this.onChange}/>
+                  </form>
+              </ModalBody>
+          </Modal>
       </div>
     );
 }
