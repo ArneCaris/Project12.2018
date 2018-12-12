@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer ,toast } from 'react-toastify';
-import { FormGroup, Input } from 'reactstrap';
+import swal from 'sweetalert2';
+import { FormGroup, Input, Button } from 'reactstrap';
 import './CreatePost.css'
 
 class CreatePost extends Component {
@@ -81,13 +81,42 @@ class CreatePost extends Component {
                 .then(res => {
                 console.log(res);
                 if(res.statusText == "OK"){
-                    toast("Post created Successfully!", { autoClose: 3000 });
+                    const toast = swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    toast({
+                        type: 'success',
+                        title: 'Post Created Successfully!'
+                    });
                 } else {
-                    toast.error("Something went wrong.", { autoClose: 3000 });
+                    const toast = swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+
+                    toast({
+                        type: 'error',
+                        title: 'Something Went Wrong!'
+                    });
                 }
             });
             } else {
-                    toast.error("Every field is needs to be filled in.", { autoClose: 3000 });
+                const toast = swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
+                toast({
+                    type: 'error',
+                    title: 'Every Field Needs To Be Filled!'
+                });
                 }
   
                 console.log(this.state);
@@ -100,10 +129,8 @@ class CreatePost extends Component {
 
         return (
             <div>
+                <br/>
                 <form onSubmit={this.handleSubmit}>
-
-                <ToastContainer autoClose={3000}/>
-                
                 <FormGroup>
                     <label>Title</label>
                     <Input type="text" id="inputTitle" className="form-input" onChange={this.onChange} maxLength='50'/>
@@ -146,25 +173,13 @@ class CreatePost extends Component {
                         <span className="checkmark"></span>
                     </label>
                 </FormGroup>
-                    
-                    
-                    {this.state.showButton ?
-                    <div className="btns-div">
-                    <p>Do you wish to submit this post?</p>
-                    <button className="btn-publish" type="submit">
+                    <div>
+                    <Button className="btn-success" type="submit">
                         Publish
-                    </button>
-                    <button className="btn-discard" onClick={this.hideButton}>
-                        Discard
-                    </button>
+                    </Button>
+
                     </div>
-                    :
-                    <div className="btns-div">
-                    <button className="btn-submit" onClick={this.seeButton} name="Proceed">
-                        Proceed
-                    </button>
-                    </div>
-                    }
+
                 </form>
             </div>
         );

@@ -5,6 +5,7 @@ import "./Login.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer ,toast } from 'react-toastify';
 import { NavLink } from 'react-router-dom';
+import swal from 'sweetalert2';
 
 
 
@@ -28,9 +29,7 @@ export class Login extends Component {
             
               var loginU = document.getElementById('username').value;
               var loginP = document.getElementById('password').value;
-              
-              
-              
+
               for ( var x = 0; x < Users.length; x++){
                   if(Users[x].username === loginU)
                   {
@@ -41,11 +40,23 @@ export class Login extends Component {
                             id: Users[x].ID,
                             username: Users[x].username,
                             isAuthenticated: true
-                        }
+                        };
                         
                         sessionStorage.setItem( 'userID', JSON.stringify(CurrUser.id) );
                         sessionStorage.setItem( 'userUsername', JSON.stringify(CurrUser.username) );
-                        sessionStorage.setItem( 'isAthenticated', JSON.stringify(CurrUser.isAuthenticated) );
+                        sessionStorage.setItem( 'isAuthenticated', JSON.stringify(CurrUser.isAuthenticated) );
+
+                        const toast = swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+
+                          toast({
+                              type: 'success',
+                              title: 'Signed in successfully'
+                          });
                         
                         this.props.history.push('/');
                         
@@ -72,10 +83,19 @@ export class Login extends Component {
             this.getUsers();
 
         } else {
-            toast.error("Password should be more than 4 characters long.", {
-                position: toast.POSITION.TOP_CENTER
+            const toast = swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
             });
+
+            toast({
+                type: 'error',
+                title: 'Password must be longer than 4 characters.'
+            })
         }
+
 
     }
     

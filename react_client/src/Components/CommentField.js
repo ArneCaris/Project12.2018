@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { FormGroup , Label, Input, Button } from 'reactstrap';
 import axios from 'axios';
 import Moment from 'react-moment';
+import swal from 'sweetalert2';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
 
 
 class CommentField extends Component {
@@ -28,7 +31,7 @@ class CommentField extends Component {
     }
 
     fetchComments () {
-        const currPostId = sessionStorage.getItem("PostID")
+        const currPostId = sessionStorage.getItem("PostID");
 
         axios.get(`http://localhost:3000/comments/`+currPostId).then(results => {
             const comments = results.data;
@@ -65,14 +68,10 @@ class CommentField extends Component {
     }
 
     shouldComponentUpdate() {
-        if(this.state.PostID !== sessionStorage.getItem('PostID') || this.state.ID != this.prevProps){
-            return true;
-        } else {
-            return false;
-        }
+        return this.state.PostID !== sessionStorage.getItem('PostID') || this.state.ID != this.prevProps;
     }
 
-    updateState = e => {
+    updateState = () => {
         const currUserId = sessionStorage.getItem("userID");
         const currPostId = sessionStorage.getItem("PostID");
         const currMessage = document.getElementById('Message').value;
@@ -80,17 +79,30 @@ class CommentField extends Component {
         this.setState({ UserID: currUserId, PostID: currPostId, Message: currMessage });
         console.log(this.state)
 
-    }
+    };
 
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault();
 
         const { PostID, IDfield, UserID, Message  } = this.state;
         if (Message.length != 0 || UserID == null){
             axios.post('http://localhost:3000/comments', { IDfield, PostID, UserID, Message }).then( response =>
-                this.fetchComments());
+                this.fetchComments(response));
+            const toast = swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+
+            toast({
+                type: 'success',
+                title: 'Comment Posted!'
+            });
         } else {
-            alert("Can't post an empty comment!");
+            swal('Waring',
+                'You cannot post an empty comment!',
+                'error');
         }
         console.log(this.state)
     };
@@ -106,30 +118,40 @@ class CommentField extends Component {
 
             return (
                 <div className="for-comments">
-                    <div className="commentdiv">
-                        <div className="commentDate">
-                            <Moment format={"DD-MM-YYYY"}>
-                                {comment.LastEdit}
-                            </Moment>
+                        <div className="commentdiv">
+                            <div className="commentDate">
+                                <Moment format={"MMM DD, YYYY - HH:mm"}>
+                                    {comment.LastEdit}
+                                </Moment>
+                            </div>
+                            <ul key={comment.ID}>
+                                <i>#{counting} <b>{username}</b></i>
+                                <br/>
+                                <p>{Messagestring}</p>
+                            </ul>
                         </div>
-                        <ul key={comment.ID} >
-                            <i>#{counting}    <b>{username}</b></i>
-                            <br/>
-                            <p>{Messagestring}</p>
-                        </ul>
-                    </div>
-                </div>)
+                </div>
+
+                )
         });
 
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <FormGroup>
+                {sessionStorage.userID !== 0
+                ?<form onSubmit={this.handleSubmit}>
+                    <FormGroup style={{padding: '5px'}}>
                         <Label for="Message">Write a comment:</Label>
-                        <Input type="textarea" onKeyUp={this.updateState} name="Message" id="Message" />
+                            <Input type="textarea" onKeyUp={this.updateState} name="Message" id="Message" />
                         <Button type="submit">Comment</Button>
                     </FormGroup>
                 </form>
+                :
+                <div className="auth-error">
+                    <FontAwesomeIcon icon={faExclamationTriangle}/>
+                    <h5>You are not authenticated</h5>
+                    <p>You must be logged in to post a comment</p>
+                </div>
+                }
                 <div>
                     {commentsList}
                 </div>
