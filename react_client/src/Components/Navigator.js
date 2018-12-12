@@ -84,11 +84,7 @@ class Navigator extends Component {
                     Create Post
                   </NavLink>
                 </DropdownItem>
-                <DropdownItem>
-                  <NavLink className="navigation" to="/">
-                    View Posts
-                  </NavLink>
-                </DropdownItem>
+
                 <DropdownItem>
                   <NavLink className="navigation" to="/posts/private">
                     View Private Posts
@@ -109,16 +105,7 @@ class Navigator extends Component {
                     edit post
                   </NavLink>
                 </DropdownItem>
-                <DropdownItem>
-                  <NavLink to="/Post/Delete">
-                    Delete Post
-                  </NavLink>
-                </DropdownItem>
-                <DropdownItem>
-                  <NavLink className="navigation" to="/ShareEntry">
-                    Share with
-                  </NavLink>
-                </DropdownItem>
+
                 <DropdownItem>
                   <NavLink to="/close_account">
                     Close Account

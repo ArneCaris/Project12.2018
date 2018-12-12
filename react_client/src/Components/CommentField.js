@@ -12,6 +12,7 @@ class CommentField extends Component {
         this.fetchComments = this.fetchComments.bind(this);
         this.state = {
             comments: [],
+
             IDfield: '',
             IDlist: '',
             UserID: '',
@@ -19,7 +20,8 @@ class CommentField extends Component {
             PostID: '',
             Message: '',
             LastEdit: '',
-            username: ''
+            username: '',
+            trashCan: ''
         };
     }
 
@@ -54,9 +56,8 @@ class CommentField extends Component {
             });
             this.setState({
                 comments,
-                ID,
-                UserID,
-                PostID,
+                IDlist: ID,
+                UserIDList: UserID,
                 Message,
                 LastEdit,
                 username
@@ -65,14 +66,14 @@ class CommentField extends Component {
     }
 
     shouldComponentUpdate() {
-        if(this.state.PostID !== sessionStorage.getItem('PostID') || this.state.ID != this.prevProps){
+        if(this.state.PostID !== sessionStorage.getItem('PostID') || this.state.IDlist != this.prevState){
             return true;
         } else {
             return false;
         }
     }
 
-    updateState = e => {
+    updateState = () => {
         const currUserId = sessionStorage.getItem("userID");
         const currPostId = sessionStorage.getItem("PostID");
         const currMessage = document.getElementById('Message').value;
@@ -86,29 +87,31 @@ class CommentField extends Component {
         e.preventDefault();
 
         const { PostID, IDfield, UserID, Message  } = this.state;
-        if (Message.length != 0 || UserID == null){
+        if (Message.length != 0 || UserID == null || Message != this.prevProps){
             axios.post('http://localhost:3000/comments', { IDfield, PostID, UserID, Message }).then( response =>
                 this.fetchComments());
         } else {
             alert("Can't post an empty comment!");
         }
-        console.log(this.state)
+        
+        document.getElementById('Message').focus();
+        
     };
 
     render() {
         let commentsList = this.state.comments.map ( (comment, index ) => {
             const commentUser = comment.UserID;
             const Messagestring = comment.Message;
-
+            
             const counting = index + 1;
-
             const username =  this.state.username[commentUser];
+
 
             return (
                 <div className="for-comments">
                     <div className="commentdiv">
                         <div className="commentDate">
-                            <Moment format={"DD-MM-YYYY"}>
+                            <Moment format={"MMM DD, YYYY - HH:mm"}>
                                 {comment.LastEdit}
                             </Moment>
                         </div>
@@ -126,7 +129,7 @@ class CommentField extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="Message">Write a comment:</Label>
-                        <Input type="textarea" onKeyUp={this.updateState} name="Message" id="Message" />
+                        <Input type="textarea" onChange={this.updateState} name="Message" id="Message" />
                         <Button type="submit">Comment</Button>
                     </FormGroup>
                 </form>
