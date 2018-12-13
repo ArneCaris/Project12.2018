@@ -19,7 +19,7 @@ class CategoryDropdown extends Component {
         return (
             <div className="dropdown">
               <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} caret size="sm">
-                <DropdownToggle caret>
+                <DropdownToggle caret style={{backgroundColor: '#9999ff', borderColor:'black'}}>
                   Categories
                 </DropdownToggle>
                 <DropdownMenu>

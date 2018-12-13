@@ -10,7 +10,6 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import UserMenu from "./Components/UserMenu";
 
-
 class PrivatePosts extends Component {
 
   constructor(props) {
@@ -126,11 +125,9 @@ render() {
         <li><p>{contentstring}</p></li>
         <Link to={"/posts/category/" + (Post.Category).toLowerCase()}><Badge>{Post.Category}</Badge></Link>
         <br/>
-        <li>
-        <Moment format={"DD-MM-YYYY"}>
+        <Moment format={"MMM DD, YYYY - HH:mm"}>
           {Post.LastEdit}
         </Moment>
-        </li>
       </ul>
     </div>
     </div>)
@@ -162,22 +159,9 @@ render() {
           
             <ModalHeader>{modaltitle}</ModalHeader>
             <ModalBody>
-              {this.state.titlecontent.length > 40
-              ?
-              <div>
-                {this.state.titlecontent.substring(0, this.state.titlecontent.length * 0.25 )}
-                <br/>
-                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.25, this.state.titlecontent.length * 0.50)}
-                <br/>
-                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.50, this.state.titlecontent.length * 0.75)}
-                <br/>
-                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.75, this.state.titlecontent.length)}
-              </div>
-              :
-              <div>
-                {this.state.titlecontent}
-              </div>
-              }
+                <div>
+                    {this.state.titlecontent}
+                </div>
             </ModalBody>
             
               <CommentField/>

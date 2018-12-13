@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+import './CreatePost.css';
 
 class EditPost extends Component {
 
@@ -41,37 +43,53 @@ class EditPost extends Component {
     render() {
         return (
             <div className="update-container">
-                <div>
+
                 <input type="number" name="ID" onChange={this.updateInputValue} value={this.state.uid} min="1" />
-                    <form onSubmit={this.handleSubmit}>
-                    <br/>
-                    <label>
-                        User id:
-                        <input type="number" name="UserID" onChange={this.onChange}/>
-                    </label>
-                    <br/>
-                    <label>
-                        Title:
-                        <input type="text" name="Title" onChange={this.onChange}/>
-                    </label>
-                    <br/>
-                    <label>
-                        Content:
-                        <input type="text" name="Content" onChange={this.onChange}/>
-                    </label>
-                    <br/>
-                    <label>
-                        Category:
-                        <input type="text" name="Category" onChange={this.onChange} />
-                    </label>
-                    <br/>
-                    <label>
-                        Is Private?:
-                        <input type="number" name="isPrivate" onChange={this.onChange} />
-                    </label>
+                    <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <Label for="title">Title</Label>
+                        <Input type="title" name="Title" maxLength="50" className="form-input" onChange={this.onChange}/>
+                    </FormGroup>
+                        <FormGroup>
+                            <Label for="content">Content</Label>
+                            <Input type="textarea" name="Content" className="form-input" onChange={this.onChange}/>
+                        </FormGroup>
+                        <FormGroup>
+                            <label required>Category <br/> <br/>
+                                <label className="ChackboxContainer">Gaming
+                                    <input onChange={this.onChange} type="radio" value="Gaming" name="Category"/>
+                                    <span className="checkmark"></span>
+                                </label>
+                                <label className="ChackboxContainer">Lifestyle
+                                    <input onChange={this.onChange} type="radio" value="Lifestyle" name="Category"/>
+                                    <span className="checkmark"></span>
+                                </label>
+                                <label className="ChackboxContainer">Vehicles
+                                    <input onChange={this.onChange} type="radio" value="Vehicles" name="Category"/>
+                                    <span className="checkmark"></span>
+                                </label>
+                                <label className="ChackboxContainer">Technology
+                                    <input onChange={this.onChange} type="radio" value="Technology" name="Category"/>
+                                    <span className="checkmark"></span>
+                                </label>
+                            </label>
+                        </FormGroup>
+                        <FormGroup>
+                            <label>Do you want this post to be Private?</label>
+                            <br/>
+
+                            <label className="ChackboxContainer">No
+                                <input onChange={this.onChange} type="radio" value="0" name="isPrivate" />
+                                <span className="checkmark"></span>
+                            </label>
+
+                            <label className="ChackboxContainer">Yes
+                                <input onChange={this.onChange} type="radio" value="1" name="isPrivate"/>
+                                <span className="checkmark"></span>
+                            </label>
+                        </FormGroup>
                     <button type="submit">Update</button>
-                    </form>
-                </div>
+                    </Form>
             </div>
         );
     }

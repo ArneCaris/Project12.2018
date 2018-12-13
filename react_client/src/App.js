@@ -4,7 +4,6 @@ import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Users from './Users';
 import AddUser from './AddUser';
-import DeleteUser from './DeleteUser';
 import CreatePost from './CreatePost';
 import DeletePost from './DeletePost';
 import Posts from './Posts';
@@ -41,7 +40,6 @@ class App extends Component {
           <Route path="/editpost" exact component={EditPost} />
           <Route path="/Users/" exact component={Users} /> 
           <Route path="/signup" exact component={AddUser} />
-          <Route path="/close_account" exact component={DeleteUser} />
           <Route path="/login" exact component={Login} />
           <Route path="/ShareEntry" exact component={ShareEntry} />
           <Route path="/posts/category/lifestyle" exact component={postbycategory} />

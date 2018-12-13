@@ -22,13 +22,13 @@ class Navigator extends Component {
         return (
             <div>
             <Navbar expand="md" className="navi-bar">
-              <NavLink to="/" style={{ textDecoration: 'none', color: 'black' }}>
+              <NavLink to="/" className="title-text">
                   <h3><i><b>Di</b>Log</i></h3>
               </NavLink>
               <CategoryDropdown/>
 
               {sessionStorage.length !== 0
-              ?<p>{sessionStorage.userUsername}</p>
+              ?<p></p>
               :
               <div className="signin">
                   <NavLink to="/login" style={{ textDecoration: 'none', color: 'black' }}>
