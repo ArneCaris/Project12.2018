@@ -10,8 +10,9 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faShareAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faShareAlt, faEdit, faAt } from '@fortawesome/free-solid-svg-icons';
 import UserMenu from "./Components/UserMenu";
+import { max } from 'moment';
 
 class Test extends Component {
 
@@ -20,6 +21,7 @@ class Test extends Component {
     this.state = {
       posts: [],
       Users: [],
+      sharedWith: [],
       ID: '',
       Title: '',
       Content: '',
@@ -29,6 +31,9 @@ class Test extends Component {
       PostID: '',
       Owner: '',
       Viewer: '',
+      sharedID: '',
+      sharedViewer: '',
+      sharedPostID: '',
       modal: false
     };
 
@@ -40,10 +45,13 @@ class Test extends Component {
         this.shareEntry = this.shareEntry.bind(this);
         this.Owner = this.Owner.bind(this);
         this.handleShare = this.handleShare.bind(this);
+        this.showShared = this.showShared.bind(this);
+        this.getshared = this.getshared.bind(this);
   }
 
   componentDidMount() {
     this.getUsers();
+    this.getshared();
     axios.get(`http://localhost:3000/posts/public`).then(results => {
       const posts = results.data;
       const ID = [];
@@ -76,6 +84,44 @@ class Test extends Component {
             });
           }
         })
+  };
+  getshared() {
+    var ideShared = JSON.parse(sessionStorage.getItem("userUsername"));
+    axios.get(`http://localhost:3000/Shared/mine/` + ideShared).then(results => {
+      const sharedWith = results.data;
+      const ID = [];
+      const sharedPostID = []
+      const Viewer = [];
+
+      this.setState({ 
+        sharedWith: sharedWith,
+        
+       }, () => {console.log(this.state.sharedWith)});
+       
+    });
+  }
+
+  showShared (sharedpostid) {
+    var something = ''
+
+
+      for ( var x = 0; x < this.state.sharedWith.length; x++) {
+        if (this.state.sharedWith[x].PostID == sharedpostid) {
+          something += this.state.sharedWith[x].Viewer;
+          something += '\n'
+          something = something.replace('undefined', '');
+          
+        }
+ 
+    }
+    
+    
+    swal({
+      title: 'You shared this post with:',
+      text: something,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'OK'
+    })
   };
 
   confirmDeletion (ID) {
@@ -252,6 +298,7 @@ render() {
         {sessionStorage.length !== 0
             ?
             <div>
+                <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'left', border:'1px solid black', borderRadius: '4px'}} icon={faAt} onClick={() => this.showShared(Post.ID)} />
                 <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px'}} icon={faTrashAlt} onClick={() => this.confirmDeletion(Post.ID)} />
                 <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px'}} icon={faShareAlt} onClick={() => this.shareEntry(Post.ID)} />
                 <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px'}} icon={faEdit} onClick={() => this.updatePost(Post.ID)} />

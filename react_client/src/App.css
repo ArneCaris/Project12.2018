@@ -219,7 +219,7 @@ li{
 
 
 .modal-backdrop.fade {
-  opacity: 0.95;
+  opacity: 0.01;
   filter: alpha(opacity=50);
 }
 
