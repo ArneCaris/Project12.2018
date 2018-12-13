@@ -56,19 +56,12 @@ class CommentsList extends Component {
 
     
     shouldComponentUpdate() {
-        if(this.state.PostID !== sessionStorage.getItem('PostID') ){
-            return true;
-        } else {
-            return false;
-        }
+        return this.state.PostID !== sessionStorage.getItem('PostID');
     }
-    
-
-    
 
     render() {
         
-        let commentsList = this.state.comments.map ( (comment, index ) => {
+        let commentsList = this.state.comments.reverse().map ( (comment, index ) => {
         const commentUser = comment.UserID;
         const Messagestring = comment.Message;
         
@@ -80,7 +73,7 @@ class CommentsList extends Component {
             <div className="for-comments">
             <div className="commentdiv">
                 <div className="commentDate">
-                    <Moment format={"DD-MM-YYYY"}>
+                    <Moment format={"MMM DD, YYYY - HH:mm"}>
                         {comment.LastEdit}
                     </Moment>
                 </div>

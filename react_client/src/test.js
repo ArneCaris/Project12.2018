@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "react-toastify/dist/ReactToastify.css";
 import CommentField from './Components/CommentField';
-import CommentsList from './Components/CommentsList';
 import 'moment-timezone';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faShareAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
+import UserMenu from "./Components/UserMenu";
 
 class Test extends Component {
 
@@ -17,20 +19,31 @@ class Test extends Component {
     super(props);
     this.state = {
       posts: [],
+      Users: [],
       ID: '',
       Title: '',
       Content: '',
       LastEdit: '',
       titletext: '',
       titlecontent: '',
+      PostID: '',
+      Owner: '',
+      Viewer: '',
       modal: false
     };
-    this.handleModal = this.handleModal.bind(this);
-    this.forlooptitle = this.forlooptitle.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.handleModal = this.handleModal.bind(this);
+        this.forlooptitle = this.forlooptitle.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.shareEntry = this.shareEntry.bind(this);
+        this.Owner = this.Owner.bind(this);
+        this.handleShare = this.handleShare.bind(this);
   }
 
   componentDidMount() {
+    this.getUsers();
     axios.get(`http://localhost:3000/posts/public`).then(results => {
       const posts = results.data;
       const ID = [];
@@ -49,6 +62,7 @@ class Test extends Component {
        });
     });
   }
+
   deletePost = (ID) => {
     axios.delete(`http://localhost:3000/posts/${ID}`)
         .then(data => {
@@ -60,13 +74,11 @@ class Test extends Component {
             this.setState({
               posts: results
             });
-            console.log(this.state.posts);
           }
         })
   };
 
-  confirmDeletion = () => {
-    const { ID } = this.state;
+  confirmDeletion (ID) {
     swal({
       title: 'Are you sure?',
       text: "This will permanently delete the post",
@@ -88,6 +100,79 @@ class Test extends Component {
     })
   };
 
+	shareEntry (currPostID) {
+    this.setState({PostID: currPostID})
+    swal({
+      title: 'Type in Persons Username',
+      input: 'text',
+      showCancelButton: true,
+      inputValidator: (value) => {
+        return !value && 'You need to write something!'
+      }
+    }).then((inputValue) => {
+     
+      if (inputValue) {
+        this.setState({Viewer: inputValue.value})
+        console.log(this.state.Viewer);
+        this.handleShare(currPostID, inputValue.value);
+      }
+    })
+  }
+
+
+  getUsers() {
+      axios.get(`http://localhost:3000/Users/`).then(res => {
+        const Users = res.data;
+        this.setState({ Users });
+      });
+      
+    } 
+
+  Owner() {
+      const state = this.state;
+      state["Owner"] = JSON.parse(sessionStorage.getItem("userUsername"));
+      this.setState(state);
+  }
+
+  handleShare (currPostID, currViewer) {
+    this.Owner();
+    this.setState({PostID: currPostID, Viewer: currViewer})
+    const { PostID, Owner, Viewer } = this.state;
+    console.log({ PostID, Owner, Viewer });
+
+    var Check = this.state.Users.map(user => (user.username));
+    console.log(Check);
+    if( Check != this.state.Owner ){
+      axios
+        .post('http://localhost:3000/Shared/', { PostID, Owner, Viewer })
+        .then(res => {
+          if (res.status === 200){
+            swal ('Success',
+              'Entry has been shared with '+ Viewer,
+            'success')
+          } else {
+            swal ('Error,',
+            'Entry was not shared.',
+            'error')
+          }
+        });
+   } 
+  }
+
+  handleSubmit = event =>{
+      event.preventDefault();
+      const { ID, UserID, Title, Content, Category, isPrivate } = this.state;
+      axios
+          .put('http://localhost:3000/posts/' + ID , { UserID, Title, Content, Category, isPrivate });
+  }
+
+  onChange = e => {
+      const state = this.state;
+      state[e.target.name] = e.target.value;
+      this.setState(state);
+  }
+
+
   forlooptitle (idlist, search) {
       var anotherarray = {};
       for (var x = 0; x < this.state.posts.length; x++) {
@@ -102,10 +187,7 @@ class Test extends Component {
                 titletext: requestedTitle,
                 titlecontent: requestedContent
               });
-              if (anotherarray[this.state.posts[x].ID].title.length > 20) {
-                console.log(anotherarray[this.state.posts[x].ID].title.length)
-                
-              }
+
               break
               
             }               
@@ -118,7 +200,7 @@ class Test extends Component {
   }
 
   handleModal (search) {
-    var idlist = []
+    var idlist = [];
     sessionStorage.setItem( 'PostID', JSON.stringify(search) );
 
     for (var x = 0; x < this.state.posts.length; x++) {
@@ -141,6 +223,7 @@ handleClose() {
 }
 
 render() {
+      const closeBtn = <button className="close" onClick={this.handleClose}>&times;</button>;
   let postsList = this.state.posts.map ( (Post, index ) => {
     if (Post.Title.length > 40) {
       var titlestring = Post.Title.substring(0, 40) + "..."
@@ -158,18 +241,26 @@ render() {
     <div key={index} className="for-posts">
     <div className="postdiv">
       <ul onClick={() => this.handleModal(Post.ID)} id={Post.ID} >
-        <li>ID: <i>{Post.ID}</i></li>
+          <Link to={"/posts/category/" + (Post.Category).toLowerCase()} style={{textDecoration: 'none', color: 'black', fontSize: '12px'}}>Category: <b>{Post.Category}</b></Link>
+          <Moment format={"MMM DD, YYYY - HH:mm"} style={{float: 'right', fontSize: '12px'}}>
+              {Post.LastEdit}
+          </Moment>
+          <li>ID: <i>{Post.ID}</i></li>
         <li><h3>{titlestring}</h3></li>
         <li><p>{contentstring}</p></li>
-        <Link to={"/posts/category/" + (Post.Category).toLowerCase()}><Badge>{Post.Category}</Badge></Link>
-        <br/>
-        <Moment format={"DD-MM-YYYY"}>
-          <li>{Post.LastEdit}</li>
-        </Moment>
       </ul>
-      <button onClick={this.confirmDeletion}>
-        Delete
-      </button>
+        {sessionStorage.length !== 0
+            ?
+            <div>
+                <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px'}} icon={faTrashAlt} onClick={() => this.confirmDeletion(Post.ID)} />
+                <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px'}} icon={faShareAlt} onClick={() => this.shareEntry(Post.ID)} />
+                <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px'}} icon={faEdit} onClick={() => this.updatePost(Post.ID)} />
+            </div>
+                :
+            <div>
+                <p></p>
+            </div>
+        }
     </div>
     </div>)
   });
@@ -185,25 +276,44 @@ render() {
     return(
       <div>
         <div>
-          {postsList}
+            <div style={{margin: '50px'}}>
+            <UserMenu/>
+            </div>
+            {postsList}
         </div>
         
         <Modal isOpen={this.state.modal} className="modal-dialog modal-lg">
 
-            <Button color="danger" onClick={this.handleClose} close/>
-            <ModalHeader>{modaltitle}</ModalHeader>
+            <ModalHeader toggle={this.handleClose} close={closeBtn}>{modaltitle}</ModalHeader>
             <ModalBody>
               <div>
                 {this.state.titlecontent}
               </div>
             </ModalBody>
-            
-              <CommentField/>
-              <CommentsList/>
+                <CommentField/>
             <ModalFooter>
               <Button color="secondary" onClick={this.handleClose}>Close</Button>
             </ModalFooter>
         </Modal>
+
+          <Modal isOpen={this.state.modal2} className="modal-dialog modal-lg">
+            <ModalHeader>{modaltitle}</ModalHeader>
+              <ModalBody>
+                  <form onSubmit={this.handleSubmit}>
+                      <label>Title</label>
+                      <input type="text" name="Title" onChange={this.onChange}/>
+                      <br/>
+                      <label>Content</label>
+                      <input type="text" name="Content" onChange={this.onChange}/>
+                      <br/>
+                      <label>Category</label>
+                      <input type="text" name="Category" onChange={this.onChange}/>
+                      <br/>
+                      <label>Privacy</label>
+                      <input type="text" name="isPrivate" onChange={this.onChange}/>
+                  </form>
+              </ModalBody>
+          </Modal>
       </div>
     );
 }
