@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import './CreatePost.css';
 
 class EditPost extends Component {
@@ -17,8 +17,27 @@ class EditPost extends Component {
             Content: '',
             Category: '',
             isPrivate: '',
-        }
+
+        };
     }
+
+    componentDidMount(){
+        axios.get('http://localhost:3000/posts' + this.props.match.params.Post.ID)
+            .then(res => {
+                this.setState({
+                    ID: res.data.ID,
+                    UserID: res.data.UserID,
+                    Title: res.data.Title,
+                    Content: res.data.Content,
+                    Category: res.data.Category,
+                    isPrivate: res.data.isPrivate
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            });
+    };
+
     onChange = e => {
         const state = this.state;
         state[e.target.name] = e.target.value;
@@ -37,14 +56,16 @@ class EditPost extends Component {
         .then(res => {
             console.log(res);
             console.log(res.data);
+
+            this.props.history.push('/');
         });
 };
 
     render() {
         return (
             <div className="update-container">
-
-                <input type="number" name="ID" onChange={this.updateInputValue} value={this.state.uid} min="1" />
+                <h5>Enter post ID:</h5>
+                <Input type="number" name="ID" onChange={this.updateInputValue} className="form-input" value={this.state.uid} min="1"  />
                     <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="title">Title</Label>

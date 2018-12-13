@@ -9,7 +9,6 @@ import DeletePost from './DeletePost';
 import Posts from './Posts';
 import { Login } from './Login';
 import ShareEntry from './ShareEntry';
-import EditPost from './EditPost';
 import postbycategory from './PostsByCategory';
 import privateposts from './PrivatePosts'
 import mysharedposts from './MySharedPosts'
@@ -35,7 +34,6 @@ class App extends Component {
         <div className="routeDiv">
           
           <Route path="/comments" exact component={comments} />
-          <Route path="/editpost" exact component={EditPost} />
           <Route path="/Users/" exact component={Users} /> 
           <Route path="/signup" exact component={AddUser} />
           <Route path="/login" exact component={Login} />

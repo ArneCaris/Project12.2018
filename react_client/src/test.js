@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label} from 'reactstrap';
 import "react-toastify/dist/ReactToastify.css";
 import CommentField from './Components/CommentField';
 import 'moment-timezone';
 import Moment from 'react-moment';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faShareAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 import UserMenu from "./Components/UserMenu";
 import EditPost from "./EditPost";
+import './CreatePost.css';
 
 class Test extends Component {
 
@@ -25,20 +26,29 @@ class Test extends Component {
       Title: '',
       Content: '',
       LastEdit: '',
+        isPrivate: '',
       titletext: '',
       titlecontent: '',
       PostID: '',
       Owner: '',
       Viewer: '',
-      modal: false
+      modal: false,
+        modal2: false
     };
 
         this.handleModal = this.handleModal.bind(this);
+        this.handleModal2 = this.handleModal2.bind(this);
         this.forlooptitle = this.forlooptitle.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        this.shareEntry = this.shareEntry.bind(this);
+      this.handleClose2 = this.handleClose2.bind(this);
+
+      this.shareEntry = this.shareEntry.bind(this);
         this.Owner = this.Owner.bind(this);
         this.handleShare = this.handleShare.bind(this);
+
+      this.updateInputValue = this.updateInputValue.bind(this);
+      this.onChange = this.onChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -201,17 +211,64 @@ class Test extends Component {
     this.forlooptitle(idlist, search);
 }
 
+    handleModal2(search) {
+	    let idlist = [];
+	    sessionStorage.setItem('PostNUM', JSON.stringify(search));
+	    for (let x = 0; x < this.state.posts.length; x++){
+	        idlist.push(this.state.posts[x].ID);
+	        this.setState({
+                modal2: !this.state.modal2
+            });
+        }
+        this.forlooptitle(idlist, search)
+    }
+
 handleClose() {
   sessionStorage.removeItem( 'PostID' );
 
   this.setState({
     modal: !this.state.modal,
 });
-}
+};
+    handleClose2() {
+        sessionStorage.removeItem( 'PostNUM' );
+
+        this.setState({
+            modal2: !this.state.modal2,
+        });
+    }
+
+    onChange = e => {
+        const state = this.state;
+        state[e.target.name] = e.target.value;
+        this.setState(state);
+    };
+    updateInputValue() {
+        this.setState({ ID: sessionStorage.PostID});
+    }
+
+    handleSubmit = event => {
+        event.preventDefault();
+        const { UserID, Title, Content, Category, isPrivate } = this.state;
+        const ID = document.getElementsByName('editID').value;
+        console.log(ID);
+        axios
+            .put('http://localhost:3000/posts/' + ID , {  UserID, Title, Content, Category, isPrivate })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+
+                this.props.history.push('/');
+
+
+            });
+    };
 
 render() {
       const closeBtn = <button className="close" onClick={this.handleClose}>&times;</button>;
-  let postsList = this.state.posts.slice(1).reverse().map ( (Post, index ) => {
+    const closeBtn2 = <button className="close" onClick={this.handleClose2}>&times;</button>;
+
+    let postsList = this.state.posts.map ( (Post, index ) => {
     if (Post.Title.length > 40) {
       var titlestring = Post.Title.substring(0, 40) + "..."
     }
@@ -224,6 +281,7 @@ render() {
     else {
       contentstring = Post.Content
     }
+
     return (
     <div key={index} className="for-posts">
     <div className="postdiv">
@@ -236,19 +294,14 @@ render() {
         <li><h3>{titlestring}</h3></li>
         <li><p>{contentstring}</p></li>
       </ul>
-        {sessionStorage.length !== 0
-            ?
-            <div>
+        {sessionStorage.length !== 0 ?
+            <div id="options">
                 <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px'}} icon={faTrashAlt} onClick={() => this.confirmDeletion(Post.ID)} />
                 <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px'}} icon={faShareAlt} onClick={() => this.shareEntry(Post.ID)} />
-                <Link to="/EditPost/" render={(props) => <EditPost posts={this.state.posts} {...props}/>}>
-                    <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px', color:'black'}} icon={faEdit}/>
-                </Link>
+                <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px', color:'black'}} icon={faEdit} onClick={() => this.handleModal2(Post.ID)}/>
             </div>
-                :
-            <div>
-                <p></p>
-            </div>
+            :
+            <p></p>
         }
     </div>
     </div>)
@@ -264,13 +317,10 @@ render() {
 
     return(
       <div>
+          <br/>
         <div>
-            <div className="col align-self-auto">
-            <UserMenu/>
-            </div>
-            <div className="col align-self-start">
-            {postsList}
-            </div>
+            <div><UserMenu/></div>
+            <div className="item2">{postsList}</div>
         </div>
         
         <Modal isOpen={this.state.modal} className="modal-dialog modal-lg">
@@ -286,6 +336,64 @@ render() {
               <Button color="secondary" onClick={this.handleClose}>Close</Button>
             </ModalFooter>
         </Modal>
+
+          <Modal isOpen={this.state.modal2} className="modal-dialog modal-lg">
+              <ModalHeader toggle={this.handleClose2} close={closeBtn2}>
+                  Updating: <b>{modaltitle}</b>
+                  {this.state.titlecontent}
+
+              </ModalHeader>
+              <ModalBody>
+                  <Form onSubmit={this.handleSubmit} style={{textAlign: 'center'}}>
+                      <input type="number" name="editID" onChange={this.updateInputValue} value={sessionStorage.PostNUM} min="1"  />
+                      <FormGroup>
+                          <Label for="title">Title</Label>
+                          <Input type="title" name="Title" maxLength="50" className="form-input" onChange={this.onChange}/>
+                      </FormGroup>
+                      <FormGroup>
+                          <Label for="content">Content</Label>
+                          <Input type="textarea" name="Content" placeholder={this.state.titlecontent} className="form-input" onChange={this.onChange}/>
+                      </FormGroup>
+                      <FormGroup>
+                          <label required>Category <br/> <br/>
+                              <label className="ChackboxContainer">Gaming
+                                  <input onChange={this.onChange} type="radio" value="Gaming" name="Category"/>
+                                  <span className="checkmark"></span>
+                              </label>
+                              <label className="ChackboxContainer">Lifestyle
+                                  <input onChange={this.onChange} type="radio" value="Lifestyle" name="Category"/>
+                                  <span className="checkmark"></span>
+                              </label>
+                              <label className="ChackboxContainer">Vehicles
+                                  <input onChange={this.onChange} type="radio" value="Vehicles" name="Category"/>
+                                  <span className="checkmark"></span>
+                              </label>
+                              <label className="ChackboxContainer">Technology
+                                  <input onChange={this.onChange} type="radio" value="Technology" name="Category"/>
+                                  <span className="checkmark"></span>
+                              </label>
+                          </label>
+                      </FormGroup>
+                      <FormGroup>
+                          <label>Do you want this post to be Private?</label>
+                          <br/>
+                          <label className="ChackboxContainer">No
+                              <input onChange={this.onChange} type="radio" value="0" name="isPrivate" />
+                              <span className="checkmark"></span>
+                          </label>
+
+                          <label className="ChackboxContainer">Yes
+                              <input onChange={this.onChange} type="radio" value="1" name="isPrivate"/>
+                              <span className="checkmark"></span>
+                          </label>
+                      </FormGroup>
+                      <button type="submit">Update</button>
+                  </Form>
+              </ModalBody>
+              <ModalFooter>
+
+              </ModalFooter>
+          </Modal>
       </div>
     );
 }

@@ -75,12 +75,11 @@ class UserMenu extends Component {
                         <NavLink style={{color: 'black'}} to="/shared/mine">View Shared Posts</NavLink>
                         <br/>
                         <div className="delete-options">
+                            <br/>
                         <NavLink className="logout-link" to="/" onClick={this.handleLogout} id="logout">
                         <FontAwesomeIcon icon={faSignOutAlt}/>
                             Logout
                         </NavLink>
-                        <br/>
-                            <br/>
                         <button onClick={() => this.confirmDeletion()} className="terminate-btn">
                         <FontAwesomeIcon icon={faBan}/>
                             Terminate User

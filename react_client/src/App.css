@@ -118,9 +118,10 @@ li{
 }
 
 .logout-link {
-    padding: 2px;
+    padding: 5px;
     color: black;
     float: right;
+    font-size: 16px;
 }
 .logout-link:hover {
     color: red;
@@ -166,6 +167,7 @@ li{
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2; /* number of lines to show */
+  background-color: rgb(244, 244, 251);
 }
 .text {
   overflow: hidden;
