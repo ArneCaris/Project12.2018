@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Button } from 'reactstrap'; 
 
 class DeleteUser extends Component {
     constructor() {
@@ -26,10 +27,7 @@ class DeleteUser extends Component {
         const id = sessionStorage.getItem("userID");
         const { ID, username, password } = this.state;
         axios
-            .delete('http://localhost:3000/Users/' + id, { ID, username, password })
-            .then(res => {
-            console.log(res.data);
-        });
+            .delete('http://localhost:3000/Users/' + id, { ID, username, password });
         sessionStorage.clear();
         this.props.history.push('/');
     };
@@ -44,8 +42,8 @@ class DeleteUser extends Component {
             <div className="content">
                 <h2>Close Account</h2>
                 <h5>This will permanently delete your user!</h5>
-                    <button className="button" onClick={this.handleSubmit}>Delete</button>
-                    <button className="button" onClick={this.handleBack}>Cancel</button>
+                    <Button color="danger" onClick={this.handleSubmit}>Confirm</Button>
+                    <Button color="info" onClick={this.handleBack}>Cancel</Button>
 
             </div>
         );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
+import 'bootstrap/dist/js/bootstrap.min';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "react-toastify/dist/ReactToastify.css";
 import CommentField from './Components/CommentField';
@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faShareAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 import UserMenu from "./Components/UserMenu";
 
-class Test extends Component {
+class TestPrivate extends Component {
 
   constructor(props) {
     super(props);
@@ -44,7 +44,8 @@ class Test extends Component {
 
   componentDidMount() {
     this.getUsers();
-    axios.get(`http://localhost:3000/posts/public`).then(results => {
+    const ide = sessionStorage.getItem( 'userID', JSON.stringify() );
+    axios.get(`http://localhost:3000/posts/private/user/` + ide).then(results => {
       const posts = results.data;
       const ID = [];
       const Title = [];
@@ -326,4 +327,4 @@ render() {
 }
 }
 
-export default Test;
+export default TestPrivate;

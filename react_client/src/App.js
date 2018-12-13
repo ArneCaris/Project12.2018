@@ -18,6 +18,8 @@ import comments from './Comments'
 import Navigator from './Components/Navigator';
 import test from './test';
 import { NavLink, Route } from 'react-router-dom';
+import PrivatePosts from "./PrivatePosts";
+import TestPrivate from "./testPrivate"
 
 
 
@@ -46,11 +48,11 @@ class App extends Component {
           <Route path="/posts/category/gaming" exact component={postbycategory} />
           <Route path="/posts/category/vehicles" exact component={postbycategory} />
           <Route path="/posts/category/technology" exact component={postbycategory} />
-          <Route path="/posts/private" exact component={privateposts} />
           <Route path="/shared/mine" exact component={mysharedposts} />
           <Route path="/" exact component={test} />
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/Post/Delete" exact component={DeletePost} />
+          <Route path="/posts/private" exact component={TestPrivate} />
         </div>
       </div>
     )

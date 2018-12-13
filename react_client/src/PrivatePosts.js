@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
 import "react-toastify/dist/ReactToastify.css";
-import CommentField from './Components/CommentField';
 import 'moment-timezone';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
+import CommentField from './Components/CommentField';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import UserMenu from "./Components/UserMenu";
+
 
 class PrivatePosts extends Component {
 
@@ -29,7 +31,7 @@ class PrivatePosts extends Component {
   }
 
   componentDidMount() {
-    const ide = sessionStorage.getItem( 'userID', JSON.stringify(ide) );
+    const ide = sessionStorage.getItem( 'userID', JSON.stringify() );
     axios.get(`http://localhost:3000/posts/private/user/` + ide).then(results => {
       const posts = results.data;
       const ID = [];
@@ -124,9 +126,11 @@ render() {
         <li><p>{contentstring}</p></li>
         <Link to={"/posts/category/" + (Post.Category).toLowerCase()}><Badge>{Post.Category}</Badge></Link>
         <br/>
+        <li>
         <Moment format={"DD-MM-YYYY"}>
-          <li>{Post.LastEdit}</li>
+          {Post.LastEdit}
         </Moment>
+        </li>
       </ul>
     </div>
     </div>)
@@ -141,7 +145,15 @@ render() {
         ;
 
     return(
+      
       <div>
+        <div>
+          <div style={{margin: '50px'}}>
+              <UserMenu/>
+          </div>
+            {postsList}
+        </div>
+
         <div>
           {postsList}
         </div>
