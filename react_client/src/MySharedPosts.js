@@ -16,6 +16,9 @@ class MySharedPosts extends Component {
     this.state = {
       posts: [],
       ID: '',
+      PostID: '',
+      Owner: '',
+      Viewer: '',
       Title: '',
       Content: '',
       LastEdit: '',
@@ -29,7 +32,9 @@ class MySharedPosts extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3000/Shared/mine/arne`).then(results => {
+    var ideShared = sessionStorage.getItem('userUsername', JSON.stringify(ideShared));
+    ideShared = ideShared.replace(/['"]+/g, '')
+    axios.get(`http://localhost:3000/Shared/mine/` + ideShared).then(results => {
       const posts = results.data;
       const ID = [];
       const PostID = [];
@@ -49,6 +54,27 @@ class MySharedPosts extends Component {
         Viewer
        });
     });
+    const idePost = sessionStorage.getItem('userID', JSON.stringify(idePost));
+    axios.get('http://localhost:3000/Posts/user/' + idePost).then(results => {
+      const posts = results.data;
+      const ID = [];
+      const PostID = [];
+      const Owner = [];
+      const Viewer = [];
+      for (var x = 0; x < posts.length; x++) {
+        ID.push(posts[x].ID);
+        PostID.push(posts[x].PostID);
+        Owner.push(posts[x].Owner);
+        Viewer.push(posts[x].Viewer)
+      }
+      this.setState({ 
+        posts,
+        ID,
+        PostID,
+        Owner,
+        Viewer
+       });
+    })
   }
 
   forlooptitle (idlist, search) {
@@ -112,7 +138,7 @@ render() {
       var contentstring = Post.Viewer.substring(0, 40) + "..."
     }
     else {
-      contentstring = Post.Viewer
+      contentstring = "Shared with: " + Post.Viewer
     }
     return (
     <div key={Post.PostID} className="for-posts">
