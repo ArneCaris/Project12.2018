@@ -14,7 +14,6 @@ import RemoveButton from './Components/RemoveButton';
 import moment from 'react-moment';
 import 'moment-timezone';
 import Moment from 'react-moment';
-import CommentsList from "./Components/CommentsList";
 
   class PostsByCategory extends Component {
     constructor(props) {
@@ -223,7 +222,6 @@ import CommentsList from "./Components/CommentsList";
               <ModalBody>
                 {modalcontent}
               </ModalBody>
-                <CommentsList/>
                 <CommentField/>
               <ModalFooter>
                 <Button color="secondary" onClick={this.handleClose}>Close</Button>

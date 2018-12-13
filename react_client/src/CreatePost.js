@@ -43,7 +43,6 @@ class CreatePost extends Component {
 
             var userTitleLenght = userTitle.length;
             var userContentLength = userContent.length;
-            console.log(userContentLength);
 
             if(userContentLength > 255) {
                 document.getElementById('inputContent').style.height = '300px';
@@ -63,11 +62,6 @@ class CreatePost extends Component {
             }   else {
                 this.setState({Content: ''});
             }
-
-            console.log(this.state.Title);
-            console.log(this.state.Content);
-            console.log(this.state.isPrivate);
-
         };
 
         handleSubmit = event => {
@@ -79,7 +73,6 @@ class CreatePost extends Component {
             if( this.state.Title.length !== 0 && this.state.Content.length !== 0 && this.state.isPrivate.length !== 0){
                 axios.post('http://localhost:3000/posts', { ID, UserID, Title, Content, Category, isPrivate })
                 .then(res => {
-                console.log(res);
                 if(res.statusText == "OK"){
                     const toast = swal.mixin({
                         toast: true,
@@ -117,10 +110,14 @@ class CreatePost extends Component {
                     type: 'error',
                     title: 'Every Field Needs To Be Filled!'
                 });
-                }
-  
-                console.log(this.state);
-            
+                }  
+                setTimeout(
+                    function() {
+                        this.props.history.push('/')
+                    }
+                    .bind(this),
+                    1500
+                ); 
             };
     
            
