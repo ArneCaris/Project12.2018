@@ -165,7 +165,7 @@ handleClose() {
 
 render() {
       const closeBtn = <button className="close" onClick={this.handleClose}>&times;</button>;
-  let postsList = this.state.posts.map ( (Post, index ) => {
+  let postsList = this.state.posts.slice(1).reverse().map ( (Post, index ) => {
     if (Post.Title.length > 40) {
       var titlestring = Post.Title.substring(0, 40) + "..."
     }

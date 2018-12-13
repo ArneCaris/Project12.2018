@@ -28,7 +28,7 @@ class Navigator extends Component {
               <CategoryDropdown/>
 
               {sessionStorage.length !== 0
-              ?<p>{sessionStorage.userUsername}</p>
+              ?<p></p>
               :
               <div className="signin">
                   <NavLink to="/login" style={{ textDecoration: 'none', color: 'black' }}>

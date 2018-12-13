@@ -226,7 +226,7 @@ li{
 .auth-error {
   text-align: center;
   padding: 10px;
-  background-color: red;
+  border-top: 1px solid red;
 }
 
 .nameString {

@@ -137,7 +137,7 @@ class CommentField extends Component {
 
         return (
             <div>
-                {sessionStorage.userID !== 0
+                {sessionStorage.length !== 1
                 ?<form onSubmit={this.handleSubmit}>
                     <FormGroup style={{padding: '5px'}}>
                         <Label for="Message">Write a comment:</Label>
