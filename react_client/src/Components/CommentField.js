@@ -131,7 +131,7 @@ class CommentField extends Component {
                                 </Moment>
                             </div>
                             <ul key={comment.ID}>
-                                <i>#{counting} <b>{username}</b></i>
+                                <i>#{counting}</i> {username}
                                 <br/>
                                 <p>{Messagestring}</p>
                             </ul>
@@ -143,7 +143,7 @@ class CommentField extends Component {
 
         return (
             <div>
-                {sessionStorage.userID !== 0
+                {sessionStorage.length !== 1
                 ?<form onSubmit={this.handleSubmit}>
                     <FormGroup style={{padding: '5px'}}>
                         <Label for="Message">Write a comment:</Label>

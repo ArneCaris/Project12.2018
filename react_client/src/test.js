@@ -7,12 +7,12 @@ import "react-toastify/dist/ReactToastify.css";
 import CommentField from './Components/CommentField';
 import 'moment-timezone';
 import Moment from 'react-moment';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faShareAlt, faEdit, faAt } from '@fortawesome/free-solid-svg-icons';
 import UserMenu from "./Components/UserMenu";
-import { max } from 'moment';
+import EditPost from "./EditPost";
 
 class Test extends Component {
 
@@ -37,8 +37,6 @@ class Test extends Component {
       modal: false
     };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
         this.handleModal = this.handleModal.bind(this);
         this.forlooptitle = this.forlooptitle.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -147,12 +145,13 @@ class Test extends Component {
   };
 
 	shareEntry (currPostID) {
-    this.setState({PostID: currPostID})
+    this.setState({PostID: currPostID});
     swal({
       title: 'Type in Persons Username',
       input: 'text',
       showCancelButton: true,
-      inputValidator: (value) => {
+        cancelButtonColor: '#d33',
+        inputValidator: (value) => {
         return !value && 'You need to write something!'
       }
     }).then((inputValue) => {
@@ -162,7 +161,7 @@ class Test extends Component {
         console.log(this.state.Viewer);
         this.handleShare(currPostID, inputValue.value);
       }
-    })
+    });
   }
 
 
@@ -184,38 +183,32 @@ class Test extends Component {
     this.Owner();
     this.setState({PostID: currPostID, Viewer: currViewer})
     const { PostID, Owner, Viewer } = this.state;
-    console.log({ PostID, Owner, Viewer });
 
     var Check = this.state.Users.map(user => (user.username));
     console.log(Check);
-    if( Check != this.state.Owner ){
-      axios
-        .post('http://localhost:3000/Shared/', { PostID, Owner, Viewer })
-        .then(res => {
-          if (res.status === 200){
-            swal ('Success',
-              'Entry has been shared with '+ Viewer,
-            'success')
-          } else {
-            swal ('Error,',
-            'Entry was not shared.',
+    for( var x = 0; x < Check.length; x++){
+      if( Check[x] != this.state.Owner && Check[x] == Viewer ){
+        axios
+          .post('http://localhost:3000/Shared/', { PostID, Owner, Viewer })
+          .then(res => {
+            console.log(res.statusText)
+            if (res.statusText == 'OK'){
+              swal ('Success',
+                'Entry has been shared with '+ Viewer,
+              'success')
+            } else {
+              swal ('Error,',
+              'Entry was not shared.',
+              'error')
+            }
+          });
+     } else {
+       swal ('Error!',
+            'User with a username "<b>'+Viewer+'</b>" does not exist!',
             'error')
-          }
-        });
-   } 
-  }
-
-  handleSubmit = event =>{
-      event.preventDefault();
-      const { ID, UserID, Title, Content, Category, isPrivate } = this.state;
-      axios
-          .put('http://localhost:3000/posts/' + ID , { UserID, Title, Content, Category, isPrivate });
-  }
-
-  onChange = e => {
-      const state = this.state;
-      state[e.target.name] = e.target.value;
-      this.setState(state);
+     }
+    }
+ 
   }
 
 
@@ -270,7 +263,7 @@ handleClose() {
 
 render() {
       const closeBtn = <button className="close" onClick={this.handleClose}>&times;</button>;
-  let postsList = this.state.posts.map ( (Post, index ) => {
+  let postsList = this.state.posts.slice(1).reverse().map ( (Post, index ) => {
     if (Post.Title.length > 40) {
       var titlestring = Post.Title.substring(0, 40) + "..."
     }
@@ -301,7 +294,9 @@ render() {
                 <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'left', border:'1px solid black', borderRadius: '4px'}} icon={faAt} onClick={() => this.showShared(Post.ID)} />
                 <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px'}} icon={faTrashAlt} onClick={() => this.confirmDeletion(Post.ID)} />
                 <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px'}} icon={faShareAlt} onClick={() => this.shareEntry(Post.ID)} />
-                <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px'}} icon={faEdit} onClick={() => this.updatePost(Post.ID)} />
+                <Link to="/EditPost/" render={(props) => <EditPost posts={this.state.posts} {...props}/>}>
+                    <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px', color:'black'}} icon={faEdit}/>
+                </Link>
             </div>
                 :
             <div>
@@ -323,10 +318,12 @@ render() {
     return(
       <div>
         <div>
-            <div style={{margin: '50px'}}>
+            <div className="col align-self-auto">
             <UserMenu/>
             </div>
+            <div className="">
             {postsList}
+            </div>
         </div>
         
         <Modal isOpen={this.state.modal} className="modal-dialog modal-lg">
@@ -342,25 +339,6 @@ render() {
               <Button color="secondary" onClick={this.handleClose}>Close</Button>
             </ModalFooter>
         </Modal>
-
-          <Modal isOpen={this.state.modal2} className="modal-dialog modal-lg">
-            <ModalHeader>{modaltitle}</ModalHeader>
-              <ModalBody>
-                  <form onSubmit={this.handleSubmit}>
-                      <label>Title</label>
-                      <input type="text" name="Title" onChange={this.onChange}/>
-                      <br/>
-                      <label>Content</label>
-                      <input type="text" name="Content" onChange={this.onChange}/>
-                      <br/>
-                      <label>Category</label>
-                      <input type="text" name="Category" onChange={this.onChange}/>
-                      <br/>
-                      <label>Privacy</label>
-                      <input type="text" name="isPrivate" onChange={this.onChange}/>
-                  </form>
-              </ModalBody>
-          </Modal>
       </div>
     );
 }

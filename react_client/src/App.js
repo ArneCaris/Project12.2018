@@ -4,7 +4,6 @@ import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Users from './Users';
 import AddUser from './AddUser';
-import DeleteUser from './DeleteUser';
 import CreatePost from './CreatePost';
 import DeletePost from './DeletePost';
 import Posts from './Posts';
@@ -18,6 +17,7 @@ import comments from './Comments'
 import Navigator from './Components/Navigator';
 import test from './test';
 import { NavLink, Route } from 'react-router-dom';
+import PrivatePosts from "./PrivatePosts";
 
 
 
@@ -39,18 +39,17 @@ class App extends Component {
           <Route path="/editpost" exact component={EditPost} />
           <Route path="/Users/" exact component={Users} /> 
           <Route path="/signup" exact component={AddUser} />
-          <Route path="/close_account" exact component={DeleteUser} />
           <Route path="/login" exact component={Login} />
           <Route path="/ShareEntry" exact component={ShareEntry} />
           <Route path="/posts/category/lifestyle" exact component={postbycategory} />
           <Route path="/posts/category/gaming" exact component={postbycategory} />
           <Route path="/posts/category/vehicles" exact component={postbycategory} />
           <Route path="/posts/category/technology" exact component={postbycategory} />
-          <Route path="/posts/private" exact component={privateposts} />
           <Route path="/shared/mine" exact component={mysharedposts} />
           <Route path="/" exact component={test} />
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/Post/Delete" exact component={DeletePost} />
+          <Route path="/posts/private" exact component={PrivatePosts} />
         </div>
       </div>
     )
