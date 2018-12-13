@@ -275,7 +275,7 @@ render() {
             <div className="col align-self-auto">
             <UserMenu/>
             </div>
-            <div className="col align-self-start">
+            <div className="">
             {postsList}
             </div>
         </div>

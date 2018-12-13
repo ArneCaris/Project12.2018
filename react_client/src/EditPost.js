@@ -44,7 +44,7 @@ class EditPost extends Component {
         return (
             <div className="update-container">
 
-                <input type="number" name="ID" onChange={this.updateInputValue} value={this.state.uid} min="1" />
+                <input type="number" name="ID" onChange={this.updateInputValue} value={this.state.uid} min="1" disabled/>
                     <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="title">Title</Label>

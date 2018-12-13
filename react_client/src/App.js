@@ -18,7 +18,6 @@ import Navigator from './Components/Navigator';
 import test from './test';
 import { NavLink, Route } from 'react-router-dom';
 import PrivatePosts from "./PrivatePosts";
-import TestPrivate from "./testPrivate"
 
 
 
@@ -50,7 +49,7 @@ class App extends Component {
           <Route path="/" exact component={test} />
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/Post/Delete" exact component={DeletePost} />
-          <Route path="/posts/private" exact component={TestPrivate} />
+          <Route path="/posts/private" exact component={PrivatePosts} />
         </div>
       </div>
     )
