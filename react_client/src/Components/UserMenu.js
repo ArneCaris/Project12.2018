@@ -42,12 +42,20 @@ class UserMenu extends Component {
                 cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.value) {
-                    this.deleteAccount();
+                    
                     swal(
                         'Terminated!',
                         'User has been terminated',
                         'success'
                     )
+                    setTimeout(
+                        function() {
+                            this.deleteAccount();
+                            this.props.history.push('/')
+                        }
+                        .bind(this),
+                        1500
+                    );
                 }
         })
     };
@@ -71,8 +79,6 @@ class UserMenu extends Component {
                         </NavLink>
                         <br/>
                         <NavLink style={{color: 'black'}} to="/posts/private">View Private Posts</NavLink>
-                        <br/>
-                        <NavLink style={{color: 'black'}} to="/shared/mine">View Shared Posts</NavLink>
                         <br/>
                         <div className="delete-options">
                             <br/>

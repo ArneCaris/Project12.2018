@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
 import { Route, Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import NavigationButton from './Components/NavigationButton';
 import CommentField from './Components/CommentField';
-import PostModal from './Components/PostModal';
-import RemoveButton from './Components/RemoveButton';
-import moment from 'react-moment';
 import 'moment-timezone';
 import Moment from 'react-moment';
+import UserMenu from "./Components/UserMenu";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faShareAlt, faEdit, faAt } from '@fortawesome/free-solid-svg-icons';
 
   class PostsByCategory extends Component {
     constructor(props) {
@@ -21,6 +19,7 @@ import Moment from 'react-moment';
       this.state = {
         posts: [],
         ID: '',
+        UserID: '',
         Title: '',
         Content: '',
         Category: '',
@@ -44,12 +43,14 @@ import Moment from 'react-moment';
         axios.get(`http://localhost:3000/Posts/category/` + item1).then(results => {
           const posts = results.data;
           const ID = [];
+          const UserID = [];
           const Title = [];
           const Content = [];
           const Category = [];
           const LastEdit = [];
           for (var x = 0; x < posts.length; x++) {
             ID.push(posts[x].ID);
+            UserID.push(posts[x].UserID)
             Title.push(posts[x].Title);
             Content.push(posts[x].Content);
             Category.push(posts[x].Category);
@@ -58,6 +59,7 @@ import Moment from 'react-moment';
           this.setState({ 
             posts,
             ID,
+            UserID,
             Title,
             Content,
             Category,
@@ -68,19 +70,23 @@ import Moment from 'react-moment';
         axios.get(`http://localhost:3000/Posts/category/` + item2).then(results => {
           const posts = results.data;
           const ID = [];
+          const UserID = [];
           const Title = [];
           const Content = [];
           const Category = [];
           const LastEdit = [];
           for (var x = 0; x < posts.length; x++) {
             ID.push(posts[x].ID);
+            UserID.push(posts[x].UserID)
             Title.push(posts[x].Title);
             Content.push(posts[x].Content);
+            Category.push(posts[x].Category);
             LastEdit.push(posts[x].LastEdit)
           }
           this.setState({ 
             posts,
             ID,
+            UserID,
             Title,
             Content,
             Category,
@@ -91,19 +97,23 @@ import Moment from 'react-moment';
         axios.get(`http://localhost:3000/Posts/category/` + item3).then(results => {
           const posts = results.data;
           const ID = [];
+          const UserID = [];
           const Title = [];
           const Content = [];
           const Category = [];
           const LastEdit = [];
           for (var x = 0; x < posts.length; x++) {
             ID.push(posts[x].ID);
+            UserID.push(posts[x].UserID)
             Title.push(posts[x].Title);
             Content.push(posts[x].Content);
+            Category.push(posts[x].Category);
             LastEdit.push(posts[x].LastEdit)
           }
           this.setState({ 
             posts,
             ID,
+            UserID,
             Title,
             Content,
             Category,
@@ -114,19 +124,23 @@ import Moment from 'react-moment';
         axios.get(`http://localhost:3000/Posts/category/` + item4).then(results => {
           const posts = results.data;
           const ID = [];
+          const UserID = [];
           const Title = [];
           const Content = [];
           const Category = [];
           const LastEdit = [];
           for (var x = 0; x < posts.length; x++) {
             ID.push(posts[x].ID);
+            UserID.push(posts[x].UserID)
             Title.push(posts[x].Title);
             Content.push(posts[x].Content);
+            Category.push(posts[x].Category);
             LastEdit.push(posts[x].LastEdit)
           }
           this.setState({ 
             posts,
             ID,
+            UserID,
             Title,
             Content,
             Category,
@@ -134,6 +148,7 @@ import Moment from 'react-moment';
           });
           });}
     }
+    
   
     forlooptitle (idlist, search) {
         var anotherarray = {};
@@ -178,21 +193,36 @@ import Moment from 'react-moment';
   }
   
   render() {
-    
-    let postsList = this.state.posts.map ( Post => {
+    const closeBtn = <button className="close" onClick={this.handleClose}>&times;</button>;
+
+    let postsList = this.state.posts.map ( (Post, index) => {
+      if (Post.Title.length > 40) {
+        var titlestring = Post.Title.substring(0, 40) + "..."
+      }
+      else {
+        titlestring = Post.Title
+      }
+      if (Post.Content.length > 40) {
+        var contentstring = Post.Content.substring(0, 70) + "..."
+      }
+      else {
+        contentstring = Post.Content
+      }
       return (
-      <div className="for-posts">
-      <div className="postdiv">
-        <ul onClick={() => this.handleModal(Post.ID)} id={Post.ID} >
-          <li>ID: <i>{Post.ID}</i></li>
-          <li><h3>{Post.Title}</h3></li>
-          <li><p>{Post.Content}</p></li>
-          <Badge>{Post.Category}</Badge>
-          <br/>
-          <Moment format={"DD-MM-YYYY"}>
-            <li>{Post.LastEdit}</li>
-          </Moment>
-        </ul>
+        
+        <div key={index} className="for-posts">
+        <div className="postdiv">
+          <ul onClick={() => this.handleModal(Post.ID)} id={Post.ID} >
+              <Link to={"/posts/category/" + (Post.Category).toLowerCase()} style={{textDecoration: 'none', color: 'black', fontSize: '12px'}}>Category: <b>{Post.Category}</b></Link>
+              <Moment format={"MMM DD, YYYY - HH:mm"} style={{float: 'right', fontSize: '12px'}}>
+                  {Post.LastEdit}
+              </Moment>
+              <li>ID: <i>{Post.ID}</i></li>
+            <li><h3>{titlestring}</h3></li>
+            <li><p>{contentstring}</p></li>
+          </ul>
+
+       
       </div>
       </div>)
     });
@@ -213,19 +243,25 @@ import Moment from 'react-moment';
   
       return(
         <div>
+          <br/>
           <div>
-            {postsList}
+              <div><UserMenu/></div>
+              <div>{postsList}</div>
           </div>
+ 
           
           <Modal isOpen={this.state.modal} className="modal-dialog modal-lg">
-              <ModalHeader>{modaltitle}</ModalHeader>
-              <ModalBody>
-                {modalcontent}
-              </ModalBody>
-                <CommentField/>
-              <ModalFooter>
-                <Button color="secondary" onClick={this.handleClose}>Close</Button>
-              </ModalFooter>
+
+          <ModalHeader toggle={this.handleClose} close={closeBtn}>{modaltitle}</ModalHeader>
+          <ModalBody>
+            <div>
+              {this.state.titlecontent}
+            </div>
+          </ModalBody>
+              <CommentField/>
+          <ModalFooter>
+            <Button color="secondary" onClick={this.handleClose}>Close</Button>
+          </ModalFooter>
           </Modal>
         </div>
       );

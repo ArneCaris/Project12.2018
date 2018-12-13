@@ -10,8 +10,6 @@ import Posts from './Posts';
 import { Login } from './Login';
 import ShareEntry from './ShareEntry';
 import postbycategory from './PostsByCategory';
-import privateposts from './PrivatePosts'
-import mysharedposts from './MySharedPosts'
 import Navigator from './Components/Navigator';
 import test from './test';
 import { NavLink, Route } from 'react-router-dom';
@@ -41,8 +39,7 @@ class App extends Component {
           <Route path="/posts/category/gaming" exact component={postbycategory} />
           <Route path="/posts/category/vehicles" exact component={postbycategory} />
           <Route path="/posts/category/technology" exact component={postbycategory} />
-          <Route path="/shared/mine" exact component={mysharedposts} />
-          <Route path="/" exact component={test} />
+          <Route path="/" exact component={Posts} />
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/Post/Delete" exact component={DeletePost} />
           <Route path="/posts/private" exact component={PrivatePosts} />

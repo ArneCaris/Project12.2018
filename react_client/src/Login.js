@@ -30,7 +30,11 @@ export class Login extends Component {
               var loginU = document.getElementById('username').value;
               var loginP = document.getElementById('password').value;
 
-              for ( var x = 0; x < Users.length; x++){
+              const usernames = this.state.Users.map(user => (user.username));
+
+              if (usernames.length != 0){
+
+              for ( var x = 0; x < usernames.length; x++){
                   if(Users[x].username === loginU)
                   {
                       if(Users[x].password === loginP)
@@ -64,9 +68,19 @@ export class Login extends Component {
                         
                     } 
                     
+                } else {
+                    swal ( 'Oopsie!',
+                            'User with this username does not exist!',
+                            'error')
                 }
             }      
+        } else {
+            swal ( 'Oopsie!',
+                            'User with this username does not exist!',
+                            'error')
         }
+    }
+
         );
     }
     

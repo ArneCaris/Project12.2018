@@ -65,16 +65,19 @@ class Test extends Component {
     axios.get(`http://localhost:3000/posts/public`).then(results => {
       const posts = results.data;
       const ID = [];
+      const UserID = [];
       const Title = [];
       const Content = [];
       for (var x = 0; x < posts.length; x++) {
         ID.push(posts[x].ID);
+        UserID.push(posts[x].UserID)
         Title.push(posts[x].Title);
         Content.push(posts[x].Content);
       }
       this.setState({ 
         posts,
         ID,
+        UserID,
         Title,
         Content,
        });
@@ -99,14 +102,8 @@ class Test extends Component {
     var ideShared = JSON.parse(sessionStorage.getItem("userUsername"));
     axios.get(`http://localhost:3000/Shared/mine/` + ideShared).then(results => {
       const sharedWith = results.data;
-      const ID = [];
-      const sharedPostID = []
-      const Viewer = [];
 
-      this.setState({ 
-        sharedWith: sharedWith,
-        
-       }, () => {console.log(this.state.sharedWith)});
+      this.setState({ sharedWith: sharedWith});
        
     });
   }
@@ -120,7 +117,6 @@ class Test extends Component {
           something += this.state.sharedWith[x].Viewer;
           something += '\n'
           something = something.replace('undefined', '');
-          
         }
  
     }
@@ -263,7 +259,7 @@ class Test extends Component {
       });  
     }
     this.forlooptitle(idlist, search);
-}
+  }
 
     handleModal2(search) {
 	    let idlist = [];
@@ -277,45 +273,53 @@ class Test extends Component {
         this.forlooptitle(idlist, search)
     }
 
-handleClose() {
-  sessionStorage.removeItem( 'PostID' );
+  handleClose() {
+    sessionStorage.removeItem( 'PostID' );
 
-  this.setState({
-    modal: !this.state.modal,
-});
-};
+    this.setState({
+      modal: !this.state.modal,
+  });
+  };
     handleClose2() {
         sessionStorage.removeItem( 'PostNUM' );
 
         this.setState({
             modal2: !this.state.modal2,
         });
-    }
+    };
 
     onChange = e => {
         const state = this.state;
         state[e.target.name] = e.target.value;
         this.setState(state);
     };
+
     updateInputValue() {
         this.setState({ ID: sessionStorage.PostID});
-    }
+    };
 
     handleSubmit = event => {
         event.preventDefault();
-        const { UserID, Title, Content, Category, isPrivate } = this.state;
-        const ID = document.getElementsByName('editID').value;
-        console.log(ID);
-        axios
-            .put('http://localhost:3000/posts/' + ID , {  UserID, Title, Content, Category, isPrivate })
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
+        const currUserID = JSON.parse(sessionStorage.getItem('userID'));
+        this.setState({UserID: currUserID});
+        const { Title, Content, Category, isPrivate } = this.state;
+        const ID = document.getElementById('editID').value;
 
-                this.props.history.push('/');
+        if(this.state.Category && this.state.isPrivate) {
 
+          axios
+          .put('http://localhost:3000/posts/' + ID , {  Title, Content, Category, isPrivate })
+          .then(res => {
 
-            });
+            window.location.reload();
+            
+            
+          });
+        } else {
+          swal ( 'Oopsie!',
+                'you better fill in all the fields kid!',
+                'error')
+        }
     };
 
 render() {
@@ -335,7 +339,7 @@ render() {
     else {
       contentstring = Post.Content
     }
-
+    const userID = JSON.parse(sessionStorage.getItem('userID'));
     return (
     <div key={index} className="for-posts">
     <div className="postdiv">
@@ -349,7 +353,7 @@ render() {
         <li><p>{contentstring}</p></li>
       </ul>
 
-        {sessionStorage.length !== 0 ?
+        { Post.UserID == userID ?
             <div id="options">
                 <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'left', border:'1px solid black', borderRadius: '4px'}} icon={faAt} onClick={() => this.showShared(Post.ID)} />
                 <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px'}} icon={faTrashAlt} onClick={() => this.confirmDeletion(Post.ID)} />
@@ -401,7 +405,7 @@ render() {
               </ModalHeader>
               <ModalBody>
                   <Form onSubmit={this.handleSubmit} style={{textAlign: 'center'}}>
-                      <input type="number" name="editID" onChange={this.updateInputValue} value={sessionStorage.PostNUM} min="1"  />
+                      <input type="number" id="editID" onChange={this.updateInputValue} value={sessionStorage.PostNUM} min="1" disabled />
                       <FormGroup>
                           <Label for="title">Title</Label>
                           <Input type="title" name="Title" maxLength="50" className="form-input" onChange={this.onChange}/>
