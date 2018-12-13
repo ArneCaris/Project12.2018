@@ -8,6 +8,7 @@ import CommentField from './Components/CommentField';
 import 'moment-timezone';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import UserMenu from "./Components/UserMenu";
 
 class PrivatePosts extends Component {
 
@@ -124,8 +125,8 @@ render() {
         <li><p>{contentstring}</p></li>
         <Link to={"/posts/category/" + (Post.Category).toLowerCase()}><Badge>{Post.Category}</Badge></Link>
         <br/>
-        <Moment format={"DD-MM-YYYY"}>
-          <li>{Post.LastEdit}</li>
+        <Moment format={"MMM DD, YYYY - HH:mm"}>
+          {Post.LastEdit}
         </Moment>
       </ul>
     </div>
@@ -150,22 +151,9 @@ render() {
           
             <ModalHeader>{modaltitle}</ModalHeader>
             <ModalBody>
-              {this.state.titlecontent.length > 40
-              ?
-              <div>
-                {this.state.titlecontent.substring(0, this.state.titlecontent.length * 0.25 )}
-                <br/>
-                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.25, this.state.titlecontent.length * 0.50)}
-                <br/>
-                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.50, this.state.titlecontent.length * 0.75)}
-                <br/>
-                {this.state.titlecontent.substring(this.state.titlecontent.length * 0.75, this.state.titlecontent.length)}
-              </div>
-              :
-              <div>
-                {this.state.titlecontent}
-              </div>
-              }
+                <div>
+                    {this.state.titlecontent}
+                </div>
             </ModalBody>
             
               <CommentField/>

@@ -13,7 +13,7 @@
     float: right;
     border: 1px solid grey;
     border-radius: 5px;
-    padding: 20px;
+    padding: 15px;
 }
 
 .dropdown-item {
@@ -73,6 +73,15 @@ li{
 .form-input{
   width: 50%;
   margin: 0 auto; 
+}
+
+.terminate-btn {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 4px;
+}
+.terminate-btn:hover {
+  color: red;
 }
 
 #category-tag{
@@ -199,6 +208,17 @@ li{
   float: right;
 }
 
+.title-text {
+  -webkit-text-stroke: 1px black;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  text-decoration: none;
+}
+.title-text:hover {
+
+  text-shadow: 1px 1px 1px white;
+}
+
 .navigation {
   margin-left: 1%;
   text-decoration: none;
@@ -209,6 +229,11 @@ li{
 .navi-bar {
   background-color: #ccccff;
   border-bottom: 1px solid black;
+}
+
+.update-container {
+
+
 }
 
 .userLogin{

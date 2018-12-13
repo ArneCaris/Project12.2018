@@ -15,6 +15,7 @@ class CommentField extends Component {
         this.fetchComments = this.fetchComments.bind(this);
         this.state = {
             comments: [],
+
             IDfield: '',
             IDlist: '',
             UserID: '',
@@ -22,7 +23,8 @@ class CommentField extends Component {
             PostID: '',
             Message: '',
             LastEdit: '',
-            username: ''
+            username: '',
+            trashCan: ''
         };
     }
 
@@ -57,9 +59,8 @@ class CommentField extends Component {
             });
             this.setState({
                 comments,
-                ID,
-                UserID,
-                PostID,
+                IDlist: ID,
+                UserIDList: UserID,
                 Message,
                 LastEdit,
                 username
@@ -68,7 +69,11 @@ class CommentField extends Component {
     }
 
     shouldComponentUpdate() {
-        return this.state.PostID !== sessionStorage.getItem('PostID') || this.state.ID != this.prevProps;
+        if(this.state.PostID !== sessionStorage.getItem('PostID') || this.state.IDlist != this.prevState){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     updateState = () => {
@@ -77,7 +82,6 @@ class CommentField extends Component {
         const currMessage = document.getElementById('Message').value;
 
         this.setState({ UserID: currUserId, PostID: currPostId, Message: currMessage });
-        console.log(this.state)
 
     };
 
@@ -85,7 +89,7 @@ class CommentField extends Component {
         e.preventDefault();
 
         const { PostID, IDfield, UserID, Message  } = this.state;
-        if (Message.length != 0 || UserID == null){
+        if (Message.length != 0 || UserID == null || Message != this.prevProps){
             axios.post('http://localhost:3000/comments', { IDfield, PostID, UserID, Message }).then( response =>
                 this.fetchComments(response));
             const toast = swal.mixin({
@@ -104,17 +108,19 @@ class CommentField extends Component {
                 'You cannot post an empty comment!',
                 'error');
         }
-        console.log(this.state)
+        
+        document.getElementById('Message').focus();
+        
     };
 
     render() {
         let commentsList = this.state.comments.map ( (comment, index ) => {
             const commentUser = comment.UserID;
             const Messagestring = comment.Message;
-
+            
             const counting = index + 1;
-
             const username =  this.state.username[commentUser];
+
 
             return (
                 <div className="for-comments">
@@ -125,7 +131,7 @@ class CommentField extends Component {
                                 </Moment>
                             </div>
                             <ul key={comment.ID}>
-                                <i>#{counting} <b>{username}</b></i>
+                                <i>#{counting}</i> {username}
                                 <br/>
                                 <p>{Messagestring}</p>
                             </ul>

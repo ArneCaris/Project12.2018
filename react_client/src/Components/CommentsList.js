@@ -73,7 +73,7 @@ class CommentsList extends Component {
             <div className="for-comments">
             <div className="commentdiv">
                 <div className="commentDate">
-                    <Moment format={"DD-MM-YYYY"}>
+                    <Moment format={"MMM DD, YYYY - HH:mm"}>
                         {comment.LastEdit}
                     </Moment>
                 </div>
