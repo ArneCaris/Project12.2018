@@ -69,7 +69,7 @@ class CommentField extends Component {
     }
 
     shouldComponentUpdate() {
-        if(this.state.PostID !== sessionStorage.getItem('PostID') || this.state.IDlist != this.prevState){
+        if(this.state.PostID !== sessionStorage.getItem('PostID') || this.state != this.prevState){
             return true;
         } else {
             return false;
@@ -90,8 +90,8 @@ class CommentField extends Component {
 
         const { PostID, IDfield, UserID, Message  } = this.state;
         if (Message.length != 0 || UserID == null || Message != this.prevProps){
-            axios.post('http://localhost:3000/comments', { IDfield, PostID, UserID, Message }).then( response =>
-                this.fetchComments(response));
+            axios.post('http://localhost:3000/comments', { IDfield, PostID, UserID, Message }).then(() => {this.fetchComments()}
+                );
             const toast = swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -119,7 +119,7 @@ class CommentField extends Component {
             const Messagestring = comment.Message;
             
             const counting = index + 1;
-            const username =  this.state.username[commentUser];
+            var username =  this.state.username[commentUser];
 
 
             return (

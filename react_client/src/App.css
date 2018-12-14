@@ -212,14 +212,13 @@ li{
 }
 
 .title-text {
-  -webkit-text-stroke: 1px black;
-  color: white;
+  color: black;
   text-shadow: 1px 1px 1px black;
   text-decoration: none;
 }
 .title-text:hover {
-
-  text-shadow: 1px 1px 1px white;
+  color: gray;
+  text-decoration: none;
 }
 
 .navigation {

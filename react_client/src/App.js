@@ -11,7 +11,6 @@ import { Login } from './Login';
 import ShareEntry from './ShareEntry';
 import postbycategory from './PostsByCategory';
 import Navigator from './Components/Navigator';
-import test from './test';
 import { NavLink, Route } from 'react-router-dom';
 import PrivatePosts from "./PrivatePosts";
 

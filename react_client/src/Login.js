@@ -116,7 +116,7 @@ export class Login extends Component {
     render() {
         
         return (
-            <div className="Login">
+            <div className="Login" style={{marginTop: '6%'}}>
             <ToastContainer/>
             <form>
             <FormGroup controlId="username" bsSize="large">
@@ -147,7 +147,7 @@ export class Login extends Component {
             </Button>
             </form>
                 <br/>
-                <NavLink to="/signup">Not Registered?</NavLink>
+                <NavLink to="/signup" style={{color: 'black'}}>Signup here</NavLink> <br/>
             <br/>
         </div>
     

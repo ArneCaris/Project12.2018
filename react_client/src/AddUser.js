@@ -19,44 +19,53 @@ class AddUser extends Component {
     };
     }
 
+    componentDidMount () {
+        this.getUsers();
+    }
+
     getUsers() {
-        
-        axios.get(`http://localhost:3000/Users/`).then(res => {
-            const Users = res.data;
-            this.setState({ Users });
-            var loginU = document.getElementById('username').value;
-            var loginP = document.getElementById('password').value;
-            
-            
-            
-            for ( var x = 0; x < Users.length; x++){
-                if(Users[x].username === loginU)
-                {
-                    if(Users[x].password === loginP)
-                    {       
+        if(sessionStorage.length != 0){
+            sessionStorage.clear();
+        } else {
+            axios.get(`http://localhost:3000/Users/`).then(res => {
+                const Users = res.data;
+                this.setState({ Users });
+                var loginU = document.getElementById('username').value;
+                var loginP = document.getElementById('password').value;
+                
+             
+                
+                    for ( var x = 0; x < this.state.Users.length; x++){
+                        if(Users[x].username === loginU)
+                        {
+                            if(Users[x].password === loginP)
+                            {       
 
-                      var CurrUser = {
-                          id: Users[x].ID,
-                          username: Users[x].username,
-                          isAuthenticated: true
-                      }
+                            var CurrUser = {
+                                id: Users[x].ID,
+                                username: Users[x].username,
+                                isAuthenticated: true
+                            }
 
-                      sessionStorage.setItem( 'userID', JSON.stringify(CurrUser.id) );
-                      sessionStorage.setItem( 'userUsername', JSON.stringify(CurrUser.username) );
-                      sessionStorage.setItem( 'isAthenticated', JSON.stringify(CurrUser.isAuthenticated) );
-                      
-                      this.props.history.push('/');
-                      
-                      break;
-                      
-                      } 
-                        
+                            sessionStorage.setItem( 'userID', JSON.stringify(CurrUser.id) );
+                            sessionStorage.setItem( 'userUsername', JSON.stringify(CurrUser.username) );
+                            sessionStorage.setItem( 'isAthenticated', JSON.stringify(CurrUser.isAuthenticated) );
+                            
+                            this.props.history.push('/');
+                            
+
+                            break;
+                            
+                            } 
+                                
+                        } 
                     }
+
                 }
-              }      
-              );
-          }
-            
+            );
+        }
+
+    }       
 
     handleEnter(event) {
         if (event.key === 'Enter') {
@@ -75,20 +84,24 @@ class AddUser extends Component {
             axios
             .post('http://localhost:3000/Users', { ID, username, password })
             .then(res => {
-                console.log(res);
-                console.log(res.data);
                 this.getUsers();
                 const toast = swal.mixin({
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
                     timer: 3000
+                
                 });
-
+                if (res.data.code != 'ER_DUP_ENTRY')
                 toast({
                     type: 'success',
                     title: 'Sign-up Successful!'
                 })
+                else { 
+                    swal ( 'Oopsie!',
+                            'Username is already in use.',
+                            'warning')
+                }
             });
 
         } else {
@@ -111,7 +124,12 @@ class AddUser extends Component {
     render() {
         return (
             <div className="Login">
+
             <form>
+                <h3>*DISCLAIMER*</h3>
+                <p>This is a demo</p>
+                <p>Please do not use your <b>REAL</b> password</p>
+                <br/>
             <FormGroup controlId="username" bsSize="large">
                 <ControlLabel>Username</ControlLabel>
                 <FormControl

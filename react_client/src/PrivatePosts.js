@@ -257,18 +257,6 @@ render() {
         <li><h3>{titlestring}</h3></li>
         <li><p>{contentstring}</p></li>
       </ul>
-        {sessionStorage.length !== 0
-            ?
-            <div>
-                <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px'}} icon={faTrashAlt} onClick={() => this.confirmDeletion(Post.ID)} />
-                <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px'}} icon={faShareAlt} onClick={() => this.shareEntry(Post.ID)} />
-                <FontAwesomeIcon id={Post.ID} style={{fontSize: '30px', padding: '5px', float: 'right', border:'1px solid black', borderRadius: '4px', marginRight: '2px'}} icon={faEdit} onClick={() => this.updatePost(Post.ID)} />
-            </div>
-                :
-            <div>
-                <p></p>
-            </div>
-        }
     </div>
     </div>)
   });
@@ -283,8 +271,9 @@ render() {
 
     return(
       <div>
+        <br/>
         <div>
-            <div style={{margin: '50px'}}>
+            <div>
             <UserMenu/>
             </div>
             {postsList}
@@ -304,24 +293,6 @@ render() {
             </ModalFooter>
         </Modal>
 
-          <Modal isOpen={this.state.modal2} className="modal-dialog modal-lg">
-            <ModalHeader>{modaltitle}</ModalHeader>
-              <ModalBody>
-                  <form onSubmit={this.handleSubmit}>
-                      <label>Title</label>
-                      <input type="text" name="Title" onChange={this.onChange}/>
-                      <br/>
-                      <label>Content</label>
-                      <input type="text" name="Content" onChange={this.onChange}/>
-                      <br/>
-                      <label>Category</label>
-                      <input type="text" name="Category" onChange={this.onChange}/>
-                      <br/>
-                      <label>Privacy</label>
-                      <input type="text" name="isPrivate" onChange={this.onChange}/>
-                  </form>
-              </ModalBody>
-          </Modal>
       </div>
     );
 }

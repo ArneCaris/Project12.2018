@@ -25,6 +25,7 @@ class Navigator extends Component {
               <NavLink to="/" className="title-text">
                   <h3><i><b>Di</b>Log</i></h3>
               </NavLink>
+             
               <CategoryDropdown/>
 
               {sessionStorage.length !== 0
@@ -36,7 +37,12 @@ class Navigator extends Component {
                   </NavLink>
               </div>
               }
+
+
+                
+              
             </Navbar>
+            
         </div>
         );
     }

@@ -447,7 +447,7 @@ render() {
                               <span className="checkmark"></span>
                           </label>
                       </FormGroup>
-                      <button type="submit">Update</button>
+                      <Button color="primary" type="submit">Update</Button>
                   </Form>
               </ModalBody>
               <ModalFooter>

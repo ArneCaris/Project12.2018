@@ -54,7 +54,7 @@ class CreatePost extends Component {
             if(userTitleLenght != null){
                 this.setState({Title: userTitle});
             }   else {
-                this.setState({TTitle: ''});
+                this.setState({Title: ''});
             }
 
             if(userContentLength != null){
